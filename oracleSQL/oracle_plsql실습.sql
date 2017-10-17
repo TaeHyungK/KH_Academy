@@ -757,3 +757,43 @@ END employee_pkg;
 exec employee_pkg.print_ename(7369);
 exec employee_pkg.print_sal(7369);
 
+- 트리거(Trigger)
+지정한 조건을 만족하면 어떤 이벤트를 발생시키는 데이터베이스 객체
+
+CREATE OR REPLACE trigger print_message
+AFTER INSERT ON dept
+BEGIN
+    dbms_output.put_line('정상적으로 추가되었습니다.');
+END;
+
+insert into dept values (80, 'ART', 'BUSAN');
+COMMIT;
+
+급여를 ㅇ비력할 때 최소 $500 ~ $6000을 벗어나면 사원 추가 또는 수정이 발생하지 않도록
+하는 TRIGGER를 작성
+
+CREATE OR REPLACE trigger range_salary
+BEFORE INSERT OR UPDATE ON emp
+--FOR EACH ROW 는 매번 추가되는 행의 수만큼 trigger가 발생함
+for each row
+DECLARE
+    --변수 선언
+    l_min_sal number := 500; --최소 급여
+    l_max_sal number := 6000;   --최대 급여 
+BEGIN
+    -- :new. 컬럽이름의 형식으로 추가, 수정할 때 해당 컬럼의 새로운 값을 저장함
+    if :new.sal NOT BETWEEN l_min_sal AND l_max_sal then
+    --개발자가 정의한 에러, 에러번호는 20000~21000사이의 값을 임의로 지정
+        raise_application_error(-20001, '해당 직무의 급여 범위를 확인하세요.');
+    end if;
+END;
+
+INSERT INTO emp
+VALUES (9003, 'NORA', 'MANAGER', 7698, SYSDATE, 7000, 100, 30);
+트리거에 의해서 INSERT하기 전에 급여 범위를 체크해서 500~6000사이만 인정하고
+나머지는 INSERT전에 예외를 발생시킴
+ORA-20001: 해당 직무의 급여 범위를 확인하세요.
+
+
+COMMIT;
+
