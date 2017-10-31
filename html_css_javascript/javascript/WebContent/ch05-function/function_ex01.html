@@ -11,7 +11,12 @@
 	var kor = Number(prompt('국어 성적을 입력하세요.'));
 	var eng = Number(prompt('영어 성적을 입력하세요.'));
 	var math = Number(prompt('수학 성적을 입력하세요.'));
-		
+	
+	if((kor<0 || kor >100) || (eng <0 || eng>100) || (math<0 || math>100)){
+		document.write('성적은 0~100사이만 입력 가능!');
+	}
+	
+	
 	function getSum(){
 		return kor+eng+math;
 	}

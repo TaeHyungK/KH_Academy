@@ -17,10 +17,10 @@
 	score[3] = Number(prompt('과학 성적을 입력하세요.'));
 	score[4] = Number(prompt('미술 성적을 입력하세요.'));
 	
-	document.write('총점: ' + getSum() + '<br>');
-	document.write('평균: ' + getAvg());
+	document.write('총점: ' + getSum(score) + '<br>');
+	document.write('평균: ' + getAvg(score));
 		
-	function getSum(){
+	function getSum(score){
 		var sum=0;
 		for(var i=0; i<score.length;i++){
 			sum += Number(score[i]);
@@ -28,8 +28,8 @@
 		return sum;
 	}
 	
-	function getAvg(){
-		return getSum()/score.length;
+	function getAvg(score){
+		return getSum(score)/score.length;
 	}
 	
 	

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체의 생성</title>
+<script type="text/javascript">
+	var food = {
+	//속성(key:value)
+		name:'바나나',
+		price:1000,
+		from:'태국', //원산지
+		'검역 여부':true //키값에 공백을 넣으려면 ''안에 사용하면됨 호출시엔 [] 사용, 웬만해선 안쓰는게 좋음!
+	};
+	
+	//객체의 속성 호출
+	document.write(food.name + '<br>');
+	document.write(food.price + '<br>');
+	document.write(food.from + '<br>');
+	document.write(food['검역 여부'] + '<br>');
+	
+	
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
