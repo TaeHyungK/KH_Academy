@@ -47,3 +47,13 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+*.mp4
+*.mp3
+*.gif
+*.jpg
+*.ogv
+*.ogg
+*.png
+*.woff
+
