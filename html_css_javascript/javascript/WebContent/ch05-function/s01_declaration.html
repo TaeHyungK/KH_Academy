@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수의 선언</title>
+<script type="text/javascript">
+	//함수 선언
+	function check(){
+		document.write('호출하면 동작함. <br>');
+	}
+	
+	//함수 호출
+	check();
+	
+	function check2(msg){
+		document.write(msg + '을 좋아합니다. <br>');
+	}
+	
+	//함수 호출
+	check2('가을');
+	
+	function check3(n){
+		return n*n;	
+	}
+	
+	var number = check3(10);
+	document.write('number = ' + number + '<br>');
+	
+	/*
+	익명 함수 : 변수에 함수를 넣은 것 처럼 사용하는 것
+	*/
+	var play = function(){
+		document.write('운등을 좋아해요~~~<br>');
+	};
+	
+	//함수 호출
+	play();
+	
+	var play2 = function(item){
+		document.write(item + '를 좋아해요. <br>');
+	};
+	//함수 호출
+	play2('축구');
+	
+	var play3 = function(x,y){
+		return x+y;
+	};
+	//함수 호출
+	var result = play3(10,30);
+	document.write('result = ' + result + '<br>');
+	
+	
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

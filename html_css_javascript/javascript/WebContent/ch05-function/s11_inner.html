@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>지역변수의 유효범위</title>
+<script type="text/javascript">
+/*
+ * 지역변수는 함수가 실행될 때 생성되고 함수가 종료될 때 사라진다. 하지만, 클로저를 사용하면 이 규칙을
+    위반할 수 있다. 
+    클로저 : 지역변수를 남겨두는 현상.
+ */
+	function outerFunction(name){
+		//지역변수
+		var output= 'Hello' + name + '!';
+		
+		//익명함수 반환
+		return function(){
+			alert(output);
+		};
+	}
+	
+	//outerFunction함수 호출
+	//var m = outerFunction('홍길동');
+	//outerFunction 함수로부터 반환받은 함수 실행
+	//m();
+	
+	//변수에 함수를 저장하지 않고 outerFunction함수를 호출할 때 바로 내부함수 실행하기
+	outerFunction('강호동')();
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

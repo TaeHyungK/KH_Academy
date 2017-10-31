@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실행 위치</title>
+<script type="text/javascript">
+	/*
+	웹 브라우저는 head 태그를 먼저 읽은 후 body태그를 읽어들이기 때문에 script 태그를 head 태그에 넣으면
+	body태그를 읽기 전에 실행.
+	*/
+	//출력
+	document.write('head에서 실행<br>');
+</script>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	자바 스크립트는 문장 끝에 세미콜론을 입력하지 않아도 줄바꿈만 하면 프로그램 실행에 문제가 없음.
+	하지만 대부분의 프로그래밍 언어가 문자 끝에 세미콜론을 입력하므로 자바스크립트도 관례상 입력함.
+	*/
+	document.write('body에서 실행<br>');
+</script>
+
+</body>
+</html>

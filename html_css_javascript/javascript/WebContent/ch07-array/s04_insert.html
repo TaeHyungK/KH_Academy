@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>배열 삽입</title>
+<script type="text/javascript">
+	//배열 선언과 초기화
+				// 0 	 1
+	var array = ['포도', '사과'];
+	
+	//배열명을 호출하면 배열의 요소를 쉼표(,)로 구분해서 문자열 반환
+	document.write(array + '<br>');
+	
+	array[2] = '사과';
+	document.write(array + '<br>');
+	
+	//인덱스10인 요소에 대입하면 요소의 개수가 11이 됨
+	array[10] = '망고';
+	document.write(array + '<br>');
+	
+	//건너뛴 요소에 접근하면 undefined값이 반환
+	document.write(array[4] + '<br>');
+	
+	var array2 = ['one', 'two', 'three'];
+			//lengt = 3
+	//마지막 데이터 제거
+	array2.length =2;
+	document.write(array2 + '<br>');
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

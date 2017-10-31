@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>자식 선택자</title>
+<style type="text/css">
+	/*
+	지정한 태그의 자식. 즉, 직계 자식 태그만 선택
+	*/
+	body > div{
+		border:3px solid blue;
+	}
+</style>
+</head>
+<body>
+	<div>
+		<ul>
+			<li>사과</li>
+			<li>귤</li>
+			<li>배</li>
+			<li>포도</li>
+			<li>망고</li>
+		</ul>
+		
+		<div>하늘</div>
+	</div>
+	
+	<p>
+		<span>하하</span>
+	</p>
+
+</body>
+</html>

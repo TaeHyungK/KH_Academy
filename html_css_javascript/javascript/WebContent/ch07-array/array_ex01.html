@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습</title>
+<script type="text/javascript">
+/*
+ * [문제] 성적을 관리하는 배열(score)을 생성해서 5과목(국어,영어,수학,과학,미술)을
+ 		 저장하고 총점, 평균을 출력하시오.
+ 		 (총점(getSum), 평균(getAvg)은 함수로 만들어서 사용하세요.)
+ */
+ 
+	var score = [];
+	score[0] = Number(prompt('국어 성적을 입력하세요.'));
+	score[1] = Number(prompt('영어 성적을 입력하세요.'));
+	score[2] = Number(prompt('수학 성적을 입력하세요.'));
+	score[3] = Number(prompt('과학 성적을 입력하세요.'));
+	score[4] = Number(prompt('미술 성적을 입력하세요.'));
+	
+	document.write('총점: ' + getSum() + '<br>');
+	document.write('평균: ' + getAvg());
+		
+	function getSum(){
+		var sum=0;
+		for(var i=0; i<score.length;i++){
+			sum += Number(score[i]);
+		}
+		return sum;
+	}
+	
+	function getAvg(){
+		return getSum()/score.length;
+	}
+	
+	
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

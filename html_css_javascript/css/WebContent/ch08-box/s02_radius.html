@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>border-radius</title>
+<style type="text/css">
+	p{
+		font-family:"돋움";
+		font-size:12px;
+		line-height:20px; /*줄간격*/	
+	}
+	/*
+	아직까지는 브라우저들이 CSS3의 프로퍼티를 부분적으로만 구현할 수 있기 때문에
+	대부분의 CSS3 프로퍼티는 프로퍼티 앞에 브라우저를 식별할 수 있는 접두사를 붙여서
+	사용해야함.
+	-webkit- : 웹킷 방식 브라우저용(사파리, 크롬 등)
+	-moz- : 게코 방식 브라우저용(모질라, 파이어폭스 등)
+	-o- : 오페라 브라우저용
+	-ms- : 마이크로소프트 인터넷 익스플로러
+	*/
+	
+	div.rounded{
+		background-color:#666;
+		color:#fff;
+		line-height:20px;
+		width:250px;
+		padding:10px;
+		-webkit-border-radius:10px;
+		-moz-border-radius:10px;
+		border-radius:10px;
+	}
+</style>
+</head>
+<body>
+	<div class="rounded">
+		<p>내 그늘 아래 그림자 길어질 수록 <br>
+		    나의 어지럼증 깊어져<br>
+		    세상이 몇바퀴씩 곤두박질치네요</p>
+	</div>
+
+</body>
+</html>

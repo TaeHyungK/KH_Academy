@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수 사용시 주의사항</title>
+<script type="text/javascript">
+	//선언적 함수
+	function funcA(){
+		document.write('함수 A<br>');
+	}
+	function funcA(){
+		document.write('함수 B<br>');
+	}
+	//함수 이름이 중복되면 마지막에 선언된 함수가 적용됨
+	//함수 호출
+	funcA();
+	
+	document.write('----------<br>');
+	
+	//함수를 정의하기 전에 함수를 호출
+	funcB();
+	
+	function funcB(){
+		document.write('함수 2<br>');
+	}
+	
+	document.write('===============<br>');
+	//익명함수
+	//변수 선언은 중복될 수 있지만 호출은 마지막 변수가 호출 됨
+	
+	var funcC = function(){
+		document.write('함수 C<br>');
+	};
+	var funcC = function(){
+		document.write('함수 D<br>');
+	};
+	
+	funcC();
+	
+	document.write('----------------<br>');
+	/*
+	익명 함수는 선언 후 호출해야 호출이 가능함!
+	
+	funcD();
+	
+	var funcD = function(){
+		document.write('함수 4<br>');
+	};
+	
+	*/
+	
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

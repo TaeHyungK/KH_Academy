@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>회원가입</title>
+</head>
+<body>
+	<div align="center">
+		<span>회원 가입</span>
+	</div>
+	<div align="center">
+		<table border="1">
+			<tr>
+				<td>ID</td>
+				<td align="center">
+					<form action="a.jsp" method="post">
+						<input type="text" name="id"> 
+						<span style="color:red"> *필수 항목</span>
+					</form>
+				</td>
+			</tr>
+
+			<tr>
+				<td>비밀번호</td>
+				<td align="center">
+					<form action="a.jsp" method="post">
+						<input type="text" name="password"> 
+						<span style="color:red"> *필수 항목</span>
+					</form>
+				</td>
+			</tr>
+
+			<tr>
+				<td>이름</td>
+				<td align="center">
+					<form action="a.jsp" method="post">
+						<input type="text" name="name"> 
+						<span style="color:red"> *필수 항목</span>
+					</form>
+				</td>
+			</tr>
+
+			<tr>
+				<td>휴대전화</td>
+				<td align="center">
+					<form action="a.jsp" method="post">
+						<input type="text" name="phoneFirst" size="4" maxlength="4"> 
+						<span> - </span> 
+						<input type="text" name="phoneSecond" width="50" size="4" maxlength="4"> 
+						<span> - </span> 
+						<input type="text" name="phoneLast" width="50" size="4" maxlength="4">
+					</form>
+				</td>
+			</tr>
+
+			<tr>
+				<td>주소</td>
+				<td align="center">
+					<form action="a.jsp" method="post">
+						<input type="text" name="address" width="50">
+					</form>
+				</td>
+			</tr>
+
+			<tr>
+				<td>직업</td>
+				<td align="center">
+					<form action="a.jsp" method="post">
+						<select name="job">
+							<optgroup label="초등학교">
+								<option value="별내초등학교">별내초등학교</option>
+								<option value="혜화초등학교" selected>혜화초등학교</option>
+								<option value="명수초등학교">명수초등학교</option>
+							</optgroup>
+							<optgroup label="중학교">
+								<option value="경신중학교">경신중학교</option>
+								<option value="충무중학교">충무중학교</option>
+								<option value="을지중학교">을지중학교</option>
+							</optgroup>
+							<optgroup label="고등학교">
+								<option value="경신고등학교">경신고등학교</option>
+								<option value="명동고등학교">명동고등학교</option>
+								<option value="풍문여자고등학교">풍문여자고등학교</option>
+							</optgroup>
+						</select>
+
+					</form>
+				</td>
+			</tr>
+
+			<tr>
+				<td>결혼 여부</td>
+				<td align="center">
+					<form action="a.jsp" method="post">
+						<input type="radio" name="marry" value="기혼">기혼
+						 <input	type="radio" name="marry" value="미혼">미혼
+					</form>
+				</td>
+			</tr>
+
+			<tr>
+				<td>사용 언어</td>
+				<td align="center">
+					<form action="a.jsp" method="post">
+						한국어<input type="checkbox" name="language" value="한국어"> 
+						영어<input type="checkbox" name="language" value="영어"> 
+						일본어<input type="checkbox" name="language" value="일본어"> 
+						중국어<input type="checkbox" name="language" value="중국어">
+					</form>
+				</td>
+			</tr>
+
+			<tr>
+				<td>자기소개</td>
+				<td align="center">
+					<textarea rows="5" cols="70" name="introduce"></textarea>
+				</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td>
+					<center>
+						<form action="a.jsp" method="post">
+							<input type="submit" value="전송">
+							<input type="reset" value="초기화">
+						</form>
+					</center>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>비교 연산자</title>
+<script type="text/javascript">
+	var a = 20, b = '20', result;
+	
+	//'20'을 숫자로 형변환해서 비교 결과적으로 자료형이 같아짐
+	result = a==b;
+	document.write('a == b : ' + result + '<br>');
+	
+	result = a != b;
+	document.write('a != b : ' + result + '<br>');
+	
+	//값이 같고 자료형도 같아야 true
+	result = a === b;
+	document.write('a === b : ' + result + '<br>');
+	
+	//값뿐만 아니라 자료형도 다른지 비교
+	//다르면 true 
+	result = a !== b;
+	document.write('a !== b : ' + result + '<br>');
+	
+	result = a>b;
+	document.write('a > b : ' + result + '<br>');
+	
+	result = a<b;
+	document.write('a < b : ' + result + '<br>');
+	
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

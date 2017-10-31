@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>return의 활용</title>
+<script type="text/javascript">
+	//데이터를 반환하는 역할
+	function returnTest(){
+		return '야구';
+	}
+	
+	var sports = returnTest();
+	document.write(sports + '를 좋아해요!<br>');
+	document.write('---------------<br>');
+	
+	function returnTest2(){
+		document.write('문장A<br>');
+		for(var i=1; i<=10; i++){
+			if(i==5)
+				return; //함수를 종료시킴. 
+				//break; //반복문을 빠져나감
+			
+			document.write(i + '<br>');
+		}
+		document.write('문장B');
+	}
+	//함수 호출
+	returnTest2();
+	
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

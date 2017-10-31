@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>float</title>
+<style type="text/css">
+	div#a{
+		background-color: yellow;
+		width:50%;
+		float:left;
+	}
+	div#b{
+		background-color: pink;
+		width:25%;
+		float:right;
+	}
+	div#c{
+	/*float 해제, 해제시키지 않으면 위에서 선언한 float가 전이되어 위로 올라가는 현상 발생*/
+		clear:both;
+		background-color: green;
+		width:100%;
+	}
+	
+</style>
+</head>
+<body>
+	<div id="a">하하</div>
+	<div id="b">하하</div>
+	<div id="c">크크</div>
+
+</body>
+</html>

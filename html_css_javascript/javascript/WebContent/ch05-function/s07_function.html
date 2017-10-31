@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수를 매개변수로 받는 함수</title>
+<script type="text/javascript">
+
+	//함수를 10번 호출하는 함수
+	function callFunctionTenTimes(otherFunction){
+		for(var i =0;i<10;i++){
+			//매개변수로 전달된 함수를 실행
+			otherFunction();
+		}
+	}
+
+	//선언적 함수
+	function justFunction(){
+		document.write('Happy Day!!<br>');
+	}
+	
+	//함수 호출				┌> 소괄호를 명시할 시 callFunctionTenTimes 함수에 함수 매개변수가 전달이 안되고
+	//						│  한번 만 실행되고 오류남 !
+	//callFunctionTenTimes(justFunction());
+	
+	//정상적으로 함수를 호출하면서 매개변수를 전달하려면 소괄호를 빼고 함수명만 보내줘야함
+	callFunctionTenTimes(justFunction);
+	
+	//익명함수 전달
+	callFunctionTenTimes(function(){
+		document.write('Hello World!<br>');
+	});
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

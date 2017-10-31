@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>translate</title>
+<style type="text/css">
+/*
+translate(tx,ty) : x축으로 tx만큼, y축으로 ty만큼 이동. ty값이 주어지지 않으면 0으로 간주
+translateX(tx) : tx값 만큼 x축 방향으로 이동
+trnaslateY(ty) : ty값 만큼 y축 방향으로 이동			     
+*/
+	.myphoto{
+		position:absolute;
+		left:30px;
+		top:30px;
+		-webkit-transform:translate(200px, 100px);
+		-moz-transform:translate(200px, 100px);
+		-ms-transform:translate(200px, 100px);
+		transform:translate(200px, 100px); 
+	}
+	
+</style>
+</head>
+<body>
+	<img class="myphoto" src="../ch08-box/cross.jpg">
+</body>
+</html>

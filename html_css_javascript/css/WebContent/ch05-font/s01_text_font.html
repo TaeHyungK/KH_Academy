@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>font</title>
+<style type="text/css">
+/*
+font-family
+속성의 값으로는 구체적인 글자체의 이름을 지정하며 만약 여러개의 글자체를 지정할 때는
+,(쉼표)로 구분.
+
+명조체, 굴림체, 궁서체 등 구체적인 글자체 이외에 다음 값을 사용하여 폰트의 종류를 값으로 지정
+값			설명
+serif		명조 계열 글자체
+sans-serif	고딕 계열 글자체
+cursive		필기체
+fantasy		장식이 되어 있는 글자체
+monospace	일정한 공간으로 되어 있는 글자체
+
+font-style
+값			설명
+italic		이탤릭체(기울이기)
+oblique		이탤릭체
+
+font-variant
+값			설명
+small-caps	작은 대문자로 변환
+
+일괄지정 font
+font: font-style 값
+	  font-weight 값
+	  font-variant 값
+	  font-size 값/line-height 값
+	  font-family 값
+	  
+*/
+
+	/*개별 지정*/
+	span{
+		font-family:sans-serif;
+		font-size:20pt;
+		font-style:oblique;
+	}
+	p{
+		font:italic bold small-caps 30pt/50pt fantasy
+	}
+
+
+</style>
+</head>
+<body>
+	<span>광화문</span>
+	<p>Happy Monday~~!</p>
+</body>
+</html>

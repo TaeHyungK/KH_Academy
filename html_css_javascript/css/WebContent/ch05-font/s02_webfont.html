@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>webfont</title>
+<style type="text/css">
+	@font-face{
+		/*폰트의 이름 지정(임의로 지정도 가능함)*/
+		font-family:'NGothic';
+		/*폰트 경로, 포맷방식 지정*/
+		font-src:url('../font/NanumGothic.woff') format('woff');
+	}
+	@font-face{ font-family:'NGothicB'; font-src:url('../font/NanumGothicBold.woff') format('woff'); }
+	@font-face{ font-family:'NGothicEB'; font-src:url('../font/NanumGothicExtraBold.woff') format('woff'); }
+	
+	.nt{font:bold 2em "NGothic";}
+	.ntb{font:bold 2em "NGothicB";}
+	.nteb{font:bold 2em "NGothicEB";}
+	
+</style>
+</head>
+<body>
+	<h3 class="nt">오늘의 날씨</h3>
+	<h3 class="ntb">내일의 바다</h3>
+	<h3 class="nteb">모레의 태양</h3>
+</body>
+</html>

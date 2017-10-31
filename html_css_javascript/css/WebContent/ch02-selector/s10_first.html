@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>형제 선택자 / 이웃 선택자</title>
+<style type="text/css">
+	/*이웃 선택자 : 처음 나온 바로 다음 두번 째 태그에만 CSS를 지정*/
+	div+p{color:#ff0000;}
+	
+	/*형제 선택자 : 자신을 제외하고 모든 형제들에게 CSS를 지정*/
+	h3~h3{color:#ffc700;}
+</style>
+</head>
+<body>
+	<p>test</p>
+	<div>test1</div>
+	<p>test2</p>
+	<p>test3</p>
+
+	<h3>sample1</h3>
+	<h3>sample2</h3>
+	<h3>sample3</h3>
+	
+</body>
+</html>

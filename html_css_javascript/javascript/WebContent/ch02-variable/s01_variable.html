@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>변수</title>
+<script type="text/javascript">
+/*
+변수명의 정의
+1. 키워드(예약어)를 사용하면 안 도니다.
+2. 숫자로 시작하면 안된다.
+3. 특수문자는 _와 $만 허용
+4. 공백문자를 포함할 수 없음.
+
+식별자를 잘못 지정한 예
+break (키워드)
+10a (숫자로 시작)
+#num (특수문자 사용)
+a b (공백문자 포함)
+*/
+ 	//변수 선언
+ 	var num;
+ 	//변수의 초기화
+ 	num = 123;
+ 	
+ 	//변수의 선언과 초기화
+ 	var num2 = 456;
+ 	
+ 	//출력
+ 	document.write('num2 = ' + num2);
+ 	document.write('<br>');
+ 	
+ 	//변수를 선언하지 않고 바로 출력 -> 오류 발생
+ 	//document.write(num3);
+ 	
+ 	//변수 선언 후 값을 할당하지 않고 출력
+ 	var num4;
+ 	//undefined 출력, 에러는 나지 않음
+ 	document.write('num4 = ' + num4);
+ 	
+</script>
+</head>
+<body>
+
+</body>
+</html>

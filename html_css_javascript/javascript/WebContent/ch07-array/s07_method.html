@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Method</title>
+<script type="text/javascript">
+	//배열 선언 및 초기화
+	var array = ['파도', '하늘', '도시', '구름'];
+	
+	//join 쉼표를 구분자로 하는문자열 반환
+	document.write('array.join()' + array.join()+ '<br>')
+	document.write('array.join("-")' + array.join('-')+ '<br>')
+	
+	//지정한 인덱스부터 마지막 인덱스까지의 데이터를 추출해서 새로운 배열로 반환
+	document.write('array.slice(2): ' + array.slice(2)+ '<br>');
+	
+	//시작 인덱스부터 끝 인덱스 전까지의 데이터를 추출해서 새로운 배열로 반환
+	document.write('array.slice(1,3): ' + array.slice(1,3)+ '<br>');
+	
+	//전달되는 인자를 추가하여 새로운 배열을 생성
+	document.write('array.concat("서울", "부산") : ' + array.concat('서울', '부산') + '<br>');
+	document.write('array.concat(["한국","미국"]) : ' + array.concat(['한국','미국']) + '<br>');
+		
+</script>
+</head>
+<body>
+
+</body>
+</html>

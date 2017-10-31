@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연산자 실습</title>
+<script type="text/javascript">
+/*
+ * [문제] 성적(국어, 영어, 수학)을 입력받아 총점과 평균을 출력하시오.
+ */
+	var kor = prompt("국어 성적을 입력하세요.");
+	var eng = prompt("영어 성적을 입력하세요.");
+	var math = prompt("수학 성적을 입력하세요.");
+	
+	var sum=0, avg=0;
+	
+	sum = Number(kor)+Number(eng)+Number(math);
+	avg = sum/3;
+	
+	document.write('총점: ' + sum + '<br>');
+	document.write('평균: ' + avg + '<br>');
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

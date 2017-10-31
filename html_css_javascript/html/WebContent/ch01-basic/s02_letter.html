@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>문자 엔티티</title>
+</head>
+<body>
+<!-- 
+문자 엔티티
+&nbsp;	공백
+&lt;	<
+&gt;	>
+&amp;	&
+&quot;	"
+&copy;	copyright표시
+&trade;	trademark의 약자
+ -->
+공백처리 : 공백 사용시 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;공백으로 보여짐<br>
+&lt;하하&gt; <br>
+자바  &amp; JSP <br>
+&quot;즐거운 금요일 &quot;<br>
+copyright : &copy; 푸른하늘 2017<br>
+<!-- 
+아래와 같이 명시해도 브라우저가 처리해서 오류가 발생하지는 않지만
+위의 문자 엔티티 사용을 권장함
+ -->
+<하하> 자바 & JSP "오늘은 금요일" <br>
+
+<hr size="5" width="80%">
+눈에 보이는대로 출력(태그 적용)<br>
+<pre>
+하하                     가을
+크크
+<font size="2" color="bloue">바다</font>
+</pre>
+</body>
+</html>

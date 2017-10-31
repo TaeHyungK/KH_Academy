@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Finite</title>
+<script type="text/javascript">
+	var number1 = 10/0;
+	document.write('number1 = ' + number1 + '<br>');
+	
+	document.write('---------------<br>');
+	
+	if(isFinite(number1)){//0으로 나누지 않은 경우
+		document.write('유한<br>');
+	}else{//0으로 나눈 경우
+		document.write('무한<br>');
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

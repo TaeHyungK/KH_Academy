@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습</title>
+<script type="text/javascript">
+/*
+ * [문제] 정수 두 개를 입력해서 입력된 두 수 중 최대값은 변수 max에 넣고
+ 		 최소값은 변수 min에 넣음
+ 		 조건 체크는 if문 이용, max와 min값 출력
+ */
+	var first = Number(prompt('첫번째 값을 입력하세요'));
+	var second = Number(prompt('두번째 값을 입력하세요'));
+		
+	var max, min;
+	
+	if(first >= second){
+		max = first;
+		min = second;
+	}else{
+		max = second;
+		min = first;
+	}
+	
+	document.write('max : ' + max + '<br>');
+	document.write('min: ' + min);
+	
+	
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

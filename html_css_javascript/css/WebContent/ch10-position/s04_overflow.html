@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>overflow</title>
+<style type="text/css">
+/*overflow 속성
+  			  설명
+ 			 오버플루오딘 항목을 잘라내지 않습니다.(기본값)
+visible 	 오버츨로우된 부분을 감춰버림
+hidden 		 오버플로우 속성에 강제롤 스크롤 바를 생성
+auto 		 
+*/
+	.div01{
+		background-color:yellow;
+		width:200px;
+		height:100px;
+		/*내용이 정해진 크기를 벗어날 때 어떻게 지정할지*/
+		overflow:hidden;
+	}
+	.div02{
+		background-color:yellow;
+		width:200px;
+		height:100px;
+		overflow:auto;
+	}
+	
+</style>
+</head>
+<body>
+<div class="div01">
+	24일(현지시각) 카스퍼스키랩, 이셋(ESET), 소포스, 시스코 탈로스 등 글로벌 보안 기업은 배드 래빗 랜섬웨어가 유럽에 급속히 퍼지고 있다고 일제히 경고했다.
+</div>
+<br><br>
+<div class="div02">
+	24일(현지시각) 카스퍼스키랩, 이셋(ESET), 소포스, 시스코 탈로스 등 글로벌 보안 기업은 배드 래빗 랜섬웨어가 유럽에 급속히 퍼지고 있다고 일제히 경고했다.
+</div>
+
+</body>
+</html>

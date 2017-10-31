@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습</title>
+<script type="text/javascript">
+/*
+ * [문제] 진영이의 하루 지출 내역은 교통비 3,000원 식비 6,000원 음료비 3,000원입니다. 
+ 		 조건 연산자를 사용하여 하루 적정 지출 비용인 1만원을 초과했을 경우 
+ 		 "000원 초과"라고 출력되고, 아니라면 "돈 관리 잘했어요!"라고 출력되도록 해보세요.
+ */
+ 
+ 	var bus = prompt('사용 교통비를 입력하세요.');
+ 	var food = prompt('사용 식비를 입력하세요.');
+ 	var drink = prompt('사용 음료비를 입력하세요.')
+ 	
+ 	var sum = Number(bus) + Number(food) + Number(drink);
+ 	var str = null;
+ 	
+ 	sum>10000 ? (str= (sum - 10000) + '원 초과') : (str='돈 관리 잘했어요!');
+ 	
+ 	document.write(str);
+</script>
+</head>
+<body>
+
+</body>
+</html>
