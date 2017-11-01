@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습</title>
+<script type="text/javascript">
+	/*
+	 [문제] 은행 계좌 생성. 
+	 생성자 함수(Account) 속성> 계좌번호, 예금주, 비밀번호, 잔고
+					   메소드> 입금하기(deposite), 출금하기(withdraw)
+	 						,출력(toString) -> 계좌번호, 예금주, 잔고 
+	 1)계좌 생성
+	 2)잔고 확인
+	 3)입금
+	 4)잔고 확인
+	 5)출금
+	 6)잔고 확인
+	 */
+	 
+	function Account(number, name, password, money) {
+		this.number =number;
+		this.name = name;
+		this.password = password;
+		this.money = money;
+		
+		this.deposite = function(inputMoney){
+			document.write(inputMoney + '원 입금' + '<br>');
+			money += inputMoney;
+		}
+		this.withdraw = function(minusMoney){
+			document.write(minusMoney + '원 출금' + '<br>');
+			money -= minusMoney;
+		}
+		this.toString = function(){
+			document.write('잔고 : ' + money + '<br>');
+		}
+	}
+	 
+	var mAccount = new Account(100, '홍길동', 1234, 20000);
+	mAccount.toString();
+	mAccount.deposite(5000);
+	mAccount.toString();
+	mAccount.withdraw(3000);
+	mAccount.toString();
+	 						
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

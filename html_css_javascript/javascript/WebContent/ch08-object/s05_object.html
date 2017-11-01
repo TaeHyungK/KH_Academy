@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체의 메소드</title>
+<script type="text/javascript">
+	//객체 생성
+	var mySon={
+		//속성
+		name:'달봉이',
+		age:7,
+		//메소드
+		play:function(){
+			return this.name + '가 열심히 놀고 있습니다.<br>';
+		}
+	};
+	
+	document.write(mySon.name + '<br>');
+	document.write(mySon.age + '<br>');
+	document.write(mySon.play());
+	
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

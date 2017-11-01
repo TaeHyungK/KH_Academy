@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체와 반복문</title>
+<script type="text/javascript">
+	//객체 생성
+	var product = {
+			name:'eclipse',
+			price:'1,000원',
+			language:'한국어',
+			supportOS:'win10',
+			subscription:true
+	};
+	
+	//반복문(for in 반복문)을 이용한 출력
+	//for in 반복문을 사용할 때 key를 문자열로 반환받기 때문에
+	//객체에 접근해서 key를 호출할 때는 product[key(=key의 이름)]으로 명시해야 함
+	for(var key in product){
+		document.write(key + ' : ' + product[key] + '<br>');
+	}
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

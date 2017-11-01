@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>생성자 함수 지정</title>
+<script type="text/javascript">
+	function Student(name,kor,math,eng,science){
+		this.name = name;
+		this.kor = kor;
+		this.math = math;
+		this.eng =eng;
+		this.science = science;
+		
+		//메소드
+		this.getSum = function(){
+			return this.kor + this.math + this.eng + this.science;
+		};
+		this.getAvg = function(){
+			return this.getSum()/4;
+		};
+		this.toString = function(){
+			return this.name + ', ' + this.getSum() + ', ' + this.getAvg() + '<br>';
+		};
+	}
+	
+	//생성자 함수를 이용한 객체 생성
+	var student = new Student('홍길동',100,99,98,97);
+	document.write(student);
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

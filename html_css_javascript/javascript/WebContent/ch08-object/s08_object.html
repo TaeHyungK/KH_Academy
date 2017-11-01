@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>배열에 객체 저장</title>
+<script type="text/javascript">
+	//빈 배열 선언
+	var students = [];
+	
+	//객체를 배열에 저장
+	students.push({이름:'이순신', 국어:100, 수학:90, 영어:89, 과학:95});
+	students.push({이름:'홍길동', 국어:98, 수학:90, 영어:100, 과학:94});
+	students.push({이름:'장영실', 국어:97, 수학:90, 영어:89, 과학:96});
+	students.push({이름:'김유신', 국어:99, 수학:90, 영어:98, 과학:95});
+	students.push({이름:'박문수', 국어:96, 수학:90, 영어:89, 과학:92});
+	
+	//students 배열내의 모든 객체에 메소드 추가
+	for(var i in students){
+		//총점 구하는 메소드 추가
+		students[i].getSum = function(){
+			return this.국어 + this.수학 + this.영어 + this.과학;
+		};
+		students[i].getAvg = function(){
+			return this.getSum()/4;
+		};
+		
+	}
+	//출력
+	var output = '이름, 총점, 평균\n';
+	for(var i in students){
+		output += students[i].이름 + ', ' 
+				 + students[i].getSum() + ', ' 
+				 + students[i].getAvg() + '\n';
+	}
+	//경고창 호출
+	alert(output);
+</script>
+</head>
+<body>
+
+</body>
+</html>

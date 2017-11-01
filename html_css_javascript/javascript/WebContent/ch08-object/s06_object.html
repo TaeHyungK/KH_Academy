@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>빈 객체에 속성 추가</title>
+<script type="text/javascript">
+	var student = {};
+
+	document.write(student + '<br>');
+	document.write(student.toString() + '<br>');
+
+	//객체 속성 추가
+	student.name = '홍길동';
+	student.hobby = '악기';
+	student.talent = '프로그래밍';
+	student.hope = '프로그래머';
+
+	//객체의 속성 호출
+	document.write(student.name + '<br>');
+	//in키워드를 이용해서 객체 내의 속성 존재 여부 체크
+	document.write(('talent' in student) + '<br>');
+	document.write('-------------<br>');
+
+	//반복문을 이용한 출력
+	for ( var key in student) {
+		document.write(key + ' : ' + student[key] + '<br>');
+	}
+
+	//객체에 메소드 추가
+	student.toString = function() {
+		var msg = '';
+		for ( var key in this) {
+			if (key != 'toString') {
+				msg += key + ' : ' + this[key] + '<br>';
+			}
+		}
+		return msg; // 생략하면 undefined로 출력
+	};
+	document.write('-------------<br>');
+
+	document.write(student.toString());
+	document.write('-------------<br>');
+	
+	//toString()을 생략하고 호출해도 toString()을 자동 호출
+	document.write(student);
+</script>
+</head>
+<body>
+
+</body>
+</html>

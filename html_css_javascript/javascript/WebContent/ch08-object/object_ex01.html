@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습</title>
+<script type="text/javascript">
+	/*
+	 * [문제] 객체명: score
+	 * 		 속성: 국어,영어,수학 (입력 안해도됨)
+	 * 		 메소드 : 총점(getSum), 평균(getAvg)
+	 *		 출력용 메소드(toString)
+	 */
+	var score = {
+		kor:80,
+		eng:99,
+		math:87,
+		getSum:function() {
+			return this.kor + this.eng + this.math;
+		},
+		getAvg:function() {
+			return this.getSum() / 3
+		},
+		toString:function() {
+			var output = '';
+			output += '국어 : ' + this.kor + '<br>';
+			output += '영어 : ' + this.eng + '<br>';
+			output += '수학 : ' + this.math + '<br>';
+			output += '총점 : ' + this.getSum() + '<br>';
+			output += '평균 : ' + this.getAvg() + '<br>';
+
+			return output;
+		}
+	};
+
+	document.write(score.toString());
+</script>
+</head>
+<body>
+
+</body>
+</html>

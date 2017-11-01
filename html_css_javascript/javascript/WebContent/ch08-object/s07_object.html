@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체 속성 제거</title>
+<script type="text/javascript">
+	//객체 생성
+	var student= {};
+	
+	//객체에 속성 추가
+	student.name = '홍길동';
+	student.hobby = '악기';
+	student.talent = '프로그래밍';
+	student.hope = '프로그래머';
+	
+	//toString()메소드 지정
+	student.toString = function(){
+		var output = '';
+		for(var key in this){
+			//toString은 제외
+			if(key != 'toString'){
+				output += key + ' : ' + this[key] + '<br>';
+			}
+		}
+		
+		return output;
+	};
+	
+	//속성 출력
+	document.write(student.toString());
+	document.write('--------------<br>');
+	
+	//속성 삭제
+	delete student.hobby;
+	document.write(student.toString());
+	document.write('--------------<br>');
+	
+	//속성 삭제
+	delete(student.hope);
+	document.write(student.toString());
+	document.write('--------------<br>');
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>
