@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Timeout</title>
+<script type="text/javascript">
+/*
+ window의 메서드
+ window.setTimeout() : 일정시간 후에 함수를 한 번 실행
+ window.setInterval() : 일정시간마다 함수를 반복해서 실행
+ 
+ window의 속성
+ window.onload : HTML이 로드되고 body까지 인식되면 
+              onload가 호출됨
+ 
+ */
+
+ //윈도우가 로드될 때 onload가 호출되고 onload에 연결된
+ //함수를 호출
+ window.onload=function(){
+    alert('경고창을 닫고 3초 후에 이 페이지는 종료됩니다.');
+    
+    //3초 후에 함수를 실행함.
+    window.setTimeout(function(){//실행 함수
+       //현재 창 닫기
+       window.close();
+    //지연 시간(밀리세컨드)   
+    },3000);
+ 
+ };
+ 
+ 
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Date</title>
+<script type="text/javascript">
+	var now = new Date();
+	document.write('now : ' + now + '<br>');
+	
+	document.write('오늘 : ' + now.toString() + '<br>');
+	document.write('오늘 : ' + now.toLocaleString() + '<br>');
+	document.write('오늘의 날짜 : ' + now.toLocaleDateString() + '<br>');
+	document.write('오늘의 시간 : ' + now.toLocaleTimeString() + '<br>');
+	
+	document.write('연도 : ' + now.getFullYear() + '<br>');
+	//월은 0~11이여서 +1을 해줘야 정확한 월이 나옴
+	document.write('월 : ' + (now.getMonth()+1) + '<br>');
+	document.write('일 : ' + now.getDate() + '<br>');
+	//요일은 0(일)~6(토)
+	document.write('요일 : ' + now.getDay() + '<br>');
+	
+	//시는 0~23
+	document.write('시 : ' + now.getHours() + '<br>');
+	document.write('분 : ' + now.getMinutes() + '<br>');
+	document.write('초 : ' + now.getSeconds() + '<br>');
+	document.write('밀리초 : ' + now.getMilliseconds() + '<br>');
+</script>
+</head>
+<body>
+
+</body>
+</html>

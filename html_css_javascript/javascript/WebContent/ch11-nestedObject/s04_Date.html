@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Date</title>
+<script type="text/javascript">
+	//윈도우가 로드되면 호출
+	window.onload=function(){
+		//일정 시간마다 매개변수로 전달된 함수를 반복 실행
+		window.setInterval(function(){
+			var time = new Date();
+			var hours = time.getHours();
+			var minutes = time.getMinutes();
+			var seconds= time.getSeconds();
+			
+			//시간이 10이하면 앞자리 0을 붙이도록
+			var clock = '';
+			clock += ((hours < 10) ? '0' : '') + hours;
+			clock += ((minutes < 10) ? ':0' : ':') + minutes;
+			clock += ((seconds < 10) ? ':0' : ':') + seconds;
+			
+			var span = document.getElementById('display');
+			span.innerHTML = clock;
+			
+		}, 1000);
+	};
+</script>
+</head>
+<body>
+	<span id=display></span>
+</body>
+</html>

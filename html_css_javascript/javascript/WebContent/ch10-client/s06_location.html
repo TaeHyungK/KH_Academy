@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>location</title>
+
+</head>
+<body>
+<!-- 페이지 이동을 할 수 있고 history 정보가 남아있어서 backpress가 가능 -->
+	<input type="button" onclick="location.href='s01_window.html'" value="이동(href 이용)"> 
+	<br>
+	<input type="button" onclick="location.assign('s02_window.html')" value="이동(assign 이용)">
+	<br>
+<!-- 페이지 이동을 할 수 있고 history정보가 남지 않아 backpress 불가능 -->
+	<input type="button" onclick="location.replace('s02_window.html')" value="이동(replace 이용)">
+	<br>
+	<!-- 새로 고침 -->
+	<input type="button" onclick="location.reload()" value="새로고침">
+</body>
+</html>
