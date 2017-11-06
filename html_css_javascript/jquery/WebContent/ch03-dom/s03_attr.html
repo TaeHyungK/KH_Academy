@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>문서 객체의 속성 처리</title>
+<script type="text/javascript" src='../js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('img').attr({
+			width:function(index){
+				return (index+1)*100;
+			},
+			height:function(index){
+				return (index+1)*100;
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<img src="../images/Koala.jpg">
+	<img src="../images/Penguins.jpg">
+	<img src="../images/Lighthouse.jpg">
+</body>
+</html>

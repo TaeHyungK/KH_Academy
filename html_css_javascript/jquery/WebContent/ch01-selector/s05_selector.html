@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자식선택자, 후손선택자</title>
+<script type="text/javascript" src='../js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//자식선택자(직계자식)
+		//$('body > div').css('border','3px solid red');
+		
+		//후손선택자
+		$('body div').css('border', '3px solid blue');
+	});
+</script>
+</head>
+<body>
+	<div>
+		<ul>
+			<li>서울</li>
+			<li>부산</li>
+			<li>대구</li>
+			<li>광주</li>
+			<li>인천</li>
+		</ul>
+		<div>가을 여행</div>
+	</div>
+	<p>
+		<span>하하</span>
+	</p>
+
+</body>
+</html>

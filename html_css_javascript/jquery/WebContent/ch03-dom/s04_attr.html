@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>문서 객체의 속성 처리</title>
+<script type="text/javascript" src='../js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//src 속성에 대한 속성값을 반환
+		//복수의 태그 속성 정보를 반환할 때는 가장 위에 있는 태그의 속성 값만 반환
+		var src= $('img').attr('src');
+		
+		alert(src);
+	});
+</script>
+</head>
+<body>
+	<img src="../images/Koala.jpg">
+	<img src="../images/Penguins.jpg">
+	<img src="../images/Lighthouse.jpg">
+</body>
+</html>

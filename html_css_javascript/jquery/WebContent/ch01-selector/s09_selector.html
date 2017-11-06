@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>기본 필터 선택자</title>
+<script type="text/javascript" src='../js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+/*
+기본 필터 선택자
+선택자 형태			설명
+요소:odd			홀수번째에 위치한 문서 객체를 선택
+요소:even			짝수번째에 위치한 문서 객체를 선택
+요소:first		첫 번째 위치한 문서 객체를 선택
+요소:last			마지막에 위치한 문서 객체를 선택
+ */
+ 	$(document).ready(function(){
+ 		$('tr:odd').css('background', 'yellow');
+ 		$('tr:even').css('background', 'pink');
+ 		$('tr:first').css('background', '#000')
+ 					 .css('color','#fff');
+ 	});
+</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>이름</th>
+			<th>혈액형</th>
+			<th>지역</th>
+		</tr>
+		<tr>
+			<th>강민수</th>
+			<th>AB형</th>
+			<th>서울</th>
+		</tr>
+		<tr>
+			<th>홍길동</th>
+			<th>AB형</th>
+			<th>서울</th>
+		</tr>
+		<tr>
+			<th>박문수</th>
+			<th>AB형</th>
+			<th>서울</th>
+		</tr>
+		<tr>
+			<th>강호동</th>
+			<th>AB형</th>
+			<th>서울</th>
+		</tr>
+		<tr>
+			<th>유재석</th>
+			<th>AB형</th>
+			<th>서울</th>
+		</tr>
+		<tr>
+			<th>김연아</th>
+			<th>AB형</th>
+			<th>서울</th>
+		</tr>
+		<tr>
+			<th>김생민</th>
+			<th>AB형</th>
+			<th>서울</th>
+		</tr>
+
+	</table>
+
+</body>
+</html>

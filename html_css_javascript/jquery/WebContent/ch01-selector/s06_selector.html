@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>입력 양식 필터 선택자</title>
+<script type="text/javascript" src='../js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+	/*
+	입력양식 필터 선택자1
+	선택자 형태				설명
+	요소:button			input 태그 중 type속성이 button
+	요소:checkbox			〃					checkbox
+	요소:file				〃					file
+	요소:image			〃					image
+	요소:password			〃					password
+	요소:radio			〃					radio
+	요소:reset			〃					reset
+	요소:submit			〃					submit
+	요소:text				〃					text
+	*/
+	$(document).ready(function(){
+		//				┌> .val(): 태그의 value 속성을 호출
+		$('input:text').val('input:text');
+		$('input:password').css('background','pink');
+		$('input:button').val('input:button');
+	});
+</script>
+</head>
+<body>
+	<input type="text">
+	<input type="password">
+	<input type="button">
+
+</body>
+</html>

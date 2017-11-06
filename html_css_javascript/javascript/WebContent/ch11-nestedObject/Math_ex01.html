@@ -8,8 +8,20 @@
 
 	var user = prompt('가위,바위,보 중 선택하세요.', '');
 
-	var com = Math.random() * 3 + 1 //1:가위 2:바위 3:보
-
+	var com = Math.floor(Math.random() * 3) + 1; //1:가위 2:바위 3:보
+	
+	document.write('사용자: ' + user + '<br>');
+	switch(com){
+	case 1:
+		document.write('컴퓨터: 가위 <br>');
+		break;
+	case 2:
+		document.write('컴퓨터: 바위 <br>');
+		break;
+	case 3:
+		document.write('컴퓨터: 보 <br>');
+		break;
+	}
 	if (user == '가위') {
 		if (com == 1) //가위
 			document.write('비겼습니다.');
@@ -18,7 +30,27 @@
 			document.write('졌습니다.');
 		
 		if(com==3) //보
-			document.write('이겼습니다')
+			document.write('이겼습니다');
+	}else if(user =='바위'){
+		if (com == 1) //가위
+			document.write('이겼습니다.');
+
+		if (com == 2) // 바위
+			document.write('비겼습니다.');
+		
+		if(com==3) //보
+			document.write('졌습니다');
+	}else if(user=='보'){
+		if (com == 1) //가위
+			document.write('졌습니다.');
+
+		if (com == 2) // 바위
+			document.write('이겼습니다.');
+		
+		if(com==3) //보
+			document.write('비겼습니다.');
+	}else{
+		document.write('잘못 입력하셨습니다.');
 	}
 </script>
 </head>
