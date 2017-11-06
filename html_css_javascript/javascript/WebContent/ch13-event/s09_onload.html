@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script 태그 내에서 이벤트 연결</title>
+<script type="text/javascript">
+	window.onload=function(){
+		alert('문서가 로드되었습니다.');
+		document.body.style.backgroundColor='yellow';
+		//div호출
+		var notice=document.getElementById('notice');
+		notice.innerHTML='날씨 맑음!';
+	}
+</script>
+</head>
+<body>
+	<div id="notice"></div>
+
+</body>
+</html>

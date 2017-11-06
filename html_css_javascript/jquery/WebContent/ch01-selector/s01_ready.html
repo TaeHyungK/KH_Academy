@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery 연결</title>
+<script type="text/javascript" src='../js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+	//window.onload=function(){}; -> js방식
+	
+	//문서가 준비 완료되면(body까지 인식이 다  되면) 매개변수로 전달된 함수를
+	//실행하라는 의미
+	$(document).ready(function(){
+		alert('First Ready');
+	});
+	$(document).ready(function(){
+		alert('Second Ready');
+	});
+	$(document).ready(function(){
+		alert('Third Ready');
+	});
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

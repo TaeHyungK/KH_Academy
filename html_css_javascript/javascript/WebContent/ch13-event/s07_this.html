@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>this.form</title>
+<script type="text/javascript">
+//this.form : 이벤트가 발생한 태그르 포함한 form 태그
+	function check(fr){
+		alert(fr.name.value + '님 반갑습니다.');
+	}
+</script>
+</head>
+<body>
+
+	<form>
+	이름 : <input type="text" name="name"><br>
+	<input type="button" value="확인" onclick="check(this.form);"><br>
+	</form>
+</body>
+</html>

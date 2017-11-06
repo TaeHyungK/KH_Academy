@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 연결</title>
+<style type="text/css">
+	div{
+		background-color:yellow;
+	}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		//div 연결
+		var header = document.getElementById('header');
+		
+		//이벤트 연결(익명함수 사용)
+		header.onclick=function(){
+			alert('CLICK');
+		};
+	}
+	
+	
+</script>
+</head>
+<body>
+	<div id="header">클릭</div>
+</body>
+</html>

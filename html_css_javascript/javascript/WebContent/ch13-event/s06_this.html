@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>this</title>
+<script type="text/javascript">
+	function check(app){
+		//이벤트가 발생한 태그 정보를 전달받ㅇ서 태그의 value 속성에 담겨있는 정보를 출력
+		alert(app.value + '를 선택했습니다.');
+	}
+</script>
+</head>
+<body>
+	<form>
+		영업 <input type="radio" name="apply" value="영업" onclick="check(this);">
+		총무 <input type="radio" name="apply" value="총무" onclick="check(this);">
+		관리 <input type="radio" name="apply" value="관리" onclick="check(this);">
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gallery</title>
+<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+
+	#gallerWrap{
+	width:520px;
+	margin:0 auto;
+	text-algin:center;
+	}
+	
+	#gallerWrap img{
+		vertical-align:middle;
+	}
+	
+	img#prev, img#next{
+		cursor:pointer;
+	}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		var num = 1;
+		var gallery = document.getElementById('gallery');
+		
+		//이벤트 연결
+		document.getElementById('prev').onclick=function(){
+			num--;
+			if(num<1) num=7;
+			//img의 이미지 교체
+			gallery.src = '../images/img' + num + '.jpg';
+		};
+		document.getElementById('next').onclick=function(){
+			num++;
+			if(num>7) num=1;
+			//img의 이미지 교체
+			gallery.src = '../images/img' + num + '.jpg';
+		};
+	}
+</script>
+</head>
+<body>
+<div id="gallerWrap">
+	<h1>이미지 넘기기</h1>
+	<p>
+		<img src="../images/left_btn.png" alt="이전 그림" id="prev" >
+		<img src="../images/img1.jpg" alt="갤러리 그림" id="gallery">
+		<img src="../images/right_btn.png" alt="다음 그림" id="next">
+	</p>
+</div>
+</body>
+</html>

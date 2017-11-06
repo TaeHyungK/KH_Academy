@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>String</title>
+<script type="text/javascript">
+	   //index  0123456 78910... (빈칸도 인덱스 포함)
+	var msg = '세상의 끝에서 세상을 노래하다';
+
+	//문자열의 길이
+	document.write(msg.length + '<br>');
+	//해당 인덱스의 문자열
+	document.write(msg.charAt(8) + '<br>');
+	//앞에서부터 해당 문자열 찾기
+	document.write(msg.indexOf('상') + '<br>');
+	//뒤에서부터 해당 문자열 찾기
+	document.write(msg.lastIndexOf('상') + '<br>');
+	//해당 인덱스부터 모든 문자열
+	document.write(msg.substring(5) + '<br>');
+	//시작인덱스부터 끝인덱스까지의 문자열
+	document.write(msg.substring(1,5) + '<br>');
+	
+	var msg2 = '2017-11-03';
+	//해당 문자열을 기준으로 문자열을 잘라 반환
+	var array = msg2.split('-');
+	document.write(array);
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

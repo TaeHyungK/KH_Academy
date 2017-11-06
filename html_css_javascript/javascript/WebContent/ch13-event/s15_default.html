@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>기본 이벤트</title>
+<script type="text/javascript">
+	window.onload=function(){
+		var aa = document.getElementById('aa');
+		//이벤트 연결
+		aa.onclick=function(){
+			alert('이벤트 연결');
+			//기본 이벤트 제거
+			return false;
+		};
+		
+		var myForm = document.getElementById('myForm');
+		//이벤트 연결
+		myForm.onsubmit=function(){
+			alert('이벤트 연결');
+			//기본 이벤트 제거
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+	<a id="aa" href="http://www.naver.com">이동</a>
+	<br><br>
+	<form id="myForm" action = "a.jsp" method="post" >
+		<input type="submit" value="전송">
+	</form>
+</body>
+</html>

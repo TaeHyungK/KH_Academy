@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이미지 크기 변경</title>
+<script type="text/javascript">
+	window.onload=function(){
+		//a태그 호출
+		var aLink = document.getElementsByTagName('a');
+		var imgDiv = document.getElementById('bigImg');
+		
+		for(var i=0;i<aLink.length;i++){
+			aLink[i].onmouseover = function(){
+				bigImg.style.display ='';
+				//이벤트가 발생한 a태그의 href 속성의 값을 반환
+				bigImg.src=this.href;
+				bigImg.width=500;
+				bigImg.height=350;
+			};
+			aLink[i].onmouseout = function(){
+				bigImg.style.display='none';
+			};
+			aLink[i].onclick=function(){
+				//a태그의 기본 이벤트(click) 제거
+				return false;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<div>
+		<a href="../images/Penguins.jpg"><img src="../images/Penguins.jpg" width="83"></a>
+		<a href="../images/Koala.jpg"><img src="../images/Koala.jpg" width="83"></a>
+	</div>
+	<div>
+		<img id='bigImg' style="display:none;">
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>문서 객체 생성</title>
+<script type="text/javascript">
+/*
+HTML 문서를 해석한 후, 해석 결과를 메모리에 DOM(Document Object Model)이라는
+객체 트리 구조로 생성
+
+메소드 이름							설명
+createElement(tagName)			요소(태그) 노드를 생성
+createTextNode(text)			텍스트 노드를 생성
+appendChild(node)				객체에 노드를 연결
+ */
+
+	window.onload=function(){
+		//h1태그 생성
+		var header = document.createElement('h1');
+		//텍스트 생성
+		var textNode = document.createTextNode('Hello DOM!');
+		/* ---여기까지 상태 : 각 노드들이 연결이 안된 상태
+				html
+				 |
+			-----------
+			|		  |
+		   head      body
+		   			
+		   			  h1
+		   			  
+		   		  'hello DOM!'
+		*/
+		
+		//노드 연결
+		//h1에 생성한 텍스트를 연결
+		header.appendChild(textNode);
+		//body에 h1 연결
+		document.body.appendChild(header);
+	};
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

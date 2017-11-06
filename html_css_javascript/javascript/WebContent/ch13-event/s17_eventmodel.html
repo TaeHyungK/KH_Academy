@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM Level2 이벤트 모델</title>
+<script type="text/javascript">
+/*
+DOM Level2 이벤트 모델 - 인터넷 익스플로러용, 표준 이벤트 모델
+attachEvent(eventProperty, eventHandler): 이벤트 연결
+detachEvent(eventProperty, eventHandler): 이벤트 제거
+
+표준이벤트 모델
+(비IE:
+ IE9이상에서는 표준이벤트 모델도 지원,
+ IE11이상에서는 표준이벤트 모델만 지원)
+addEventLister(eventType, eventHandler, useCapture): 이벤트 연결
+removceEventLister(eventType, eventHandler): 이벤트 제거
+*/
+	//윈도우가 로드될 때		  						 
+	window.addEventListener('load', function(){
+		var myHeader = document.getElementById('myHeader');
+		
+		//이벤트 연결
+		myHeader.addEventListener('click', function(){
+			alert('이벤트 발생');
+		}, false);
+	}, false);
+	//  └>flase = 버블링방식 / true= 캡쳐링방식
+</script>
+</head>
+<body>
+	<h1 id="myHeader">Click</h1>
+
+</body>
+</html>

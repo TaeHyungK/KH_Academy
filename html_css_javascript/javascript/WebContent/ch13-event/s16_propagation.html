@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 전달</title>
+<script type="text/javascript">
+	/*
+	 이벤트 버블링 : 자식 노드에서 부모 노드 순으로 이벤트를 실행하는 것을 의미(IE, 비IE 지원)
+	 이벤트 캡쳐링 : 부모 노드에서 자식 노드 순으로 이벤트를 실행하는 것을 의미(비IE만 지원!) 
+	 */
+	window.onload = function() {
+		var header = document.getElementById('header').onclick=function(){
+			alert('header');
+			this.style.background='pink';
+		};
+		
+		var paragraph = document.getElementById('paragraph').onclick = function(e){
+			alert('paragraph');
+			this.style.background='yellow';
+			//이벤트 객체
+			/*
+			인터넥 익스플로러 8이하의 버전은 이벤트가 발생할 때 이벤트 객체를
+			window.event 속성으로 전달하지만, 다른 브라우저는 이벤트 핸들러의
+			매개변수로 전달받음
+			*/
+			var event = e || window.event;
+			
+			//이벤트 전달 막기(전파 제거)
+			event.cancelBubble = true;
+			if(event.stopPropagation){
+				event.stopPropagation();
+			}
+			
+		};
+	};
+</script>
+</head>
+<body>
+	<h1 id="header">header
+		<p id="paragraph">Paragraph</p>
+	</h1>
+</body>
+</html>

@@ -11,7 +11,33 @@
 		   이순신  4000  3600
 		   김유신  7000  4200
 	 */
-
+	var member = [];
+	member.push({이름:'홍길동', 수입:3000, 지출:2500});
+	member.push({이름:'박문수', 수입:5000, 지출:1100});
+	member.push({이름:'이순신', 수입:4000, 지출:3600});
+	member.push({이름:'김유신', 수입:7000, 지출:4200});
+	
+	//배열에 저장된 객체에 메소드 추가
+	for(var i in member){
+		//잔액 구하는 메소드 추가
+		member[i].getBalance = function(){
+			return this.수입 - this.getTax() - this.지출;
+		};
+		//세금 구하는 메소드 추가
+		member[i].getTax = function(){
+			return this.수입 * 0.05;
+		};
+	}
+	
+	//출력
+	var output = '이름, 수입, 지출, 잔액, 세금 <br>';
+	for(var i in member){
+		output += member[i].이름 + ', ' + member[i].수입 + ', ' + member[i].지출 + ', ' 
+					+ member[i].getBalance() + ', ' + member[i].getTax() +'<br>';
+	}
+	
+	document.write(output);
+	
 	
 	
 </script>

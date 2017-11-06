@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>태그명을 통해서 문서 객체 탐색</title>
+<script type="text/javascript">
+	window.onload = function() {
+		var spans = document.getElementsByTagName('span');
+		
+		// for in반복문은 문서 객체 이외의 속성에도 접근하기 때문에 문서 객체 배열에서는
+		// for in반복문을 사용하지 않음
+		/*   
+		var output ='';
+		
+		for(var i in spans){
+			output += i + '\n';
+		};
+		alert(output); */	
+		
+		for (var i = 0; i < spans.length; i++) {
+			if (i % 2 == 0) {//짝수일 경우
+				spans[i].innerHTML = '별';
+			}else{ //홀수일 경우
+				spans[i].innerHTML = '우주';
+			}
+		}
+	};
+	
+</script>
+</head>
+<body>
+	<span>하늘</span>
+	<br>
+	<span>하늘</span>
+	<br>
+	<span>하늘</span>
+	
+
+</body>
+</html>
