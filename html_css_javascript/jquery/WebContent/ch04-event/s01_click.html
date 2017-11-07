@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Click,Mouseover,Mouseout 이벤트</title>
+<script type="text/javascript" src='../js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+	$(function(){
+		//.click() : 클릭 이벤트가 발생하면 매개변수로 전달된 함수를 실행함
+		$('#btn1').click(function(){
+			$('p').css('background-color', 'yellow');
+		});
+		$('#btn2').mouseover(function(){
+			$('p').css('background-color', 'purple');
+		});
+		$('#btn2').mouseout(function(){
+			$('p').css('background-color', 'pink');
+		});
+		
+		//.hover() : .mouseover() + .mouseout()
+		$('#btn3').hover(function(){
+			//이벤트 소스에 진입
+			$('p').css('background-color', 'purple');
+		},function(){
+			//이벤트 소스를 벗어날 때
+			$('p').css('background-color', 'pink');
+		});
+	});
+</script>
+</head>
+<body>
+	<button id="btn1">click</button>
+	<button id="btn2">mouseover/out</button>
+	<button id="btn3">hover</button>
+	<p>내용</p>
+</body>
+</html>

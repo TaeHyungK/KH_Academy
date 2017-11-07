@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>문서 객체 생성</title>
+<script type="text/javascript" src='../js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+/*
+[문제] 성적 내용을 table에 표시
+	  name korean english math
+	    이름     국어 	    영어	    수학
+	  홍길동     80	  90	  88 
+	  박문수     99	  99	  77
+	  이순신     89	  77	  99
+	  김유신     88	  99	  98	
+ */
+	$(document).ready(function(){
+		//배열 생성
+		var item = [
+			{name:'홍길동', korean:80, english:90, math:88},
+			{name:'박문수', korean:99, english:99, math:77},
+			{name:'이순신', korean:89, english:77, math:99},
+			{name:'김유신', korean:88, english:99, math:98}
+		];
+		
+		//출력용 변수 생성
+		var output = '<tr><th>이름</th><th>국어</th><th>영어</th><th>수학</th></tr>';
+		
+		//$.each 사용
+		$.each(item,function(index, item){
+			output += '<tr>';
+			output += '<td>' + item.name +'</td>';
+			output += '<td>' + item.korean + '</td>';
+			output += '<td>' + item.english + '</td>';
+			output += '<td>' + item.math + '</td>';
+			output += '</tr>';
+		});
+		
+		//append
+		$('#output').append(output);
+	});
+</script>
+</head>
+<body>
+	<table id="output"></table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>문서 객체의 생성</title>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//image의 사이즈를 조정
+		$('img').css('width',150);
+		
+		//함수를 2초마다 실행
+		setInterval(function(){
+			//첫번째 이미지를 마지막으로 보냄
+			$('img').first().appendTo('body');
+		},2000);
+	});
+</script>
+</head>
+<body>
+	<img src="../images/Desert.jpg">
+	<img src="../images/Koala.jpg">
+	<img src="../images/Lighthouse.jpg">
+	<img src="../images/Penguins.jpg">
+	<img src="../images/Tulips.jpg">
+</body>
+</html>

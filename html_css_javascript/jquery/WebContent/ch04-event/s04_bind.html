@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이미지 바꾸기</title>
+<style type="text/css">
+	html *{
+		margin:0;
+		padding:0;
+	}
+	body{
+		padding:10px;
+		margin-top:10px;
+	}
+	#wrapper{
+		width:522px;
+		margin:0 auto;
+		text-align:center;
+	}
+	li{
+		float:left;
+		list-style:none;
+		margin-left:10px;
+		overflow:hidden;
+		width:123px;
+		height:40px;
+	}
+	
+	li.first{
+		margin-left:0;
+	}
+	li a{
+		display:block;
+		width:123px;
+	}
+	li a img{
+		display:block;
+	}
+	#nav{
+		width:522px;
+		height:40px;
+		margin:0 auto 10px auto;
+	}
+	#images{
+		width:522px;
+		height:400px;
+		margin:10px auto 0 auto;
+	}
+	#images img{
+		width:522px;
+		height:400px;
+	}
+</style>
+<script type="text/javascript" src='../js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+	$(function(){
+		//이벤트 연결
+		$('#nav a').bind('click',function(event){
+			$('#images > img').attr('src', $(this).attr('href'));
+			
+			//a태그의 기본 이벤트 제거
+			event.preventDefault(); //= return false;
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="nav">
+			<ul>
+				<li class="first"><a href="../images/spring.jpg"><img src="../images/btn1_2.jpg"></a></li>
+				<li><a href="../images/summer.jpg"><img src="../images/btn2_2.jpg"></a></li>
+				<li><a href="../images/fall.jpg"><img src="../images/btn3_2.jpg"></a></li>
+				<li><a href="../images/winter.jpg"><img src="../images/btn4_2.jpg"></a></li>
+			</ul>
+		</div>
+
+		<div id="images">	
+			<img src="../images/spring.jpg">
+		</div>
+	</div>
+</body>
+</html>

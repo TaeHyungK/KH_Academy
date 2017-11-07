@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>문서 객체 내부에 HTML 또는 text 추가</title>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	//(document).ready(function(){});
+	$(function(){
+		//HTML 허용
+		$('div').html('<h1>날씨가 흐린 오전!</h1>');
+		//HTML이 적용되지 않음
+		$('p').text('<h1>놀이공원의 곰인형</h1>');
+	});
+</script>
+</head>
+<body>
+	<div></div>
+	<p></p>
+</body>
+</html>

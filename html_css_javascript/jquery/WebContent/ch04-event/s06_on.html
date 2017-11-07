@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>on 메소드를 이용한 이벤트 연결</title>
+<script type="text/javascript" src='../js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+	$(function(){
+		//현재의 태그뿐만 아니라 미래의 태그에도 이벤트 연결
+		//				이벤트명   이벤트소스  이벤트 핸들러
+		$(document).on('click', 'h1',function(){
+			var length = $('h1').length; // h1태그의 갯수
+			var targetHTML = $(this).html();
+			
+			$('#wrap').append('<h1>' + length + '-' + targetHTML + '</h1>');
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="wrap">
+		<h1>Header</h1>
+	</div>
+
+</body>
+</html>

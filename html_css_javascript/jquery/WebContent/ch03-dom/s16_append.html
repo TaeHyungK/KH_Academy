@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>배열 정보를 읽어들여 태그에서 표시</title>
+<script type="text/javascript" src='../js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+	$(function(){
+		var content= [
+			{name:'김연아', region:'서울시'},
+			{name:'이상화', region:'부산시'},
+			{name:'장미란', region:'인천시'}
+		];
+		
+		$.each(content, function(index,item){
+			var output = '';
+			output += '<div>';
+			output += '<h1>' + item.name + '</h1>';
+			output += '<h2>' + item.region + '</h2>';
+			output += '</div>';
+			
+		});
+		
+		$('#output').append(output);
+	});
+</script>
+
+</head>
+<body>
+	<div id="output"></div>
+	<div></div>
+	<div></div>
+</body>
+</html>
