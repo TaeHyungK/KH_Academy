@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>[실습]여행지 선택</title>
+</head>
+<body>
+<!-- 
+이름 : 홍길동
+여행비용 : 200,000
+여행지 선택 : 서울, 뉴욕, 런던, 파리
+
+ -->
+	<form action="/servletMain/travel" method="post">
+		이름 : <input type="text" name="name"> <br>
+		여행비용 : <input type="number" name="cost"> <br>
+		<input type="radio" name="location" value="서울">서울
+		<input type="radio" name="location" value="뉴욕">뉴욕
+		<input type="radio" name="location" value="런던">런던
+		<input type="radio" name="location" value="파리">파리
+		<br>
+		<input type="submit" value="전송">
+	</form>
+</body>
+</html>
