@@ -1,0 +1,8 @@
+<%-- .jspf 확장자 : include되는 파일이라는 것을 명시하는 것 --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String img_path = "../images";
+	String file_path = "../files";
+	
+%>
