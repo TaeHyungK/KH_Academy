@@ -42,17 +42,24 @@ public class MemberServlet extends HttpServlet{
 			out.printf("전화번호 : %s-%s-%s <br>",tel[0], tel[1], tel[2]);
 		}*/
 		out.println("전화번호 : <br>");
+		
 		if(tel!=null) {
 			for(int i=0;i<tel.length;i++) {
-				if(i<tel.length-1) {
-					out.println(tel[i]+"-");
-				}else {
-					out.println(tel[i]);
+				//전화번호를 입력하지 않았을 경우
+				//빈 문자열 형태로 전송되기 때문에 빈 문자열 체크
+				if(!tel[i].equals("")) {
+					if(i>0) {
+						out.print("-");
+					}
+					
+					out.print(tel[i]);
+				}else{
+					out.print("미입력");
+					break;
 				}
 			}
-		}else {
-			out.println("입력한 전화번호가 업습니다.");
 		}
+
 		out.println("</body>");
 		out.println("</html>");
 
