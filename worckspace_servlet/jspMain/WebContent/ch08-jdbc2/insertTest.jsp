@@ -9,60 +9,57 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 정보 등록</title>
+<title>상품 정보 등록</title>
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 <%
-	//전송된 데이터에 대한 인코딩 처리
 	request.setCharacterEncoding("UTF-8");
-
-	//전송된 데이터 반환
-	String id = request.getParameter("id");
-	String passwd= request.getParameter("passwd");
+	
+	String id= request.getParameter("id");
 	String name = request.getParameter("name");
+	int price = Integer.parseInt(request.getParameter("price"));
+	int stock = Integer.parseInt(request.getParameter("stock"));
+	String place = request.getParameter("place");
 	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
-	String sql=null;
+	String sql = null;
 	
 	try{
-		//JDBC 수행 1단계
 		Class.forName(driverName);
-		//JDBc 수행 2단계
+		
 		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
-		sql = "INSERT into zmember(id, passwd, name, reg_date) values(?,?,?,sysdate)";
 		
-		//JDBC 수행 3단계
+		sql = "INSERT INTO product(id,name,price,stock,place,reg_date) VALUES(?,?,?,?,?,sysdate)";
+		
 		pstmt = conn.prepareStatement(sql);
-		//SQL문의 ?에 데이터 바인딩
-		pstmt.setString(1, id);
-		pstmt.setString(2, passwd);
-		pstmt.setString(3, name);
 		
-		//JDBC 수행 4단계
+		pstmt.setString(1, id);
+		pstmt.setString(2, name);
+		pstmt.setInt(3, price);
+		pstmt.setInt(4, stock);
+		pstmt.setString(5, place);
+		
 		pstmt.executeUpdate();
 %>
 	<div class="result-display">
-		회원 가입 성공! <br>
-		<input type="button" value="목록보기" onclick="location.href='selectTest.jsp'">
+		상품 등록 성공!<br>
+		<input type="button" value="목록보기" onclick="location.href='listTest.jsp'">
 	</div>
 <%
 	}catch(Exception e){
 %>
 		<div class="result-display">
-			오류 발생! 회원 가입 실패! <br>
-			<input type="button" value="회원가입폼" onclick="location.href='insertForm.jsp'">
+			오류 발생! 상품 등록 실패!<br>
+			<input type="button" value="상품 등록으로.." onclick="location.href='insertForm.jsp'">
 		</div>
-<%		
-		
+<%	
 		e.printStackTrace();
 	}finally{
-		//자원 정리
 		if(pstmt!=null) try{pstmt.close();} catch(Exception e){}
 		if(conn!=null) try{conn.close();} catch(Exception e){}
 	}
 %>
-
 </body>
 </html>

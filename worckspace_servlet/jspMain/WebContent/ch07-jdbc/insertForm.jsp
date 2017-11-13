@@ -6,6 +6,32 @@
 <meta charset="UTF-8">
 <title>회원등록</title>
 <link rel="stylesheet" href=style.css type="text/css">
+<script type="text/javascript">
+	window.onload=function(){
+		var myForm = document.getElementById('myForm');
+		//submit 이벤트 연결
+		myForm.onsubmit=function(){
+			var id = document.getElementById('id');
+			var passwd = document.getElementById('passwd');
+			var name = document.getElementById('name');
+			
+			if(id.value==''){
+				alert('아이디를 입력하세요.');
+				id.focus();
+				return false;
+			}else if(passwd.value==''){
+				alert('패스워드를 입력하세요.');
+				passwd.focus();
+				return false;
+			}else if(name.value==''){
+				alert('이름을 입력하세요.');
+				name.focus();
+				return false;
+			}
+			
+		};
+	};
+</script>
 </head>
 <body>
 	<div class="page-main-style">
