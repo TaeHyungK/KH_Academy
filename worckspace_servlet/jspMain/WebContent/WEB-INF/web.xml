@@ -14,6 +14,10 @@
   	<exception-type>java.lang.NullPointerException</exception-type>
   	<location>/ch05-errorPage/error/errorNullPointer.jsp</location>
   </error-page>
+  <!-- 세션 유지 시간 지정(분단위 지정) -->
+  <session-config>
+  	<session-timeout>50</session-timeout>
+  </session-config>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

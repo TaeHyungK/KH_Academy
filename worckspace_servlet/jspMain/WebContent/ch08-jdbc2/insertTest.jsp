@@ -14,6 +14,7 @@
 </head>
 <body>
 <%
+	//post방식에 대한 인코딩방식 지정 / get방식은 없어도 됨
 	request.setCharacterEncoding("UTF-8");
 	
 	String id= request.getParameter("id");
