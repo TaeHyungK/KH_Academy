@@ -68,7 +68,29 @@ public class GuestbookDao {
 	}
 	//글의 총 갯수
 	public int getCount() throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
 		int count = 0;
+		
+		try {
+			conn = getConnection();
+			
+			sql = "SELECT count(*) FROM guestbook";
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(rs, pstmt, conn);
+		}
 		
 		return count;
 	}
@@ -83,10 +105,14 @@ public class GuestbookDao {
 		try {
 			//커넥션 풀로부터 커넥션을 할당
 			conn = getConnection();
-			sql = "SELECT * FROM guestbook ORDER BY num DESC";
+			//페이징 처리를 위해 rownum을 이용해 쿼리문 구성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM guestbook ORDER BY num DESC) a) WHERE rnum>=? and rnum<=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			//sql문을 실행하고 결과행을 ResultSet에 반환
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
 			rs = pstmt.executeQuery();
 			list = new ArrayList<GuestbookDto>(); 
 			while(rs.next()) {
@@ -181,7 +207,24 @@ public class GuestbookDao {
 	}
 	//글 삭제
 	public void delete(int num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
 		
+		try {
+			conn = getConnection();
+			
+			sql = "DELETE FROM guestbook WHERE num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(null, pstmt, conn);
+		}
 	}
 	
 
