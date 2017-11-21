@@ -59,11 +59,14 @@
 							상품가격 <%=product.getPrice() %>
 							재고 <%=product.getStock() %> 
 							등록일 <%=product.getReg_date() %>
+							<a class="algitn-right" href="poductUpdateForm.jsp?num=<%=product.getNum() %>">[수정]</a>
+							<a class="algitn-right" href="poductDeleteForm.jsp?num=<%=product.getNum() %>">[삭제]</a>
                          </div>
                          <p>
                              <%=product.getContent() %>
                          </p>
                      </td>
+                     
                  </tr>
                  <%
               }
@@ -106,6 +109,7 @@
 <%
 		}
 %>
+	<h2 class="align-center"><a href="main.jsp">홈으로</a></h2>
     </div>
 </body>
 </html>

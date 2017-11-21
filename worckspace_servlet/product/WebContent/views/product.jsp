@@ -23,7 +23,7 @@
       <h1>상품 등록 완료</h1>
       <div class="result-display">
          상품 등록 성공<br>
-      <button onclick="location.href='productForm.jsp'">목록으로</button>
+      <button onclick="location.href='list.jsp'">목록으로</button>
       </div>
    </div>
 </body>

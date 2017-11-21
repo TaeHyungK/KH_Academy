@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>효과와 애니메이션</title>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#btn1').on('click', function(){
+			//1초동안 투명해지면서 숨김
+			$('#dog').fadeOut(1000);
+		});
+		
+		$('#btn2').on('click', function(){
+			//천천히 선명해지면서 나타남
+			$('#dog').fadeIn('slow');
+		});
+		
+		$('#btn3').on('click', function(){
+			//숨겨져있으면 보여지고 보여져있으면 숨김
+			$('#dog').fadeToggle('fast');
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<button id="btn1">fadeOut</button>
+	<button id="btn2">fadeIn</button>
+	<button id="btn3">fadeToggle</button>
+	<br>
+	<img id="dog" src="dog.png" width="120" height="100" style="display:none;">
+	
+</body>
+</html>

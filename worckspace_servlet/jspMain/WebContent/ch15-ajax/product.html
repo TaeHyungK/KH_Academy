@@ -3,9 +3,147 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	#wrap{
+		overflow:hidden;
+	}
+	.item{
+		margin:5px;
+		padding:5px;
+		width:300px;
+		height:150px;
+		float:left;
+		border-width:3px;
+		border-style:solid;
+		border-color:gray;
+		border-radius:10px;
+	}
+	ul{
+		overflow:hidden;
+	}
+	li{
+		float:left;
+		list-style:none;
+		padding:10px;
+		cursor:pointer;
+	}
+</style>
 <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//페이지와 관련된 정보를 가지는 변수
+		var pageSize = 12;
+		var pageBlock = 10;
+		var currentPage;
+		var totalItem;
+		
+		//목록
+		function getItems(pageNum, rowCount){
+			$.ajax({
+				url:'getProductList.jsp',
+				type:'get',
+				dataType:'json',
+				data:{pageNum:pageNum, rowCount:rowCount},
+				success:function(data){
+					//태그 초기화
+					$('#wrap').empty();
+					
+					$(data).each(function(index, item){
+						var output = '';
+						
+						output += '<div class="item">';
+						output += '<h3>' + item.code + ':' + item.name + '</h3>';
+						output += '<p> quantity : ' + item.quantity + '</p>';
+						output += '<p> price : ' + item.price + '</p>';
+						output += '</div>';
+						
+						//문서 객체에 추가
+						$('#wrap').append(output);
+					});
+				},
+				error:function(){
+					alert('목록 호출시 에러 발생!');
+				}
+			});
+			
+			//페이지 설정
+			setPage();
+		}
+		//페이지 설정 함수
+		function setPage(){ //요청 RUL			, URL을 성공적으로 호출했을 때 동작하는 함수
+			$.getJSON('getTotalProductCount.jsp', function(data){
+				if(data.result == 'success'){
+					//ul 태그 초기화
+					$('.paging_button').empty();
+					totalItem = data.count;
+					
+					if(totalItem == 0){
+						//totalItem이 0이면 페이징 처리를 하지 않고 함수를 빠져나감
+						return;
+					}
+					
+					var totalPage = Math.ceil(totalItem/pageSize);
+					
+					if(currentPage == undefined || currentPage ==''){
+						currentPage = 1;
+					}
+					
+					//현재 페이지가 전체 페이지 수보다 크면 전체 페이지수로 설정
+					if(currentPage > totalPage){
+						currentPage = totalPage;
+					}
+					
+					//시작 페이지와 마지막 페이지 값을 구하기
+					var startPage = Math.floor((currentPage-1)/pageBlock)*pageBlock+1;
+					var endPage = startPage + pageBlock -1;
+					
+					//마지막 페이지가 전체 페이지 수보다 크면 전체 페이지 수로 설정
+					if(endPage > totalPage){
+						endPage = totalPage;
+					}
+					
+					var add = '';
+					if(startPage > pageBlock){
+						add += '<li data-page="' + (startPage-1) + '">[이전]</li>';
+					}
+					
+					for(var i=startPage; i<=endPage; i++){
+						add += '<li data-page="' + i + '">'+ i +'</li>';
+					}
+					
+					if(endPage < totalPage){
+						add += '<li data-page="' + (startPage+pageBlock) + '">[다음]</li>';
+					}
+					
+					//문서 객체에 데이터 추가
+					//ul태그에 생성한 li를 추가
+					$('.paging_button').append(add);
+				}else{
+					alert('오류 발생!');
+				}
+			});
+		}
+		
+		//페이지 버튼 이벤트 연결 - on 메소드 : 앞으로 생길 태그에 대한 이벤트 처리를 위해 사용
+		$(document).on('click', '.paging_button li', function(){
+			//페이지 번호를 읽어들임
+			currentPage = $(this).attr('data-page');
+			//목록 호출
+			getItems(currentPage, pageSize);
+		});
+		
+		//초기 페이지 설정
+		getItems(1, pageSize);
+	});
+</script>
 </head>
 <body>
-
+	<ul class="paging_button"></ul>
+	<div id="wrap"></div>
+	<ul class="paging_button"></ul>
 </body>
 </html>

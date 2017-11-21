@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>데이터 처리</title>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+			url:'getDataXML.jsp',
+			type:'get',
+			dataType:'xml',
+			success:function(data){
+				//div초기화
+				$('#disp').empty();
+				$(data).find('item').each(function(){
+					var str='';
+					str += '<p>';
+					str += $(this).find('code').text() + ',';
+					str += $(this).find('name').text() + ',';
+					str += $(this).find('quantity').text() + ',';
+					str += $(this).find('price').text();
+					str += '</p>'; 
+					
+					//문서 객체에 데이터 추가
+					$('#disp').append(str);
+				});
+			},
+			error:function(){
+				$('#disp').append('오류 발생');
+			}
+		})
+	});
+	
+	//함수 호출
+	selectData();
+</script>
+</head>
+<body>
+	<div id="disp"></div>
+</body>
+</html>

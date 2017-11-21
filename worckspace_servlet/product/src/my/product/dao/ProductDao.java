@@ -136,14 +136,64 @@ public class ProductDao {
 
 	//상품 상세
 	public ProductDto getProduct(int num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
 		ProductDto product = null;
 
+		try {
+			conn = getConnection();
+			
+			sql = "SELECT * FROM xproduct WHERE num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				product = new ProductDto();
+				product.setNum(rs.getInt("num"));
+				product.setName(rs.getString("name"));
+				product.setPrice(rs.getInt("price"));
+				product.setStock(rs.getInt("stock"));
+				product.setContent(rs.getString("content"));
+				product.setReg_date(rs.getDate("reg_date"));
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			executeClose(rs, pstmt, conn);
+		}
+		
 		return product;
 	}
 
 	//상품 수정
 	public void productUpdate(ProductDto product) throws Exception{
-
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = getConnection();
+			
+			sql = "UPDATE xproduct SET name=?, price=?, content=?, stock=? WHERE num=?"; 
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, product.getName());
+			pstmt.setInt(2, product.getPrice());
+			pstmt.setString(3, product.getContent());
+			pstmt.setInt(4, product.getStock());
+			pstmt.setInt(5, product.getNum());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(null, pstmt, conn);
+		}
 	}
 
 	//상품 삭제
