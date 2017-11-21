@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ID 중복 체크</title>
+<style type="text/css">
+	ul{
+		padding:0;
+		margin:0;
+		list-style:none;
+	}
+	ul li{
+		padding:0;
+		margin:0 0 10px 0;
+	}
+	label{
+		width:110px;
+		float:left; 
+	}
+</style>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var count = 0;
+		
+		$('#confirmId').click(function(){
+			if($('#id').val()==''){
+				alert('아이디를 입력하세요');
+				$('#id').focus();
+				return;
+			}
+			
+			//confirmId.jsp를 호출해서 ID 중복 여부를 체크
+			$.ajax({
+				url:'confirmId.jsp',
+				type:'post',
+				dataType:'json',
+				data:{id:$('#id').val()},
+					success:function(data){
+						if(data.result == 'success'){
+							if(data.id  == 'idDuplicated'){ //아이디 중복
+								$('#id_signed').html('이미 중복된 아이디')
+											   .css('color','red');
+								$('#id').val('').focus();
+								count = 0;
+							}else{ //아이디 미중복
+								$('#id_signed').html('사용 가능한 아이디').css('color','black');
+								//중복확인 작업을 수행하고 중복되지 않으면 count값을 1로 변경해서 
+								//submit이 가능하다는 플래그를 줌
+								count = 1; 
+							}
+						}else{
+							alert('오류 발생');
+						}
+					},
+					error:function(){
+						alert('ID중복체크시 오류 발생');
+					}
+			});
+		});
+		
+		//아이디 중복체크 후 아이디를 새로운 것으로 바꾸면 플래그와 입력한 id값을 초기화시켜 줌
+		$('#insert_form #id').keyup(function(){
+			$('#id_signed').html('');
+			count = 0;
+		});
+		
+		//submit할 때 아이디 중복체크를 했는지 확인
+		$('#insert_form').submit(function(){
+			if(count == 0){ //중복체크 미시행
+				alert('아이디 중복체크를 해주세요.');
+				if($('#id').val()==''){
+					$('#id').focus();
+				}else{
+					$('#confirmId').focus();
+				}
+				return false;
+			}else{ //중복체크 시행 및 ID 미중복
+				alert('전송');
+				return false;//테스트이기때문에 실제론 전송하지 않음
+			}
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<div>
+		<form id="insert_form" method="post">
+			<fieldset>
+				<legend>데이터 추가</legend>
+				<ul>
+					<li>
+						<label for="id">아이디</label>
+						<input type="text" name="id" id="id">
+						<input type="button" id="confirmId" value="아이디 중복체크">
+						<span id="id_signed"></span>
+					</li>
+					<li>
+						<input type="submit" value="전송">
+					</li>
+				</ul>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>

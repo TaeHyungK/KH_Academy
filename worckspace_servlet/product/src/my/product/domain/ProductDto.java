@@ -1,4 +1,4 @@
-package kr.product.domain;
+package my.product.domain;
 
 import java.sql.Date;
 
@@ -9,7 +9,6 @@ public class ProductDto {
 	private int stock;
 	private String content; //상품 설명
 	private Date reg_date;
-	
 	
 	
 	public int getNum() {

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>데이터베이스 연동</title>
+<style type="text/css">
+	form{
+		width:500px;
+		margin:10px auto;
+	}
+	ul{
+		padding:0;
+		margin:0;
+		list-style:none;
+	}
+	ul li{
+		padding:0;
+		margin:0 0 10px 0;
+	}
+	label{
+		width:150px;
+		float:left;
+	}
+	table{
+		border:1px solid gray;
+		width:500px;
+		margin:0 auto;
+		border-collapse:collapse;
+	}
+	td{
+		border:1px solid gray;
+	}
+</style>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//목록
+		function selectData(){
+			//table의 내부 내용물을 제거
+			$('#output').empty();
+			
+			$.ajax({
+				url:'getPeopleJSON.jsp',
+				type:'get',
+				dataType:'json',
+				success:function(data){
+					$(data).each(function(index,item){
+						var output='';
+						output += '<tr>';
+						output += '<td>' + item.id + '</td>';
+						output += '<td>' + item.name + '</td>';
+						output += '<td>' + item.job + '</td>';
+						output += '<td>' + item.address + '</td>';
+						output += '<td>' + item.bloodtype + '</td>';
+						output += '</tr>';
+						
+						$('#output').append(output);
+					});
+				},
+				error:function(){
+					alert('목록 호출시 오류 발생');
+				}
+			});
+		}
+		//submit 이벤트 연결
+		$('#insert_form').submit(function(event){
+			//입력 양식의 내용을 매개 변수 문자열로 만듦(파라미터 name과 value의 쌍으로 만듦, 인코딩 처리도 해줌)
+			var data = $(this).serialize();
+					//요청 url		,전송할데이터, 전송이 성공하면 호출되는 함수 
+			$.post('insertPerson.jsp', data, initForm);
+			
+			//기본이벤트 제거
+			event.preventDefault();
+		});
+					//		┌> post 메소드가 받은 data를 이 자리에 넣어줌, 해당 data는 text형태로 들어옴.
+		function initForm(data){
+			//jQuery의 메소드를 이용해서 text -> 객체로 변환
+			var s = $.parseJSON(data);
+			
+			if(s.result=='success'){ //등록 성공
+				alert('등록 완료!');
+				//input 태그 초기화
+				$('#insert_form input[type="text"]').val('');
+				
+				//목록 호출
+				selectData();
+			}else{ //등록 실패
+				alert('등록 실패!');
+			}
+		}
+		
+		//초기 화면에 데이터를 표시
+		selectData();
+	});
+</script>
+</head>
+<body>
+	<div>	
+			<!-- 
+				 form에 action을 명시하지 않으면 자기자신을 호출하는 것과 같음! 
+				 action="people.html"을 명시한 것과 같은 효과 
+			-->
+		<form id="insert_form" method="post">
+			<fieldset>
+				<legend>데이터 추가</legend>
+				<ul>
+					<li>
+						<label for="id">아이디</label>
+						<input type="text" name="id" id="id">
+					</li>
+					<li>
+						<label for="name">이름</label>
+						<input type="text" name="name" id="name">
+					</li>
+					<li>
+						<label for="job">직업</label>
+						<input type="text" name="job" id="job">
+					</li>
+					<li>
+						<label for="address">주소</label>
+						<input type="text" name="address" id="address">
+					</li>
+					<li>
+						<label for="bloodtype">혈액형</label>
+						<input type="text" name="bloodtype" id="bloodtype">
+					</li>
+					<li>
+						<input type="submit" value="추가">
+					</li>
+					
+				</ul>
+			</fieldset>
+		</form>
+	</div>
+	<table id="output"></table>
+</body>
+</html>
