@@ -24,6 +24,9 @@
 	if(count>0){
 		productList = dao.getList(startRow, endRow);
 	}
+	
+	//로그인 유무를 체크하기 위함
+	String mId = (String) session.getAttribute("user_id");
  %>  
 <!DOCTYPE html>
 <html>
@@ -31,16 +34,31 @@
 <meta charset="UTF-8">
 <title>상품 목록</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css">
+<style type="text/css">
+	.guide{
+		width:80%;
+		margin:0 auto;
+		text-align:right;
+	}
+</style>
 </head>
 <body>
-
     <div class="page-main-style">
          <h1>상품 목록</h1>
-         <table>
-           <tr>
-                <td class="align-right"><a href="productForm.jsp">상품 등록</a></td>
-            </tr>
-         </table>
+         <div class="guide">
+			<a href="productForm.jsp">상품 등록</a>
+			<%
+			if(mId==null){
+			%>
+			<a href="productLoginForm.jsp">로그인</a>
+			<%
+			}else{
+			%>
+			[<b><%= mId %></b>님 로그인 중]
+			<%
+			} 
+			%>
+         </div>
 <%
 		if(count == 0){ //등록된 데이터가 없는경우
 %>
@@ -55,12 +73,28 @@
                  <tr>
                      <td>
                          <div class="content-header">
-                            <b><a href="productdetail.jsp?num=<%=product.getNum() %>"><%=product.getName() %></a></b> 
+                            <b>
+	                            <%
+	                            	if(mId!=null){ 
+	                            %>
+	                            		<a href="productdetail.jsp?num=<%=product.getNum() %>">
+	                            <%
+	                            	}
+	                            %>
+	                            <%=product.getName() %>
+	                            </a>
+                            </b> 
 							상품가격 <%=product.getPrice() %>
 							재고 <%=product.getStock() %> 
 							등록일 <%=product.getReg_date() %>
-							<a class="algitn-right" href="poductUpdateForm.jsp?num=<%=product.getNum() %>">[수정]</a>
-							<a class="algitn-right" href="poductDeleteForm.jsp?num=<%=product.getNum() %>">[삭제]</a>
+							<%
+							if(mId!=null){
+							%>
+							<a class="algitn-right" href="productUpdateForm.jsp?num=<%=product.getNum() %>">[수정]</a>
+							<a class="algitn-right" href="productDeleteForm.jsp?num=<%=product.getNum() %>">[삭제]</a>
+							<%
+							}
+							%>
                          </div>
                          <p>
                              <%=product.getContent() %>

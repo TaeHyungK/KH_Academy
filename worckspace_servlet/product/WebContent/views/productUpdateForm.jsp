@@ -83,7 +83,7 @@ window.onload=function(){
 	                    <tr align="center">
 	                        <td>가격</td>
 	                        <td>
-	                        	<input type="number" value="<%=product.getPrice() %>" name="price" id="price">
+	                        	<input type="number" value="<%=product.getPrice() %>" name="price" id="price" step="100">
 	                        </td>
 	                    </tr>
 	                    <tr align="center">

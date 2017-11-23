@@ -81,32 +81,33 @@
          <form action="registerUser.jsp" method="post" id="register_form">
             <ul>
                <li>
-               		<label for="id">아이디</label> 
-               		<input type="text" name="id" id="id" size="20" maxlength="12" autocomplete="off">
+                     <label for="id">아이디</label>                      
+                     <input type="text" name="id" id="id" size="7" maxlength="12" autocomplete="off">
+                     <input type="button" name="confirm_id" id="confirm_id" value="ID중복확인">
                </li>
                <li>
-               		<label for="id">이름</label> 
-               		<input type="text" name="name" id="name" size="20" maxlength="12">
+                     <label for="id">이름</label> 
+                     <input type="text" name="name" id="name" size="20" maxlength="12">
                </li>
                <li>
-               		<label for="id">비밀번호</label> 
-               		<input type="password" name="passwd" id="passwd" size="20" maxlength="12">
+                     <label for="id">비밀번호</label> 
+                     <input type="password" name="passwd" id="passwd" size="20" maxlength="12">
                </li>
                <li>
-               		<label for="email">이메일</label>
-               		<input type="email" name="email" id="email" size="20" >
+                     <label for="email">이메일</label>
+                     <input type="email" name="email" id="email" size="20" >
                </li>
                <li>
-               		<label for="phone">전화번호</label> 
-               		<input type="text" name="phone" id="phone" size="20" maxlength="12">
+                     <label for="phone">전화번호</label> 
+                     <input type="text" name="phone" id="phone" size="20" maxlength="12">
                </li>
                <li>
-               		<label for="zipcode">우편번호</label>
-               		<input type="text" name="zipcode" id="zipcode" size="20" maxlength="5">
+                     <label for="zipcode">우편번호</label>
+                     <input type="text" name="zipcode" id="zipcode" size="20" maxlength="5">
                </li>
                <li>
-               		<label for="address">주소</label>
-               		<input type="text" name="address" id="address" size="20" >
+                     <label for="address">주소</label>
+                     <input type="text" name="address" id="address" size="20" >
                </li>
             </ul>
             <div class="align-center">

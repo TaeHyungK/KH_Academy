@@ -48,7 +48,18 @@ table {
                      <td>구매 수량</td>
                      <td>
                         <span>재고</span> <span id="stock"><%=product.getStock() %></span><br>
-                        <input type="number" value="재고수량" name="buy">
+                    <%
+	 					int currentStock = product.getStock();
+   	  					if(currentStock>0){
+   					%>
+                        <input type="number" value="재고수량" name="buy" min="0" max="<%=product.getStock()%>">
+                    <%
+   	  					}else{
+                    %>
+                    		<span>재고가 없습니다. 구매하실 수 없습니다.</span>    
+                    <%
+   	  					}
+                    %>
                      </td>
                   </tr>
                </table>
@@ -56,7 +67,13 @@ table {
          </tr>
       </table>
       <div class="align-center">
-      <input type="submit" value="주문">
+      <%
+      	if(currentStock>0){
+      %>
+      		<input type="submit" value="주문">
+      <%
+      	}
+      %>
       <input type="button" value="목록" onclick="location.href='list.jsp'">
    </div>
    </form>

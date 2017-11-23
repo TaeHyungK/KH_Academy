@@ -51,7 +51,7 @@ public class ProductDao {
 			pstmt.setInt(++cnt, product.getPrice());
 			pstmt.setInt(++cnt, product.getStock());
 			pstmt.setString(++cnt, product.getContent());
-			
+
 
 			pstmt.executeUpdate();
 
@@ -144,12 +144,12 @@ public class ProductDao {
 
 		try {
 			conn = getConnection();
-			
+
 			sql = "SELECT * FROM xproduct WHERE num=?";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			
+
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				product = new ProductDto();
@@ -160,13 +160,13 @@ public class ProductDao {
 				product.setContent(rs.getString("content"));
 				product.setReg_date(rs.getDate("reg_date"));
 			}
-			
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			executeClose(rs, pstmt, conn);
 		}
-		
+
 		return product;
 	}
 
@@ -176,22 +176,22 @@ public class ProductDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		
+
 		int cnt = 0;
 		boolean result = false;
-		
+
 		try {
 			conn = getConnection();
-			
+
 			sql = "UPDATE xproduct SET name=?, price=?, content=?, stock=?, reg_date=sysdate WHERE num=?"; 
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, product.getName());
 			pstmt.setInt(2, product.getPrice());
 			pstmt.setString(3, product.getContent());
 			pstmt.setInt(4, product.getStock());
 			pstmt.setInt(5, product.getNum());
-			
+
 			cnt = pstmt.executeUpdate();
 			System.out.println("update sql실행 완료 : " + cnt);
 			if(cnt > 0) {
@@ -204,7 +204,7 @@ public class ProductDao {
 		}finally {
 			executeClose(null, pstmt, conn);
 		}
-		
+
 		return result;
 	}
 
@@ -213,25 +213,25 @@ public class ProductDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		
+
 		int cnt = 0;
 		boolean result = false;
-		
+
 		try {
 			conn = getConnection();
-			
+
 			sql = "UPDATE xproduct SET stock=? WHERE num=?"; 
-			
+
 			pstmt = conn.prepareStatement(sql);
-			
+
 			int count = currentStock - buyCount;
-			
+
 			pstmt.setInt(1, count);
 			pstmt.setInt(2, product.getNum());
-			
+
 			cnt = pstmt.executeUpdate();
 			System.out.println("update sql실행 완료 : " + cnt);
-			
+
 			if(cnt > 0) {
 				result = true;
 			}else {
@@ -242,12 +242,31 @@ public class ProductDao {
 		}finally {
 			executeClose(null, pstmt, conn);
 		}
-		
+
 		return result;
 	}
-	
-	//상품 삭제
-	public void productDelete(int num) throws Exception{
 
+	//상품 삭제
+	public void productDelete(ProductDto products) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = getConnection();
+
+			sql = "DELETE FROM xproduct WHERE num=?";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, products.getNum());
+
+			pstmt.executeUpdate();
+
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(null, pstmt, conn);
+		}
 	}
 }

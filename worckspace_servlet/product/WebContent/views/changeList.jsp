@@ -16,10 +16,10 @@
    
    if(products!=null){
 %>
- <% 
+<% 
    boolean result = dao.productUpdate(product, currentStock, buy);
    if(result){
-   %>
+%>
       <script>
       alert('상품 정보 수정을 완료했습니다.');
       location.href='list.jsp';

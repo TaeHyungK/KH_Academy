@@ -67,7 +67,7 @@ window.onload=function(){
             </li>
             <li>
                 <label for="price">가격</label>
-                <input type="number" name="price" id="price">
+                <input type="number" name="price" id="price" step="100">
             </li>
             <li>
                 <label for="stock">수량</label>
