@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>효과와 애니메이션</title>
+<style type="text/css">
+	html *{
+		margin:0;
+		padding:0;
+	}
+	#wrapper{
+		margin-top:140px;
+		margin-left:330px;
+	}
+	#controller{
+		padding:10px;
+	}
+	#box{
+		width:150px;
+		height:150px;
+		background-color:red;
+		border:2px solid blue;
+		position:absolute;
+		left:200px;
+	}
+</style>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#controller > .big').on('click',function(){
+			$('#box').animate({
+				width:400,
+				height:400,
+				opacity:1
+			},600);
+		});
+		
+		$('#controller > .small').on('click',function(){
+			$('#box').animate({
+				width:50,
+				height:50,
+				opacity:0.2
+			},600);
+		});
+		
+		$('#controller > .left').on('click', function(){
+			$('#box').animate({
+				left:0
+			},1000);
+		});
+		
+		$('#controller > .right').on('click', function(){
+			$('#box').animate({
+				left:'100%'
+			},1000);
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="controller">
+			<input class="big" type="button" value="크고 불투명하게 하기">
+			<input class="small" type="button" value="작고 투명하게 하기">
+			<input class="left" type="button" value="왼쪽으로 이동하기">
+			<input class="right" type="button" value="오른쪽으로 이동하기">
+		</div>
+		<div id="box"></div>
+	</div>
+</body>
+</html>

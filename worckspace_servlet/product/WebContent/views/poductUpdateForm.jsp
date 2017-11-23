@@ -6,6 +6,7 @@
 	int num = Integer.parseInt(request.getParameter("num"));
 	ProductDao dao = ProductDao.getInstance();
 	ProductDto product = dao.getProduct(num);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -30,30 +31,30 @@ window.onload=function(){
 	myForm.onsubmit=function(){
 		var name = document.getElementById('name');
 		if(name.value==''){
-			alert('이름을 입력하세요');
+			alert('상품 이름을 입력하세요');
 			name.focus();
 			return false;
 		}
 		var price = document.getElementById('price');
-		if(passwd.value==''){
+		if(price.value==''){
 			alert('판매 가격을 입력하세요');
 			price.focus();
 			return false;
 		}
 		var content = document.getElementById('content');
-		if(email.value==''){
+		if(content.value==''){
 			alert('내용을 입력하세요');
 			content.focus();
 			return false;
 		}
 		var stock = document.getElementById('stock');
-		if(content.value==''){
+		if(stock.value==''){
 			alert('재고 수량을 입력하세요');
 			stock.focus();
 			return false;
 		}
 		var passwd = document.getElementById('passwd');
-		if(content.value==''){
+		if(passwd.value==''){
 			alert('판매자 비밀번호를 입력하세요');
 			passwd.focus();
 			return false;
@@ -98,6 +99,7 @@ window.onload=function(){
 	                        </td>
 	                    </tr>
 	                    <tr align="center">
+	                    <%--실제로 검사하지는 않음! --%>
 	                    	<td>작성자 비밀번호</td>
 	                    	<td>
 	                    		<input type="password" name="passwd" id="passwd">

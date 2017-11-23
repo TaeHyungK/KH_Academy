@@ -171,15 +171,19 @@ public class ProductDao {
 	}
 
 	//상품 수정
-	public void productUpdate(ProductDto product) throws Exception{
+	public boolean productUpdate(ProductDto product) throws Exception{
+		System.out.println(product);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
+		int cnt = 0;
+		boolean result = false;
+		
 		try {
 			conn = getConnection();
 			
-			sql = "UPDATE xproduct SET name=?, price=?, content=?, stock=? WHERE num=?"; 
+			sql = "UPDATE xproduct SET name=?, price=?, content=?, stock=?, reg_date=sysdate WHERE num=?"; 
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, product.getName());
@@ -188,14 +192,60 @@ public class ProductDao {
 			pstmt.setInt(4, product.getStock());
 			pstmt.setInt(5, product.getNum());
 			
-			pstmt.executeUpdate();
+			cnt = pstmt.executeUpdate();
+			System.out.println("update sql실행 완료 : " + cnt);
+			if(cnt > 0) {
+				result = true;
+			}else {
+				result = false;
+			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
 			executeClose(null, pstmt, conn);
 		}
+		
+		return result;
 	}
 
+	public boolean productUpdate(ProductDto product, int currentStock ,int buyCount) throws Exception{
+		System.out.println(currentStock + " / " + buyCount);
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		int cnt = 0;
+		boolean result = false;
+		
+		try {
+			conn = getConnection();
+			
+			sql = "UPDATE xproduct SET stock=? WHERE num=?"; 
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			int count = currentStock - buyCount;
+			
+			pstmt.setInt(1, count);
+			pstmt.setInt(2, product.getNum());
+			
+			cnt = pstmt.executeUpdate();
+			System.out.println("update sql실행 완료 : " + cnt);
+			
+			if(cnt > 0) {
+				result = true;
+			}else {
+				result = false;
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(null, pstmt, conn);
+		}
+		
+		return result;
+	}
+	
 	//상품 삭제
 	public void productDelete(int num) throws Exception{
 

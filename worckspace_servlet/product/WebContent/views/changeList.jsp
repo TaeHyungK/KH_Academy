@@ -5,6 +5,8 @@
 <%
    request.setCharacterEncoding("UTF-8");
    int num = Integer.parseInt(request.getParameter("num"));
+   int buy = Integer.parseInt(request.getParameter("buy"));
+   int currentStock = Integer.parseInt(request.getParameter("currentStock"));
 %>
 <jsp:useBean id="product" class="my.product.domain.ProductDto"/>
 <jsp:setProperty name="product" property="*"/>
@@ -15,7 +17,7 @@
    if(products!=null){
 %>
  <% 
-   boolean result = dao.productUpdate(product);
+   boolean result = dao.productUpdate(product, currentStock, buy);
    if(result){
    %>
       <script>

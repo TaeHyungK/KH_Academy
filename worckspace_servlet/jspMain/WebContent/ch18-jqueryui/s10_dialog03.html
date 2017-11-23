@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery UI</title>
+<link rel="stylesheet" href="../js/jquery-ui.css">
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#dialog-confirm').dialog({
+			resizable:false, //창의 크기 변경 불가
+			height:300,
+			modal:true, // dialog가 실행 중이면 부모 영역을 선택할 수 없음
+			buttons:{
+				'Delete all items':function(){
+					$(this).dialog('close');
+				},
+				Cancel:function(){
+					$(this).dialog('close');
+				}
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="dialog-confirm" title="선택하세요">
+		<p>
+		서울 아파트 시장이 ‘비정상적’으로 움직이고 있다. 8·2 부동산 대책 등으로 매매 거래가 급감했는데도 집값은 떨어지지 않는다. 일부는 오히려 강세다. 국토교통부에 따르면 지난달 서울 아파트 매매 거래량은 3942건으로, 지난해 10월(1만3467건)보다 70.7% 줄었다. 올해 9월(8652건)에 비해서도 절반 이하로 뚝 떨어졌다. 그런데 아파트값은 9월엔 전달에 비해 마이너스 상승률(-0.01%)을 기록했다가 10월엔 0.26% 올랐다.
+		</p>
+	</div>
+	
+	<div>
+		<p>아름다운 강산</p>
+	</div>
+	
+</body>
+</html>

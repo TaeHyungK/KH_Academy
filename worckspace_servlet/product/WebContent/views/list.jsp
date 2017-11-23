@@ -55,7 +55,7 @@
                  <tr>
                      <td>
                          <div class="content-header">
-                            <b><%=product.getName() %></b> 
+                            <b><a href="productdetail.jsp?num=<%=product.getNum() %>"><%=product.getName() %></a></b> 
 							상품가격 <%=product.getPrice() %>
 							재고 <%=product.getStock() %> 
 							등록일 <%=product.getReg_date() %>

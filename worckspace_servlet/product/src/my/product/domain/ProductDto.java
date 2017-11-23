@@ -47,6 +47,11 @@ public class ProductDto {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
+	@Override
+	public String toString() {
+		return "ProductDto [num=" + num + ", name=" + name + ", price=" + price + ", stock=" + stock + ", content="
+				+ content + ", reg_date=" + reg_date + "]";
+	}
 	
 	
 }

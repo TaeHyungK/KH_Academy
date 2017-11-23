@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery UI</title>
+<link rel="stylesheet" href="../js/jquery-ui.css">
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('input[type=submit], a, button').button();
+		
+		$('#check').button();
+		
+		$('#format').buttonset();
+		
+		$('#radio').buttonset();
+	});
+</script>
+</head>
+<body>
+	<button>A button element</button>
+	<input type="submit" value="A submit button">
+	<a href="#">An anchor</a>
+	<br><br>
+	
+	<input type="checkbox" id="check"><label for="check">Toggle</label>
+	<br><br>
+	
+	<div id="format">
+		<input type="checkbox" id="check1"><label for="check1">B</label>
+		<input type="checkbox" id="check2"><label for="check2">I</label>
+		<input type="checkbox" id="check3"><label for="check3">U</label>
+	</div>
+	<br><br>
+	
+	<div id="radio">
+		<input type="radio" id="radio1" name="radio"><label for="radio1">Choice1</label>
+		<input type="radio" id="radio2" name="radio"><label for="radio2">Choice2</label>
+		<input type="radio" id="radio3" name="radio"><label for="radio3">Choice3</label>
+	</div>
+</body>
+</html>

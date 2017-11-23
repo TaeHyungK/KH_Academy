@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>효과와 애니메이션</title>
+<style type="text/css">
+	h1{
+		width:50px;
+		height:30px;
+		background-color:red;
+		font-size:100%;
+	}
+	h2{
+		width:50px;
+		height:30px;
+		background-color:orange;
+		font-size:100%;
+	}
+	h3{
+		width:50px;
+		height:30px;
+		background-color:aqua;
+		font-size:100%;
+	}
+</style>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//.animate({애니메이션속성}, 효과속도, 콜백함수)
+		//애니메이션 속성 : 모션으로 적용할 속성을 스타일(CSS)을 이용해 입력
+		$('h1').animate({
+			marginLeft:'250px'
+			}, 3000);
+		
+		//1초 딜레이 후 실행됨
+		$('h2').delay(1000).animate({
+			marginLeft:'250px'
+			},3000);
+		
+		//모션을 중지시키기
+		$('#stopBtn').on('click', function(){
+			//stop() : 현재 실행중인 효과를 모두 정지시킴
+			$('h1').stop();
+			$('h2').stop();
+		})
+	});
+	
+</script>
+</head>
+<body>
+	<button id="stopBtn">stop</button>
+	<h1>내용</h1>
+	<h2>내용</h2>
+</body>
+</html>

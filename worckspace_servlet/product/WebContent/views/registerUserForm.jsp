@@ -110,8 +110,8 @@
                </li>
             </ul>
             <div class="align-center">
-               <input type="submit" value="등록"> <input type="button"
-                  value="홈으로" onclick="location.href='main.jsp'">
+               <input type="submit" value="등록"> 
+               <input type="button" value="홈으로" onclick="location.href='main.jsp'">
             </div>
          </form>
    </div>
