@@ -15,6 +15,7 @@
 <fmt:formatDate value="${now}" type="time" timeStyle="full"/><br>
 <fmt:formatDate value="${now}" type="time" timeStyle="short"/><br>
 <fmt:formatDate value="${now}" type="both" dateStyle="full" timeStyle="full"/><br>
+<%--원하는 패턴으로 날짜를 출력 --%>
 <fmt:formatDate value="${now}" pattern="yyyy년MM월dd일 E요일 a hh:mm:ss"/>
 </body>
 </html>

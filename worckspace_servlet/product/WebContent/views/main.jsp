@@ -15,6 +15,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Product 메인</title>
+<style type="text/css">
+	body{
+		background:url(../img/main_bo0.jpg) no-repeat fixed;
+		background-size:cover;
+	}
+	h1{
+		color:YELLOW;
+	}
+	a:link{
+		color:RED;
+	}
+	a:visited{
+		color:HOTPINK;
+	}
+	
+</style>
 <link rel="stylesheet" href="../css/style.css" type="text/css">
 </head>
 <body>

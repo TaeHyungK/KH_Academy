@@ -88,7 +88,7 @@
 							재고 <%=product.getStock() %> 
 							등록일 <%=product.getReg_date() %>
 							<%
-							if(mId.equals("admin")){
+							if(mId!=null && mId.equals("admin")){
 							%>
 							<a class="algitn-right" href="productUpdateForm.jsp?num=<%=product.getNum() %>">[수정]</a>
 							<a class="algitn-right" href="productDeleteForm.jsp?num=<%=product.getNum() %>">[삭제]</a>

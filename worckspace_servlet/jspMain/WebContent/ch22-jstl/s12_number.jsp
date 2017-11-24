@@ -8,7 +8,8 @@
 <title>formatNumber 태그</title>
 </head>
 <body>
-숫자 : 
+
+숫자 : <%-- 숫자를 3자리씩 끊어 읽어줌 --%>
 <fmt:formatNumber value="10000" type="number"/>
 <br>
 통화 :
