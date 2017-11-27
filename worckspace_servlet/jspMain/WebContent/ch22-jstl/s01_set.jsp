@@ -11,7 +11,7 @@
 <title>set 태그</title>
 </head>
 <body>
-<%-- var : 속석명, value : 속성값 scope : 저장 영역 --%>
+<%-- var : 속석명, value : 속성값, scope : 저장 영역/scope 생략시 page영역에 저장됨 --%>
 <c:set var="msg" value="봄" scope="page"/>
 ${msg} <br>
 <%

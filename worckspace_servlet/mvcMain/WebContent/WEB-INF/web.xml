@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>mvcMain</display-name>
+  <!-- DispatcherServlet 시작 -->
+  <servlet>
+  	<servlet-name>DispatcherServlet</servlet-name>
+  	<servlet-class>kr.mvc.DispatcherServlet</servlet-class>
+  	<!-- ActionMap.properties 설정을 paran에 저장 -->
+  	<init-param>
+  		<param-name>propertyConfig</param-name>
+  		<param-value>/WEB-INF/ActionMap.properties</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DispatcherServlet</servlet-name>
+  	<url-pattern>*.so</url-pattern>
+  </servlet-mapping>
+  <!-- SimpleServletMap 시작 -->
+  <servlet>
+  	<servlet-name>SimpleServletMap</servlet-name>
+  	<servlet-class>kr.mvc.SimpleServletMap</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SimpleServletMap</servlet-name>
+  	<url-pattern>*.mo</url-pattern>
+  </servlet-mapping>
+  <!-- SimpleServletURI 시작 -->
+  <servlet>
+  	<servlet-name>SimpleServletURI</servlet-name>
+  	<servlet-class>kr.mvc.SimpleServletURI</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SimpleServletURI</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <!-- SimpleServlet 시작 -->
+  <servlet>
+  	<servlet-name>SimpleServlet</servlet-name>
+  	<servlet-class>kr.mvc.SimpleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SimpleServlet</servlet-name>
+  	<url-pattern>/simple</url-pattern>
+  </servlet-mapping>
+  <!-- DefaultServlet2 시작 -->
+  <servlet>
+  	<servlet-name>DefaultServlet2</servlet-name>
+  	<servlet-class>kr.mvc.DefaultServlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DefaultServlet2</servlet-name>
+  	<url-pattern>/default2</url-pattern>
+  </servlet-mapping>
   <!-- DefaultServlet 시작 -->
   <servlet>
   	<servlet-name>DefaultServlet</servlet-name>
