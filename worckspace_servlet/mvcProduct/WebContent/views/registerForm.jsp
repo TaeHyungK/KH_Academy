@@ -69,10 +69,6 @@
 				<label for="place">원산지</label>
 				<input type="text" name="place" id="place" size="20">
 			</li>
-			<li>
-				<label for="reg_date">등록일</label>
-				<input type="date" name="reg_date" id="reg_date" size="20">
-			</li>
 		</ul>
 		<div class="align-center">
 			<input type="submit" value="등록">
