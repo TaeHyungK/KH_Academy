@@ -14,6 +14,14 @@ public class MemberDto {
 	private String address2;
 	private Date reg_date;
 	
+	//비밀번호 일치 여부 체크
+	public boolean isCheckedPasswd(String userPasswd) {
+		if(passwd.equals(userPasswd)) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	public String getId() {
 		return id;

@@ -16,10 +16,10 @@
                <a href="../member/registerUserForm.do">회원 가입</a>
                <a href="../member/loginForm.do">로그인</a>
             </c:if>
-            <c:if test="!empty user_id">
+            <c:if test="${!empty user_id}">
                <a href="../member/modifyUserForm.do">회원정보 수정</a>
                <a href="../member/deleteUserForm.do">회원 정보 삭제</a>
-               [${uesr_id}님 로그인 중]
+               [${user_id}님 로그인 중]
                <a href="../member/logout.do">로그아웃</a>
             </c:if>
         </div>

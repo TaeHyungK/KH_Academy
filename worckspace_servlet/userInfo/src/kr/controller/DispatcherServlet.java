@@ -15,26 +15,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class DispatcherServlet extends HttpServlet{
-	
+
 	private Map<String,Action> commandMap = new HashMap<String,Action>();
-	
+
 	@Override
 	public void init(ServletConfig config) throws ServletException{
 		//프로퍼티즈 객체 생성 (key-value)
 		Properties pr = new Properties();
-		
+
 		//'/WEB-INF/ActionMap.properties'반환
 		String props = config.getInitParameter("propertyConfig");
 		//Action.properties 파일의 절대 경로 구하기
 		String path = config.getServletContext().getRealPath(props);
-		
+
 		FileInputStream fis = null;
 		try {
 			//파일 읽기
 			fis = new FileInputStream(path);
 			//파일 스트림을 Properties객체에 넘겨 key와 value 구분
 			pr.load(fis);
-			
+
 		}catch(IOException e) {
 			throw new ServletException(e);
 		}finally {
@@ -45,7 +45,7 @@ public class DispatcherServlet extends HttpServlet{
 		while(keyIter.hasNext()) {
 			String command =(String)keyIter.next();//key
 			String className = pr.getProperty(command);//value
-			
+
 			try {
 				//문자열을 이용해 클래스를 찾아 Class타입으로 반환
 				Class commandClass = Class.forName(className);
@@ -58,7 +58,7 @@ public class DispatcherServlet extends HttpServlet{
 			}
 		}
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 		requestPro(request,response);
@@ -66,27 +66,27 @@ public class DispatcherServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException{
 		requestPro(request,response);
 	}
-	
+
 	//작업용 메서드
 	private void requestPro(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
 		String view = null;//jsp 경로
 		Action com = null; //Model 클래스의 구현 객체
-		
+
 		//요청 URI 반환
 		String command = request.getRequestURI();
 		//요청 URI 출력
 		System.out.println("요청URI : "+command);
 		System.out.println("컨텍스트 경로 : " + request.getContextPath());
-		
+
 		if(command.indexOf(request.getContextPath())==0) {
 			command= command.substring(request.getContextPath().length());
 			System.out.println("커맨드 : " + command);
 			System.out.println("-------------");
 		}
-		
-	     //HashMap의 key를 넣어서 value (모델객체)를 얻음
+
+		//HashMap의 key를 넣어서 value (모델객체)를 얻음
 		com = commandMap.get(command);
-		
+
 		//Model 클래스의 작업 메서드 호출
 		try {
 			//Servlet 호출시 생성된 request의 response 공유
@@ -95,10 +95,16 @@ public class DispatcherServlet extends HttpServlet{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		//Forward 방식으로 view(jsp)호출
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
+
+		if(view.startsWith("redirect:")) {
+			//Redirect 방식으로 view 호출
+			view = view.substring("redirect:".length()); // 앞에 붙어있는 redirect:를 제거
+			response.sendRedirect(request.getContextPath() + view);
+		}else {
+			//Forward 방식으로 view(jsp)호출
+			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			dispatcher.forward(request, response);
+		}
 		
 	}
 }
