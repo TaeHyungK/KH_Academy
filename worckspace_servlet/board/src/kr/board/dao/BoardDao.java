@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import kr.board.domain.BoardDto;
+import kr.util.FileUtil;
 import kr.util.StringUtil;
 
 public class BoardDao {
@@ -36,7 +37,7 @@ public class BoardDao {
 		if(pstmt!=null)try {pstmt.close();}catch(SQLException e) {}
 		if(conn!=null)try {conn.close();}catch(SQLException e) {}
 	}
-	
+
 	//글 등록
 	public void insertBoard(BoardDto board) throws Exception{
 		Connection conn = null;
@@ -45,26 +46,31 @@ public class BoardDao {
 		int cnt = 0;
 		//테이블명 : board
 		//컬럼명 : num, title, content, regdate, filename, ip, id
-		
+
 		try {
 			conn = getConnection();
-			
+
 			sql = "INSERT INTO board(num,title,content,regdate,filename,ip,id) VALUES(board_seq.nextval, ?, ?, SYSDATE, ?, ?, ?)";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(++cnt, board.getTitle());
 			pstmt.setString(++cnt, board.getContent());
 			pstmt.setString(++cnt, board.getFilename());
 			pstmt.setString(++cnt, board.getIp());
 			pstmt.setString(++cnt, board.getId());
-			
+
 			pstmt.executeUpdate();
 		}catch(Exception e) {
+			//오류 발생시 업로드된 파일 제거
+			if(board.getFilename()!=null) {
+				FileUtil.removeFile(board.getFilename());
+			}
 			throw new Exception(e);
 		}finally {
 			executeClose(null, pstmt, conn);
 		}
 	}
+	
 	//글전체글 갯수, 검색글 갯수
 	public int getBoardCount(String keyfield, String keyword) throws Exception{
 		Connection conn = null;
@@ -72,21 +78,27 @@ public class BoardDao {
 		ResultSet rs = null;
 		String sql = null;
 		int count = 0;
-		
+
 		try {
 			//count 함수를 이용해서 전체 레코드 수를 구함
 			conn = getConnection();
-			
-			sql = "SELECT COUNT(*) FROM board ";
-			
-			pstmt = conn.prepareStatement(sql);
+
+			//전체 레코드 수 구하기
+			if(keyword == null || "".equals(keyword)) {
+				sql = "SELECT COUNT(*) FROM board";
+				pstmt = conn.prepareStatement(sql);
+			}else {// 검색 레코드 수 구하기
+				sql = "SELECT COUNT(*) FROM board WHERE " + keyfield + " LIKE ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%"+keyword+"%");
+			}			
 			rs = pstmt.executeQuery();
-			
+
 			if(rs.next()) {
 				count = rs.getInt(1);
 			}
-			
-			
+
+
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -102,19 +114,30 @@ public class BoardDao {
 		String sql = null;
 
 		List<BoardDto> list = null;
-		
-		
+
+
 		try {
 			conn = getConnection();
+
+			//전체 글 보기
+			if(keyword==null || "".equals(keyword)) {
+				sql ="SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM board ORDER BY num DESC) a) WHERE rnum >= ? AND rnum <= ?";
+
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			}else { //검색 글 보기
+				sql ="SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM board WHERE " +keyfield+" LIKE ? ORDER BY num DESC) a) WHERE rnum >= ? AND rnum <= ?";
+
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%"+keyword+"%");
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+			}
 			
-			sql ="SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM board ORDER BY num DESC) a) WHERE rnum >= ? AND rnum <= ?";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
 			
 			rs = pstmt.executeQuery();
-			
+
 			list = new ArrayList<BoardDto>();
 			while(rs.next()) {
 				BoardDto board = new BoardDto();
@@ -122,9 +145,11 @@ public class BoardDao {
 				board.setTitle(StringUtil.useNoHtml(rs.getString("title")));
 				board.setRegdate(rs.getDate("regdate"));
 				board.setFilename(rs.getString("filename"));
+				board.setHit(rs.getInt("hit"));
 				board.setIp(rs.getString("ip"));
 				board.setId(rs.getString("id"));
-				
+
+
 				list.add(board);
 			}
 		}catch(Exception e) {
@@ -132,7 +157,7 @@ public class BoardDao {
 		}finally {
 			executeClose(rs, pstmt, conn);
 		}
-		
+
 		return list;
 	}
 	//글 상세
@@ -142,14 +167,14 @@ public class BoardDao {
 		ResultSet rs = null;
 		String sql = null;
 		BoardDto board = null;
-		
+
 		try {
 			conn = getConnection();
-			
+
 			sql = "SELECT * FROM board WHERE num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			
+
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				board = new BoardDto();
@@ -161,7 +186,7 @@ public class BoardDao {
 				board.setFilename(rs.getString("filename"));
 				board.setId(rs.getString("id"));
 			}
-			
+
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -171,14 +196,84 @@ public class BoardDao {
 	}
 	//글 조회수 증가
 	public void updateReadcount(int num) throws Exception{
-		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = getConnection();
+
+			sql = "UPDATE board SET hit=hit+1 WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+
+			pstmt.executeUpdate();
+
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(null, pstmt, conn);
+		}
 	}
+
 	//글 수정
 	public void updateBoard(BoardDto board) throws Exception{
-		
+		//테이블명: board
+		//컬럼명: title,content,filename,ip
+		//기본키: num
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		int cnt = 0;
+
+		try {
+			conn = getConnection();
+
+			sql = "UPDATE board SET title=?, content=?, filename=?, ip=? WHERE num=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(++cnt, board.getTitle());
+			pstmt.setString(++cnt, board.getContent());
+			pstmt.setString(++cnt, board.getFilename());
+			pstmt.setString(++cnt, board.getIp());
+			pstmt.setInt(++cnt, board.getNum());
+
+			pstmt.executeUpdate();
+
+		}catch(Exception e) {
+			//오류 발생시 업로드된 파일 제거
+			//신규파일이 아니라 원래 파일명일 경우는 삭제하지 않음
+			if(board.getFilename()!=null && !board.getFilename().equals(getBoard(board.getNum()).getFilename())) {
+				FileUtil.removeFile(board.getFilename());
+			}
+			throw new Exception(e);
+		}finally {
+			executeClose(null, pstmt, conn);
+		}
+
 	}
 	//글 삭제
 	public void deleteBoard(int num) throws Exception{
-		
+		//테이블명 : board
+		//기본키 : num
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = getConnection();
+			sql = "DELETE FROM board WHERE num=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(null, pstmt, conn);
+		}
 	}
 }

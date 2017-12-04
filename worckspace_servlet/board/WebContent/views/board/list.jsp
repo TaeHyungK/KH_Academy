@@ -13,11 +13,29 @@
 <body>
 	<div class="page-main-style">
 		<h2>게시판 목록</h2>
+		<form id="search_form" action="list.do" method="get">
+			<ul class="search">
+				<li>
+					<select name="keyfield">
+						<option value="title">제목</option>
+						<option value="id">ID</option>
+						<option value="content">내용</option>
+					</select>
+				</li>
+				<li>
+					<input type="search" size="16" name="keyword" id="keyword">
+				</li>
+				<li>
+					<input type="submit" value="검색">
+				</li>
+			</ul>
+		</form>
 		<div class="list-space align-right">
 			<input type="button" value="글쓰기" onclick="location.href='writeForm.do'"
 				<%--로그인이 안되어있을 경우에 비활성화 --%>
 				<c:if test="${empty user_id}">disabled="disabled"</c:if>
 			>
+			<input type="button" value="목록" onclick="location.href='list.do'">
 			<input type="button" value="홈으로" onclick="location.href='../main/main.do'">
 		</div>
 		<c:if test="${count == 0}">
@@ -26,24 +44,21 @@
 		</div>
 		</c:if>
 		<c:if test="${count>0}">
-		<table>
-			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>날짜</th>
-				<th>조회</th>
-			</tr>
+		<div id="wrap">
 			<c:forEach var="board" items="${list}">
-			<tr>
-				<td>${board.num}</td>
-				<td><a href="detail.do?num=${board.num}">${board.title}</a></td>
-				<td>${board.id}</td>
-				<td>${board.regdate}</td>
-				<td>${board.hit}</td>
-			</tr>
+			<div class="item">
+				<a href="detail.do?num=${board.num}">
+				<c:if test="${!empty board.filename}">
+				<img src="../upload/${board.filename}" class="list-img">
+				<br>
+				</c:if>
+				<c:if test="${empty board.filename}">
+				<div class="list-blank"></div>
+				</c:if>
+				${board.title}</a>
+			</div>
 			</c:forEach>
-		</table>
+		</div>
 		</c:if>
 		<div class="align-center">
 			${pagingHtml}

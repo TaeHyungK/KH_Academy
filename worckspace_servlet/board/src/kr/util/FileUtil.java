@@ -1,5 +1,6 @@
 package kr.util;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,4 +21,13 @@ public class FileUtil {
 	public static MultipartRequest createFile(HttpServletRequest req) throws IOException{
 		return new MultipartRequest(req, UPLOAD_PATH, MAX_SIZE, ENCODING_TYPE, new DefaultFileRenamePolicy());
 	}
+	
+	//파일 삭제
+	public static void removeFile(String filename) {
+		if(filename != null) {
+			File file = new File(UPLOAD_PATH, filename);
+			if(file.exists()) file.delete();
+		}
+	}
+	
 }
