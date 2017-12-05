@@ -155,34 +155,19 @@ public class MemberDao {
 	                          throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
 		String sql = null;
 		
 		try {
 			conn = getConnection();
-			//오토커밋 해제
-			conn.setAutoCommit(false);
-			
-			//게시판에서 해당 아이디로 작성한 글 삭제 -> Foreign key 제약조건을 벗어나서 삭제 해줘야하기 때문
-			sql = "DELETE FROM board WHERE id=?";
+			sql = "DELETE FROM member WHERE id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
+			
 			pstmt.executeUpdate();
 			
-			//회원 삭제
-			sql = "DELETE FROM member WHERE id=?";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setString(1, id);
-			pstmt2.executeUpdate();
-			
-			//예외가 없을 경우 커밋
-			conn.commit();
 		}catch(Exception e) {
-			//예외 발생시 롤백
-			conn.rollback();
 			throw new Exception(e);
 		}finally {
-			executeClose(null, pstmt2, null);
 			executeClose(null, pstmt, conn);
 		}
 		

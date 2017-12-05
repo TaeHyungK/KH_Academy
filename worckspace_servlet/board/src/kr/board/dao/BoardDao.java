@@ -126,7 +126,7 @@ public class BoardDao {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
-			}else { //검색 글 보기
+			}else { //검색 글 보기 -> 가장 먼저 실행되는 서브쿼리에 keyfield, keyword 조건을 달아주면됨
 				sql ="SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM board WHERE " +keyfield+" LIKE ? ORDER BY num DESC) a) WHERE rnum >= ? AND rnum <= ?";
 
 				pstmt = conn.prepareStatement(sql);
