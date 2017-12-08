@@ -22,7 +22,7 @@ public class CheckIdAjaxAction implements Action{
 		String id = request.getParameter("id");
 		
 		MemberDao dao = MemberDao.getInstance();
-		MemberDto member = dao.getMember(id);
+		MemberDto member = dao.checkId(id);
 		
 		HashMap<String,String> map = 
 				new HashMap<String,String>();

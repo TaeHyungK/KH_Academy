@@ -2,13 +2,14 @@ package kr.util;
 
 public class StringUtil {
 	/*
-	 * HTML 태그를 허용하지 않음
+	 * HTML 허용하면서 줄바꿈
 	 */
-	public static String useNoHtml(String str) {
+	public static String useBrHtml(String str) {
 		if(str == null) return null;
-				
-		return str.replaceAll("<", "&lt;")
-				  .replaceAll(">", "&gt;");
+		
+		return str.replaceAll("\r\n", "<br>")
+				  .replaceAll("\r", "<br>")
+				  .replaceAll("\n", "<br>");
 	}
 	/*
 	 * HTML 허용하지 않으면서 줄바꿈
@@ -21,17 +22,20 @@ public class StringUtil {
 				  .replaceAll("\r\n", "<br>")
 				  .replaceAll("\r", "<br>")
 				  .replaceAll("\n", "<br>");
-	}	
-	/*
-	 * HTML 허용하면서 줄바꿈
-	 */
-	public static String useBrHtml(String str) {
-		if(str == null) return null;
-		
-		return str.replaceAll("\r\n", "<br>")
-				  .replaceAll("\r", "<br>")
-				  .replaceAll("\n", "<br>");
 	}
 	
-	
+	/*
+	 * HTML 허용하지 않음
+	 */
+	public static String useNoHtml(String str) {
+		if(str == null) return null;
+		
+		return str.replaceAll("<", "&lt;")
+				  .replaceAll(">", "&gt;");
+	}
 }
+
+
+
+
+

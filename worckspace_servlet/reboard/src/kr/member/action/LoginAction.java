@@ -34,6 +34,7 @@ public class LoginAction implements Action{
 			//로그인 처리
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id", id);
+			session.setAttribute("user_level", member.getUser_level());
 		}
 		
 		//check를 request에 저장

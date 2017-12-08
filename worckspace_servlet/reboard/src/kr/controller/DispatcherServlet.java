@@ -14,19 +14,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class DispatcherServlet 
-                          extends HttpServlet{
+public class DispatcherServlet extends HttpServlet{
 	
-	private Map<String,Action> commandMap = 
-			new HashMap<String,Action>();
+	private Map<String,Action> commandMap = new HashMap<String,Action>();
 	
 	@Override
-	public void init(ServletConfig config)
-	                   throws ServletException{
+	public void init(ServletConfig config) throws ServletException{
 		Properties pr = new Properties();
 		//"/WEB-INF/ActionMap.properties" 반환
-		String props = config.getInitParameter(
-				              "propertyConfig");
+		String props = config.getInitParameter("propertyConfig");
 		//ActionMap.properties 파일의 절대 경로 구하기
 		String path = config.getServletContext().getRealPath(props);
 		FileInputStream fis = null;
@@ -50,11 +46,9 @@ public class DispatcherServlet
 			try {
 				//문자열을 이용해 클래스를 찾아 Class 타입으로
 				//반환
-				Class commandClass = 
-						Class.forName(className);
+				Class commandClass = Class.forName(className);
 				//객체로 생성
-				Object commandInstance = 
-						commandClass.newInstance();
+				Object commandInstance = commandClass.newInstance();
 				//HashMap에 key와 value로 등록
 				commandMap.put(command, (Action)commandInstance);
 			}catch(Exception e) {
@@ -65,21 +59,15 @@ public class DispatcherServlet
 	}
 	
 	@Override
-	protected void doGet(HttpServletRequest request,
-			           HttpServletResponse response)
-	                 throws ServletException,IOException{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
 		requestPro(request,response);
 	}
 	@Override
-	protected void doPost(HttpServletRequest request,
-			           HttpServletResponse response)
-	                 throws ServletException,IOException{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
 		requestPro(request,response);
 	}
 	//작업용 메서드
-	private void requestPro(
-			        HttpServletRequest request,
-			      HttpServletResponse response)
+	private void requestPro(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException,IOException{
 		String view = null; //JSP 경로
 		Action com = null; //Model클래스의 구현 객체

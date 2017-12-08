@@ -10,7 +10,7 @@ public class BoardDto {
 	private Date regdate;
 	private String ip;
 	private String id;
-	private int reply_cnt; // ´ñ±Û¼ö
+	private int reply_cnt; //´ñ±Û¼ö
 	
 	public int getNum() {
 		return num;
@@ -54,7 +54,6 @@ public class BoardDto {
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public int getReply_cnt() {
 		return reply_cnt;
 	}
@@ -65,8 +64,14 @@ public class BoardDto {
 	public String toString() {
 		return "BoardDto [num=" + num + ", title=" + title + ", content=" + content + ", hit=" + hit + ", regdate="
 				+ regdate + ", ip=" + ip + ", id=" + id + ", reply_cnt=" + reply_cnt + "]";
-	}	
-	
-	
-	
+	}
 }
+
+
+
+
+
+
+
+
+

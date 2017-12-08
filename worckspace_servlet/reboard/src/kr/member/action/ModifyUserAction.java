@@ -28,7 +28,6 @@ public class ModifyUserAction implements Action{
 		//전송된 데이터를 자바빈에 저장
 		member.setId(user_id);
 		member.setName(request.getParameter("name"));
-		member.setPasswd(request.getParameter("passwd"));
 		member.setPhone(request.getParameter("phone"));
 		member.setEmail(request.getParameter("email"));
 		member.setZipcode(request.getParameter("zipcode"));

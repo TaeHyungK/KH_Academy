@@ -9,11 +9,11 @@ import kr.controller.Action;
 public class WriteFormAction implements Action{
 
 	@Override
-	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		//로그인 여부 체크
-		HttpSession session = req.getSession();
-		String user_id = (String) session.getAttribute("user_id");
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("user_id");
 		if(user_id == null) {
 			return "redirect:/member/loginForm.do";
 		}
@@ -22,3 +22,14 @@ public class WriteFormAction implements Action{
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+

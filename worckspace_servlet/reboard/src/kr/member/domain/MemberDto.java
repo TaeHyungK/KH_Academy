@@ -6,6 +6,7 @@ public class MemberDto {
 	private String id;
 	private String name;
 	private String passwd;
+	private int user_level;
 	private String phone;
 	private String email;
 	private String zipcode;
@@ -39,6 +40,12 @@ public class MemberDto {
 	}
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
+	}
+	public int getUser_level() {
+		return user_level;
+	}
+	public void setUser_level(int user_level) {
+		this.user_level = user_level;
 	}
 	public String getPhone() {
 		return phone;
@@ -76,6 +83,7 @@ public class MemberDto {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
+
 
 }
 

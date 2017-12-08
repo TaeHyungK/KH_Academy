@@ -22,12 +22,6 @@
 				   id="name" maxlength="10">
 			</li>
 			<li>
-				<label for="passwd">비밀번호</label>
-				<input type="password" 
-				   name="passwd"
-				   id="passwd" maxlength="12">
-			</li>
-			<li>
 				<label for="phone">전화번호</label>
 				<input type="text" name="phone"
 				   value="${member.phone}"

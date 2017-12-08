@@ -8,7 +8,7 @@ import kr.controller.Action;
 import kr.reboard.dao.BoardDao;
 import kr.reboard.domain.BoardDto;
 
-public class WriteAction implements Action{
+public class UpdateFormAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -19,32 +19,28 @@ public class WriteAction implements Action{
 		if(user_id == null) {
 			return "redirect:/member/loginForm.do";
 		}
-		//전송된 데이터에 인코딩 처리
-		request.setCharacterEncoding("utf-8");
-		//자바빈 생성
-		BoardDto board = new BoardDto();
-		//자바빈에 전송된 데이터 저장
-		//title,content,ip,id
-		board.setTitle(request.getParameter("title"));
-		board.setContent(request.getParameter("content"));
-		board.setIp(request.getRemoteAddr());
-		board.setId(user_id);
+		
+		//전송된 글번호 반환
+		int num = Integer.parseInt(request.getParameter("num"));
+		
 		//BoardDao 호출
 		BoardDao dao = BoardDao.getInstance();
-		//insertReboard에 자바빈 전달
-		dao.insertReboard(board);
+		//getReboard에 num을 전달해서 자바빈 반환
+		BoardDto board = dao.getReboard(num);
 		
-		return "/views/reboard/write.jsp";
+		//로그인 아이디와 작성자 아이디가 일치 여부
+		if(user_id!=null && !user_id.equals(board.getId())) {
+			request.setAttribute("accessMsg", 
+					"타인의 글은 수정할 수 없습니다.");
+			return "/views/common/notice.jsp";
+		}
+		//자바빈을 request에 저장
+		request.setAttribute("board", board);
+		
+		return "/views/reboard/updateForm.jsp";
 	}
 
 }
-
-
-
-
-
-
-
 
 
 

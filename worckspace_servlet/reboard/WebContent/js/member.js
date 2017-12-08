@@ -125,11 +125,6 @@ $(document).ready(function(){
 			$('#name').focus();
 			return false;
 		}
-		if($('#passwd').val()==''){
-			alert('비밀번호를 입력하세요!');
-			$('#passwd').focus();
-			return false;
-		}
 		if($('#phone').val()==''){
 			alert('전화번호를 입력하세요!');
 			$('#phone').focus();
@@ -148,6 +143,15 @@ $(document).ready(function(){
 		if($('#address1').val()==''){
 			alert('주소를 입력하세요!');
 			$('#address1').focus();
+			return false;
+		}
+	});
+	
+	//비밀번호 수정
+	$('#password_form').submit(function(){
+		if($('#passwd').val()==''){
+			alert('비밀번호를 입력하세요');
+			$('#passwd').focus();
 			return false;
 		}
 	});

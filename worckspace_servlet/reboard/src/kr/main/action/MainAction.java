@@ -8,7 +8,7 @@ import kr.controller.Action;
 public class MainAction implements Action{
 
 	@Override
-	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		return "/views/main/main.jsp";
 	}

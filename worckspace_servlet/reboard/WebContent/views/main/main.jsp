@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원제 댓글 게시판</title>
+<title>회원제 댓글게시판</title>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
 <div class="page-main-style">
-	<h2>댓글 게시판</h2>
+	<h2>댓글게시판</h2>
 	<div class="align-right">
 		<a href="../board/list.do">댓글게시판</a>
 		<c:if test="${empty user_id}">
@@ -18,6 +18,7 @@
 		<a href="../member/loginForm.do">로그인</a>
 		</c:if>
 		<c:if test="${!empty user_id}">
+		<a href="../member/modifyPasswordForm.do">비밀번호수정</a>
 		<a href="../member/modifyUserForm.do">회원정보수정</a>
 		<a href="../member/deleteUserForm.do">회원탈퇴</a>
 		[${user_id}님 로그인 중]
