@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>File</title>
+<script type="text/javascript">
+	window.onload=function(){
+		//파일을 선택할 때 이벤트
+		document.getElementById('file').onchange = function(event){
+			//선택한 파일의 정보를 갖는 File객체를 취득
+			var file = this.files[0];
+			
+			//파일명 구하기
+			alert(file.name +'을 선택했습니다.');			
+		};
+		//읽기 버튼을 클릭할 때
+		document.getElementById('btnStart').onclick = function(){
+			readProcess();
+		}
+		
+	};
+	
+	function readProcess(){
+		//선택한 파일에 대한 정보를 제공하는 파일 객체 구하기
+		var file = document.getElementById('file').files[0];
+		
+		if(!file){ // = if(file==undefined)
+			alert('파일을 선택하세요!');
+			return ;
+		}
+		
+		document.getElementById('filename').textContent = file.name;
+		document.getElementById('filesize').textContent = '('+file.size+' bytes)';
+		document.getElementById('filetype').textContent = file.type;
+		document.getElementById('filedate').textContent = file.lastModifiedDate.toLocaleString();
+		
+		//인코딩 방식 지정
+		var encodeList = document.getElementById('encoding');
+		var encoding = encodeList.options[encodeList.selectedIndex].value;
+		
+		//파일 읽기 기능을 제공하는 FileReader 객체 생성
+		var reader = new FileReader();
+		//선택한 파일을 읽어서 문자열로 저장
+		reader.readAsText(file,encoding);
+		
+		//정상적으로 파일을 읽어들였을 경우
+		reader.onload= function(){
+			var disp = document.getElementById('contents');
+			disp.textContent = reader.result;
+		};
+		//읽는 도중 에러가 발생한 경우
+		reader.onerror= function(){
+			/*
+			NOT_FOUND_ERR : 1, 파일을 찾을 수 없을때
+			SECURITY_ERR : 2, 웹애플리케이션에서 사용하기엔 보안상 좋지않다고 판단했을 때
+			ABORT_ERR : 3, 파일 읽기 중단
+			NOT_READABLE_ERR : 4, 파일 읽기 권한이 없을 때
+			ENCODING_ERR : 5, data URL길이가 URL길이의 상한을 초과할 때 
+			*/
+			if(reader.error.code === reader.error.NOT_READABLE_ERR){
+				alert('파일 읽기 권한이 없습니다.');
+			}else if(reader.error.code === reader.error.ABORT_ERR){
+				alert('파일 읽기가 중지되었습니다.');
+			}else{
+				alert('파일 읽기가 실패했습니다.');
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<h2>현재 시스템의 파일 읽기</h2>
+	<input type="file" id="file" accept="text/*">
+	<select id="encoding">
+		<option>EUC-KR</option>
+		<option>UTF-8</option>
+	</select>
+	<button id="btnStart">읽기</button>
+	<br>
+	<div>
+		<span id="filename">파일명</span>
+		<span id="filesize">파일크기</span>
+		<span id="filetype">파일타입</span>
+		<span id="filedate">파일의 마지막 수정일</span>
+	</div>
+	<textarea rows="10" cols="50" id="contents"></textarea>
+</body>
+</html>

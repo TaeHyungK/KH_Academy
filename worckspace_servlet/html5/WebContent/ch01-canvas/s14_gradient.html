@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>캔버스 연습</title>
+<script type="text/javascript">
+	window.onload=function(){
+		var canvas = document.getElementById('canvas');
+		if(canvas.getContext){
+			var context = canvas.getContext('2d');
+			
+			//원형(방사형) 그라디언트
+			//createRedialGradient(x1,y1,r1,x2,y2,r2): (x1,y1)을 중점으로 하는 반지름 r1인 원과
+			//(x2,y2)를 중점으로 하는 반지름 r2인 원, 이렇게 2개의 원을 만듦
+			
+			var grad = context.createRadialGradient(45,45,10,62,60,80);
+			
+			grad.addColorStop(0,'#A7D30C');
+			grad.addColorStop(1,'rgb(1,159,98)');
+			
+			context.beginPath();
+			context.fillStyle = grad;
+			context.arc(80,80,80,0,Math.PI*2,true);
+			context.fill();
+			
+		}else{
+			alert('브라우저가 캔버스를 지원하지 않습니다.');
+		}
+	};
+</script>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="300"></canvas>
+</body>
+</html>

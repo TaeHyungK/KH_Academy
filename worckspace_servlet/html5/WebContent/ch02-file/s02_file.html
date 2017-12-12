@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>File</title>
+<script type="text/javascript">
+	window.onload= function(){
+		//파일을 선택할 때
+		document.getElementById('file').onchange=function(){
+			readImage();
+		};
+	};
+	
+	function readImage(){
+		var file = document.getElementById('file');
+		if(file.files && file.files[0]){
+			var reader = new FileReader();
+			//파일 정보 읽기
+			reader.readAsDataURL(file.files[0]);
+			//파일을 정상적으로 읽어들였을 때
+			reader.onload=function(){
+				var image = document.getElementById('image');
+				//읽어들인 값을 이미지 src에 넣어줌
+				image.src=reader.result;
+				image.style.display ='';
+			};
+			//읽는 도중 에러 발생했을 때
+			reader.onerror=function(){
+				alert('파일 읽기 중 에러 발생!');
+			};
+		}
+	}
+</script>
+</head>
+<body>
+	<h2>이미지 미리보기</h2>
+	<div>
+		<img id="image" width="100" height="100" style="display:none;">
+	</div>
+	<input type="file" id="file" accept="image/*">
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>캔버스 연습</title>
+<script type="text/javascript">
+	window.onload=function(){
+		var canvas = document.getElementById('canvas');
+		if(canvas.getContext){
+			var context = canvas.getContext('2d');
+			
+			//선형 그라디언트
+			//createLinearGradient(x1,y1,x2,y2): 시작점(x1,y1)과 끝점(x2,y2)를 지정하여
+			//그라디언트 영역을 만듦
+			var grad = context.createLinearGradient(0,0,0,200);
+			
+			//addColorStop(positon, Color)이 메소드에서 position은 그라디언트에서 색상의 위치를
+			//상대적으로 표시한 것, 0.0~1.0까지를 사용
+			grad.addColorStop(0,'#39c');
+			grad.addColorStop(1,'orange');
+						
+			//색상으로 위에서 생성한 그라디언트 적용
+			context.fillStyle = grad;
+			context.fillRect(0,0,200,200);
+			
+		}else{
+			alert('브라우저가 캔버스를 지원하지 않습니다.');
+		}
+	};
+</script>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="300"></canvas>
+</body>
+</html>

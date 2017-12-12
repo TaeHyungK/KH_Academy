@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습</title>
+<script type="text/javascript">
+	window.onload=function(){
+		var canvas = document.getElementById('canvas');
+		if(canvas.getContext){
+			var context = canvas.getContext('2d');
+			
+			//큰원 얼굴
+			context.beginPath();
+			context.arc(150, 150, 100, 0, Math.PI*2, true);
+			context.closePath();
+			context.fillStyle = "#FFDEA9";
+			context.stroke();
+			context.fill();
+			 
+			//왼쪽 눈
+			context.beginPath();
+			context.arc(120, 130, 20, 0, Math.PI*2, true);
+			context.closePath();
+			context.fillStyle = "rgb(255, 255, 255)";
+			context.stroke();
+			context.fill();
+			
+			//왼쪽 눈동자
+			context.beginPath();
+			context.arc(120, 130, 4, 0, Math.PI*2, true);
+			context.closePath();
+			context.fillStyle = "black";
+			context.stroke();
+			context.fill();
+			
+			//오른쪽 눈
+			context.beginPath();
+			context.arc(180, 130, 20, 0, Math.PI*2, true);
+			context.closePath();
+			context.fillStyle = "rgb(255, 255, 255)";
+			context.stroke();
+			context.fill();
+			
+			//오른쪽 눈동자
+			context.beginPath();
+			context.arc(180, 130, 4, 0, Math.PI*2, true);
+			context.closePath();
+			context.fillStyle = "#000";
+			context.stroke();
+			context.fill();
+			
+			//머리카락
+			for(var i=0;i<15;i++){
+				context.beginPath();
+				context.moveTo(60+10*i,110);
+				context.lineTo(80+10*i,80); 
+				context.closePath(); 
+				context.stroke();
+			}
+			
+			//코
+			context.beginPath();
+			context.arc(150,160, 10, 0, Math.PI*2, true);
+			context.closePath();
+			context.fillStyle="white";
+			context.stroke();
+			context.fill();
+			
+			//입
+			context.beginPath();
+			context.arc(150, 180, 50, 0, (Math.PI/180)*180, false);
+			context.closePath();
+			context.lineWidth = 5;
+			context.strokeStyle = "red";
+			context.fillStyle = "rgb(255, 255, 255)";
+			context.stroke();
+			context.fill();
+			
+			
+		}else{
+			alert('브라우저가 캔버스를 지원하지 않습니다.');
+		}
+	};
+</script>
+</head>
+<body>
+	<canvas id="canvas" width="300" height="300">
+	</canvas>
+</body>
+</html>

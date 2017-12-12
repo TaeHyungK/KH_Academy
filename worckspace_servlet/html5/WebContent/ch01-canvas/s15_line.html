@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>캔버스 연습</title>
+<script type="text/javascript">
+	window.onload=function(){
+		var canvas = document.getElementById('canvas');
+		if(canvas.getContext){
+			var context = canvas.getContext('2d');
+			
+			/*
+			lineWidth : 선의 두께
+			lineCap : 선의 끝모양(butt,round,square)
+			lineJoin : 선과 선의 만남(round,bevel)
+			*/
+			var lineCap = ['butt','round','square'];
+			var lineJoin = ['round','bevel','miter'];
+			
+			//선의 끝모양을 표시하기 위한 기준선 명시
+			context.strokeStyle='#f00';
+			context.beginPath();
+			context.moveTo(10,10);
+			context.lineTo(150,10);
+			context.moveTo(10,150);
+			context.lineTo(150,150);
+			context.stroke();
+			
+			//선의 끝모양 표시
+			context.strokeStyle='blue';
+			for(var i=0;i<lineCap.length;i++){
+				context.lineWidth=15; //선 두께
+				context.lineCap= lineCap[i];//선끝 모양
+				//선 그리기
+				context.beginPath();
+				context.moveTo(25+25*i,10);
+				context.lineTo(25+25*i,150);
+				context.stroke();
+			}
+			
+			//선과 선의 만남
+			context.strokeStyle = 'green';
+			for(var i=0;i<lineJoin.length;i++){
+				context.lineWidth=20;
+				context.lineJoin = lineJoin[i];
+				
+				//선 그리기
+				context.beginPath();
+				context.moveTo(180,60*i+50);
+				context.lineTo(220,60*i+15);
+				context.lineTo(260,60*i+50);
+				context.stroke();
+			}
+			
+		}else{
+			alert('브라우저가 캔버스를 지원하지 않습니다.');
+		}
+	};
+</script>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="300"></canvas>
+</body>
+</html>

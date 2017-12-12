@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>캔버스 연습</title>
+<script type="text/javascript">
+	window.onload=function(){
+		var canvas = document.getElementById('canvas');
+		if(canvas.getContext){
+			var context = canvas.getContext('2d');
+			
+			//색 지정
+			context.fillStyle = 'orange';
+			context.fillRect(0,0,50,50);
+			//대상의 이동
+			context.translate(0,60);
+			
+			//대상의 크기를 변경
+			context.scale(1.0,0.5);
+			context.fillRect(0,0,50,50);
+		}else{
+			alert('브라우저가 캔버스를 지원하지 않습니다.');
+		}
+	};
+</script>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+</body>
+</html>
