@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로컬 스토리지</title>
+<script type="text/javascript">
+
+      /*
+          로컬 스토리지 : 브라우저를 통해 사용자의 컴퓨터에 데이터를 지속적으로 저장할수 있는 공간
+                           다시 사이트를 방문했을떄 로컬 스토리지에 저장된 모든 데이터를 사용 가능          
+      */ 
+
+     window.onload = function(){
+    	 var save = document.getElementById('save');
+    	 var load = document.getElementById('load');
+    	 
+    	 //데이터 저장 이벤트 연결
+    	 save.onclick=function(){
+    		 var text = document.getElementById('text');
+    		 var name = text.value;
+    		 
+    		 //로컬 스토리지에 데이터 저장
+    		 //localStorage.setItem('name',name);
+    		 localStorage.name = name;
+    		 
+    		 //초기화
+    		 text.value = '';
+    	 };
+    	 //저장된 데이터 읽기 이벤트 연결
+    	 load.onclick=function(){
+    		//로컬 스토리지에 저장된 데이터 읽기
+    		//var loadedName = localStorage.getItem('name');
+    		var loadedName = localStorage.name;
+    		
+    		alert('localStorage에 저장된 이름 : '+ loadedName);
+    	 };
+    	 
+     };
+
+</script>
+</head>
+<body>
+
+   <input type="text" id="text" ><br>
+   <button id="save">저장</button>
+   <button id="load">불러오기</button>
+
+</body>
+</html>

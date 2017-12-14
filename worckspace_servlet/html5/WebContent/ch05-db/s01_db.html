@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DB 연습</title>
+<style type="text/css">
+    fieldset{
+         width:216px;
+       }
+    fieldset ul{
+         list-style:none;
+         padding:0;
+         margin:2px;
+       }   
+    fieldset ul li{
+          margin:0 0 9px 0;
+          padding:0;
+       }   
+    fieldset input{
+         width:200px;
+       }  
+     p{
+        width:100%;
+        text-align:center;
+     }  
+     input[type="submit"]{
+        width:80px;
+        font-family:"맑은 고딕"
+       }
+</style>
+<script type="text/javascript">
+
+    /*
+      DB 사용 순서
+      1.데이터베이스 오픈
+      2.트랜잭션 시작
+      3.SQL문 실행
+    */
+    var db;
+    window.onload = function(){
+    	if(!window.openDatabase){
+    		alert('오픈 데이터베이스를 지원하지 않습니다');
+    		return;
+    	}
+    	//DB 생성및 오픈             db명        버전             설명                 용량
+    	db = openDatabase('dbtest','1.0','product database',1024*1024);
+    	//테이블 생성
+    	db.transaction(function(tx){
+    		/*
+    		  code : 컬럼명
+    		  integer : 자료형(숫자만 입력 가능)
+    		  primary key : 기본키
+    		  autoincrement : 기본치로 사용하는 숫자 자동 증가
+    		*/
+    		tx.executeSql('create table if not exists goods (code integer primary key autoincrement,name,quantity integer,price integer)');
+    	});
+        //상품 목록 읽기
+        load();
+        //이벤트 연결 처리
+        document.getElementById('myForm').onsubmit=function(){
+        	add();
+        	return false;
+        }
+    };
+    
+    //상품 등록
+    function add(){
+    	//상품명,수량,단가
+    	var name = document.getElementById('name');
+    	var quantity = document.getElementById('quantity');
+    	var price = document.getElementById('price');
+    	
+    	//데이터 등록
+    	db.transaction(function(tx){
+    		/*
+    		tx.executeSql(sql문,해당 sql문장에 전달되는 데이터,등록작업을 정상적으로 처리했을때 호출되는 함수,등록작업시 오류가 발생하면 호출되는 함수)
+    		*/
+    		tx.executeSql('insert into goods (name,quantity,price) values (?,?,?)',
+    				[name.value,quantity.value,price.value],
+                    function(tx,rs){
+                         //input태그에 값 초기화
+                         name.value = '';
+                         quantity.value = '';
+                         price.value = '';
+                         
+                         //목록 호출
+                         load();
+                      },
+                    function(error){
+                       alert('추가시 에러발생');
+            });
+    		
+    	});
+    }
+    //상품 정보 읽기
+    function load(){
+		var tbody = document.getElementById('tbody');
+		tbody.innerHTML=''; //초기화
+    	
+		db.transaction(function(tx){
+			tx.executeSql('SELECT code,name,quantity,price FROM goods order by code DESC',[],
+					function(tx,rs){
+						var rows = rs.rows; //테이블의 모든 레코드를 읽어들여 반환
+						var new_row = '';
+						for(var i=0;i<rows.length;i++){
+							var row = rows.item(i); //하나의 레코드를 읽어들임
+							new_row += '<tr><td>'+ row.code +'</td><td>' 
+									+ row.name + '</td><td>' 
+									+ row.quantity + '</td><td>' 
+									+ row.price + '</td></tr>'; 
+						}
+						
+						tbody.innerHTML = new_row;
+						
+					},
+					function(error){
+						alert('호출 에러!');
+					});
+		})
+    }
+    
+</script>
+</head>
+<body>
+
+   <form id="myForm" action="">
+      <fieldset>
+         <legend>자료 추가</legend>
+         <ul>
+            <li>
+               <label for="name">상품명</label>
+               <input type="text" id="name" required>
+            </li>
+            <li>
+               <label for="quantity">수량</label>
+               <input type="number" id="quantity" min="0" max="1000" required>
+            </li>
+            <li>
+               <label for="price">가격</label>
+               <input type="number" id="price" min="0" max="10000000" required>
+            </li>
+            <li>
+               <p><input type="submit" value="추가"></p>
+            </li>
+         </ul>
+      </fieldset>
+   </form>
+   <br>
+   <h3>상품목록</h3>
+   <table>
+      <tr>
+         <th>코드</th><th>상품명</th><th>수량</th><th>단가</th>
+      </tr>
+      <tbody id="tbody"></tbody>
+   </table>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>db 연습</title>
+<style type="text/css">
+	fieldset{
+		width:216px;
+	}
+	fieldset ul{
+		list-style:none;
+		padding:0;
+		margin:2px;
+	}
+	fieldset ul li{
+		margin:0 0 9px 0;
+		padding:0;
+	}
+	fieldset input{
+		width:200px;
+	}
+	input[type="submit"]{
+		width:80px;
+		font-family:"맑은 고딕";
+	}
+	p{
+		width:100%;
+		text-align:center;
+	}
+	select{
+		width:200px;
+	}
+	button{
+		width:48%;
+	}
+</style>
+<script type="text/javascript">
+/*
+DB 사용 순서
+1. 데이터베이스 오픈
+2. 트랜잭션 시작
+3. SQL 실행
+*/
+	var db;
+	window.onload=function(){
+		if(!window.openDatabase){
+			alert('openDatabase를 지원하지 않습니다.')
+			return;
+		}
+		//1. 데이터베이스 오픈
+						// DB명	   DB버전		설명				 용량
+		db = openDatabase('dbemp', '1.0', 'dbemp database', 1024*1024);
+		
+		//2. 테이블 생성
+		db.transaction(function(tx){
+			tx.executeSql('create table if not exists emp(emp_id integer primary key autoincrement, emp_name, emp_age integer )')
+		});
+		
+		//목록 호출
+		load();
+		document.getElementById('myForm').onsubmit=function(){
+			add();
+			//기본 이벤트 제거
+			return false;
+		}
+	};
+	
+	//목록
+	function load(){
+		
+	}
+	//등록
+	function add(){
+		var name = document.getElementById('name');
+		var age = document.getElementById('age');
+		
+		db.transaction(function(tx){
+			tx.executeSql('INSERT INTO emp (emp_name, emp_age) VALUES (?,?)',[name.value, age.value],
+					function(tx,rs){
+						alert('사번['+rs.insertId +']번의 레코드 추가 성공');
+						
+						//초기화
+						name.value='';
+						age.value='';
+						
+						//목록 호출
+						load();
+					},
+					function(error){
+						alert('추가시 에러 발생!');
+					});
+		});
+	}
+	//삭제
+	function remove(){
+		
+	}
+	//수정폼 호출
+	function modify_form(){
+		
+	}
+	//수정
+	function modify(){
+		
+	}
+	
+</script>
+</head>
+<body>
+<form id="myForm">
+	<input type="hidden" id="id" name="name">
+	<fieldset>
+		<legend>직원 자료 관리</legend>
+		<ul>
+			<li>
+				<label for="name">이름</label>
+				<input type="text" id="name" name="name" required>
+			</li>
+			<li>
+				<label for="age">나이</label>
+				<input type="number" id="age" name="age" min="1" max="1000" required>
+			</li>
+			<li>
+				<p><input type="submit" id="btnAdd" value="저장"></p>
+			</li>
+			<li>
+				<select id="list" size="5"></select>
+			</li>
+			<li>
+				<button id="btnModify">선택항목 수정</button>
+				<button id="btnRemove">선택항목 삭제</button>
+			</li>
+		</ul>
+	</fieldset>
+</form>
+
+
+</body>
+</html>

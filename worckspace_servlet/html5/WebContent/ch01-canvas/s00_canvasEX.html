@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>canvas</title>
+<script type="text/javascript">
+     window.onload=function(){
+    	 var canvas = document.getElementById('canvas');
+    	 if(canvas.getContext){
+    		 var context = canvas.getContext('2d');
+    		
+    		 //물결 패턴
+    		 var img = new Image();
+    		 img.src='../images/images1.jpg';
+    		 img.onload = function(){
+    	    	 //이미지 반복 지정(repeat,repeat-x,repeat-y,no-repeat)
+    	    	 var pattern = context.createPattern(img,'repeat');
+    	    	 context.fillStyle = pattern;
+    	    	 
+    	     
+    		//좀더큰원
+    		 context.beginPath();
+    		 context.arc(205,210,160,0,Math.PI*2,false);
+    		 context.lineWidth=10;
+    		 context.fill();
+    		 context.strokeStyle='#a48252';
+    		 context.stroke();
+    		 
+    		//큰원
+    		 context.beginPath();
+    		 context.arc(205,210,150,0,Math.PI*2,false);
+    		 context.lineWidth=10;
+    		 context.fillStyle='rgba(164,130,82,0.31)';
+    		 context.fill();
+    		 context.strokeStyle='#a48252';
+    		 context.stroke();
+    		 //반원
+    		 context.beginPath();
+    		 context.arc(210,160,50,(Math.PI/180)*270,(Math.PI/180)*90,false);
+    		 context.lineWidth=20;
+    		 context.strokeStyle='#a48252';
+    		 context.stroke();
+    		 context.beginPath();
+    		 context.arc(210,260,52,(Math.PI/180)*270,(Math.PI/180)*90,false);
+    		 context.lineWidth=20;
+    		 context.strokeStyle='#a48252';
+    		 context.stroke();
+    		 //안쪽 막대 상
+    		 context.beginPath();
+    		 context.moveTo(210,310);
+    		 context.lineTo(210,340);
+    		 context.lineWidth=20;//선 두께
+    		 context.strokeStyle='#a48252';
+    		 context.stroke();
+    		//안쪽 막대 상
+    		 context.beginPath();
+    		 context.moveTo(210,80);
+    		 context.lineTo(210,110);
+    		 context.lineWidth=20;//선 두께
+    		 context.strokeStyle='#a48252';
+    		 context.stroke();
+    		 //바깥족 막대
+    		 context.beginPath();
+    		 context.moveTo(180,80);
+    		 context.lineTo(180,340);
+    		 context.lineWidth=20;//선 두께
+    		 context.strokeStyle='#a48252';
+    		 context.stroke();
+    		 //연결 막대상
+    		 context.beginPath();
+    		 context.moveTo(150,110);
+    		 context.lineTo(220,110);
+    		 context.lineWidth=20;//선 두께
+    		 context.strokeStyle='#a48252';
+    		 context.stroke();
+    		//연결 막대중
+    		 context.beginPath();
+    		 context.moveTo(170,210);
+    		 context.lineTo(230,210);
+    		 context.lineWidth=26;//선 두께
+    		 context.strokeStyle='#a48252';
+    		 context.stroke();
+    		 
+    		//연결 막대하
+    		 context.beginPath();
+    		 context.moveTo(150,310);
+    		 context.lineTo(230,310);
+    		 context.lineWidth=20;//선 두께
+    		 context.strokeStyle='#a48252';
+    		 context.stroke();
+    		 }	 
+    		 
+    	 }else{
+    		 alert('브라우저가 캔버스를 지원하지 않습니다.');
+    	 }
+     };
+</script>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+</body>
+</html>

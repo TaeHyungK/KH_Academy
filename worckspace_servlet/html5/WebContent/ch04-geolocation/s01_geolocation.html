@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>geolocation</title>
+<script type="text/javascript">
+
+    window.onload=function(){
+    	if(navigator.geolocation == undefined){
+    		alert('본 기기가 위치 정보를 지원하지 않습니다.')
+    		return
+    	}
+    	/*
+    	  사용자의 현재 기기의 위치를 position 오브젝트 형으로 반환
+    	  형식 : getCurrentPosition(successCallback,errorCallback,options)
+    	  옵션 : frequency : 위치 정보를 가져올 시간 간격으로 단위는 밀리세컨드(ms) 기본값은 10000
+    	      enableHighAccuracy : 위치 정보의 정확성을 최상으로 할지 여부 지정
+    	      timeout : 기기롭터 위치 정보를 가져올 떄까지의 최대 대기 시간, 단위는 밀리세컨드(ms)
+    		maximimAge : 위치 정보를 캐싱하는 기간을 지정, 단위는 밀리세컨드(ms)
+    	*/
+    	navigator.geolocation.getCurrentPosition(success,fail,{timeout:10000});
+    	
+    	//위도,경도 값 호출이 가능한 경우
+    	function success(position){
+    		/*
+    		latitude : 위도
+    		longitude : 경도
+    		altitude : 고도
+    		accuracy : 위도와 경도의 정확도
+    		altitudeAccuracy : 고도의 정확도
+    		heading : 방향(북쪽으로 부터 시게 방향으로 현재 방향까지의 각도)
+    		speed : 현재 기기의 속도를 meter per second
+    		*/
+    		document.getElementById('startLat').innerHTML = position.coords.latitude;
+    		document.getElementById('startLon').innerHTML = position.coords.longitude;
+    	}
+    	//위도, 경도값 호출이 불가능한 경우
+    	function fail(error){
+    		alert('에러 발생 코드 : '+error.code)
+    		//0 : 알수 없는 오류
+    		//1 : 권한 거부
+    		//2 : 위치 추적 실패
+    		//3 : 시간 초과
+    	}
+    	
+    	//현재 위치를 계속 확인
+    	//watchPosition : 일정 간격으로 기기의 위치가 바뀌면 현재기기의 위치를 position 오브젝트 형으로 반환
+    	var watchId = navigator.geolocation.watchPosition(function(position){
+    		var lat = position.coords.latitude;
+    		var lon = position.coords.longitude;
+    		var acc = position.coords.accuracy;
+    		
+    		document.getElementById('currentLat').innerHTML=lat;
+    		document.getElementById('currentLon').innerHTML=lon;
+    		document.getElementById('acc').innerHTML=acc;
+    	});
+    		
+    	var btn = document.getElementById('btn');
+    	btn.onclick=function(){
+    		//clearWatch : watchPosition메서드로 위치 추적을 하는것을 해제하는 역활
+    		navigator.geolocation.clearWatch(watchId);
+    	    alert('위치 추적이 해제됨');
+    	};
+    		
+    };
+ 
+</script>
+</head>
+<body>
+
+     시작 위치 (위도,경도) : <br>
+     <span id="startLat">위도</span>&deg;
+     <br>
+     <span id="startLon">경도</span>&deg;
+     <br>
+     현위 위치 (위도,경도) : <br>
+     <span id="currentLat">위도</span>&deg;
+     <br>
+     <span id="currentLon">경도</span>&deg;
+     <br>
+     정확도 : <br>
+     <span id="acc">정확도</span>미터 정도의 정확도를 보임
+     <br><br>
+     <button id="btn">위치 추적 해제</button>
+</body>
+</html>

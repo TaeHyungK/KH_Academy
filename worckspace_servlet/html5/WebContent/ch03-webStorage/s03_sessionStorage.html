@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>세션스토리지</title>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    /*
+      세션스토리지는 브라우저가 열려있는 동안 모든 데이터를 기억하고 있다가
+      탭 또는 창을 닫으면 지워지는 저장 공간
+    */
+    
+    window.onload = function(){
+    	//저장된 데이터 읽기
+    	load();
+    	
+    	var save = document.getElementById('save');
+    	save.onclick=function(){
+    		var first = document.getElementById('first');
+    		var name = first.value;
+    		
+    		//세션스토리지에 데이터 저장
+    		//sessionStorage.setItem('name',name);
+    		sessionStorage.name = name;
+    		//변경된 사항 불러들임
+    		load();
+    	}
+    };
+    
+    function load(){
+      	var display = document.getElementById('display');
+      	//var name = sessionStorage.getItem('name');
+      	var name = sessionStorage.name;
+      	
+      	if(name){
+      		display.innerHTML = '저장된 값 : ' + name;
+      	}
+    }
+    
+</script>
+</head>
+<body>
+     
+       <H2> 세션스토리지</H2>
+     <input type="text" name="first" id="first">
+     <button id="save">저장</button>
+     <div id="display">비어있음</div>
+     
+</body>
+</html>

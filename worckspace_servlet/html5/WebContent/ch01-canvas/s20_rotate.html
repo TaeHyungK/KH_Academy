@@ -2,30 +2,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>캔버스 연습</title>
+<title>canvas</title>
 <script type="text/javascript">
-	window.onload=function(){
-		var canvas = document.getElementById('canvas');
-		if(canvas.getContext){
-			var context = canvas.getContext('2d');
-			
-			//대상의 이동
-			context.translate(200,200);
-			//색지정
-			context.fillStyle='purple';
-			//대상의 회전
-			for(var i=0;i<10;i++){
-				context.globalAlpha= 1-(0.1*i); //투명도 지정
-				context.rotate(Math.PI*2/10); //회전 각도
-				context.fillRect(10,10,150,50); //사각형
-			}
-		}else{
-			alert('브라우저가 캔버스를 지원하지 않습니다.');
-		}
-	};
+     window.onload=function(){
+    	 var canvas = document.getElementById('canvas');
+    	 if(canvas.getContext){
+    		 var context = canvas.getContext('2d');
+    		
+    		 //대상의 이동
+    		context.translate(200,200);
+    		 //색상 지정
+    		 context.fillStyle = 'purple';
+    		//대상의 회전
+    		 for(var i = 0;i<10;i++){
+    			 context.globalAlpha = 1-(0.1*i);//투명도 지정
+    			 context.rotate(Math.PI*2/10);
+    			 context.fillRect(10,10,150,50);
+    		 }
+    	    
+    		 
+    	 }else{
+    		 alert('브라우저가 캔버스를 지원하지 않습니다.');
+    	 }
+     };
 </script>
 </head>
 <body>
-	<canvas id="canvas" width="500" height="500"></canvas>
+    <canvas id="canvas" width="500" height="500"></canvas>
 </body>
 </html>
