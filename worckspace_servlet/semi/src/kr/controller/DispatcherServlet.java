@@ -83,10 +83,9 @@ public class DispatcherServlet extends HttpServlet{
 			System.out.println("커맨드:"+command);
 			System.out.println("----------");
 		}
-		
+				
 		//HashMap에 key를 넣어서 value(모델 객체)를 얻음
 		com = commandMap.get(command);
-		
 		//Model 클래스의 작업 메서드 호출
 		try {
 			//Servlet 호출시 생성된 request와 

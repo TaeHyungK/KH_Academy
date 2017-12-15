@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -28,20 +32,30 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item active px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="index.html">Home
-                <span class="sr-only">(current)</span>
+              <a class="nav-link text-uppercase text-expanded" href="../index.jsp">Home
+                <span class="sr-only">(current)</span> 
               </a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="about.html">List</a>
+              <a class="nav-link text-uppercase text-expanded" href="about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="blog.html">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../reservation/detail.do">MyPage</a>
+            </li>
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+              		<a class="nav-link text-uppercase text-expanded" href="../register/registerList.do">RegisterPage</a>
+            	</li>
+            </c:if>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">Service</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="contact.html">Service</a>
-            </li>
-            <li class="nav-item px-lg-4">
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+            		<a class="nav-link text-uppercase text-expanded" href="admin.do">Admin</a>
+            	</li>
+            </c:if>
             	
             </li>
           </ul>
@@ -50,21 +64,30 @@
     </nav>
     <!-- Login Form -->
     <div class="container">
-    	<div class="p-4" align="right">
+    	<div class="bg-faded p-4 my-4" align="right">
+    	<c:if test="${empty user_id }">
 	    	<form action="login.do" method="post" id="login_form">
 		            	<label for="id">ID</label>
 		            	<input type="text" name="id" id="id" size="10" maxlength="15"><br>
 		            	<label for="passwd">Password</label>
 		            	<input type="password" name="passwd" id="passwd" size="10" maxlength="15"><br>
 		            	<input type="submit" value="Login">
-		            	<input type="button" value="Join" onclick="location.href='#'">
+		            	<input type="button" value="Join" onclick="location.href='../member/registerUserForm.do'">
 	        </form>
+	    </c:if>
+	    <c:if test="${!empty user_id }">
+	    <a href="../member/modifyPasswordForm.do">비밀번호수정</a>
+		<a href="../member/modifyUserForm.do">회원정보수정</a>
+		<a href="../member/deleteUserForm.do">회원탈퇴</a>
+	    [${user_id}님 로그인중]
+	    <a href="logout.do">로그아웃</a>
+	    </c:if>
     	</div>
     </div>
 
     <div class="container">
       <div class="bg-faded p-4 my-4">
-        <!-- Welcome Message -->
+        <!-- Reservation Form -->
         <div class="text-center mt-4">
         <form action="searchAir.do" method="post" id="search_form">
 		<ul>
@@ -79,26 +102,22 @@
 			<li>
 				<label for="go_date">Departure Date</label>
 				<input type="date" name="go_date" id="go_date" size="15">
-				<label for="go_time">Departure Time</label>
-				<input type="time" name="go_time" id="go_time" size="15">
 			</li>
 			<li>
-				<label for="arrival_date">Arrival Date</label>
-				<input type="date" name="arrival_date" id="arrival_date" size="15">
-				<label for="arrival_time">Arrival Time</label>
-				<input type="time" name="arrival_time" id="arrival_time" size="15">
-			</li>
-			<li style="clear:both;">
-				<label for="adult_num" style="width:100px">Adult</label>
-				<input type="number" name="adult_num" id="adult_num" style="width:40px;" value="1" min="0"> 
-				<label for="student_num" style="width:100px">Student</label>
-				<input type="number" name="student_num" style="width:40px;" id="student_num" size="5" value="0" min="0">
-				<label for="kid_num" style="width:100px">kid</label>
-				<input type="number" name="kid_num" id="kid_num" style="width:40px;" value="0" min="0">
+				<label for="return_date">Return Date</label>
+				<input type="date" name="return_date" id="return_date" size="15">
 			</li>
 		</ul>
 		<div class="align-center">
+		<c:if test="${!empty user_id}">
 			<input type="submit" value="search">
+		</c:if>
+		<c:if test="${!empty user_id && user_id=='admin'}">
+			<input type="submit" value="search">
+		</c:if>
+		<c:if test="${empty user_id}">
+			<input type="submit" value="search">
+		</c:if>
 		</div>
 	</form>
         </div>

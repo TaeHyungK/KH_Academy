@@ -3,3 +3,39 @@
 ul{
 	list-style:none;
 }
+
+/*qboard*/
+.one {
+	 font-size:18px;
+	 test-align:center;
+	 border-radius:4px;
+	 border:1px solid #c5c5c5;
+   }
+.one > li{
+	float:left
+}  
+ 
+#search_form ul.ul_form{
+	padding:0;
+	list-style:none;
+	margin:0 auto;
+	
+}
+
+#search_form ul li.li_form{
+	display:inline;
+}
+#qboard_table {
+	  font-size:18;
+	  font-style:white;
+	  
+}
+
+tr td{
+	border-bottom:1px solid #ddd;
+	padding: 10px;
+	width:13%;
+}
+input.ticket{
+	width:25%;
+}

@@ -4,35 +4,35 @@
 <meta charset="UTF-8">
 <title>db 연습</title>
 <style type="text/css">
-	fieldset{
-		width:216px;
-	}
-	fieldset ul{
-		list-style:none;
-		padding:0;
-		margin:2px;
-	}
-	fieldset ul li{
-		margin:0 0 9px 0;
-		padding:0;
-	}
-	fieldset input{
-		width:200px;
-	}
-	input[type="submit"]{
-		width:80px;
-		font-family:"맑은 고딕";
-	}
-	p{
-		width:100%;
-		text-align:center;
-	}
-	select{
-		width:200px;
-	}
-	button{
-		width:48%;
-	}
+   fieldset{
+      width:216px;
+   }
+   fieldset ul{
+      list-style:none;
+      padding:0;
+      margin:2px;
+   }
+   fieldset ul li{
+      margin:0 0 9px 0;
+      padding:0;
+   }
+   fieldset input{
+      width:200px;
+   }
+   input[type="submit"]{
+      width:80px;
+      font-family:"맑은 고딕";
+   }
+   p{
+      width:100%;
+      text-align:center;
+   }
+   select{
+      width:200px;
+   }
+   button{
+      width:48%;
+   }
 </style>
 <script type="text/javascript">
 /*
@@ -40,100 +40,202 @@ DB 사용 순서
 1. 데이터베이스 오픈
 2. 트랜잭션 시작
 3. SQL 실행
-*/
-	var db;
-	window.onload=function(){
-		if(!window.openDatabase){
-			alert('openDatabase를 지원하지 않습니다.')
-			return;
-		}
-		//1. 데이터베이스 오픈
-						// DB명	   DB버전		설명				 용량
-		db = openDatabase('dbemp', '1.0', 'dbemp database', 1024*1024);
-		
-		//2. 테이블 생성
-		db.transaction(function(tx){
-			tx.executeSql('create table if not exists emp(emp_id integer primary key autoincrement, emp_name, emp_age integer )')
-		});
-		
-		//목록 호출
-		load();
-		document.getElementById('myForm').onsubmit=function(){
-			add();
-			//기본 이벤트 제거
-			return false;
-		}
-	};
-	
-	//목록
-	function load(){
-		
-	}
-	//등록
-	function add(){
-		var name = document.getElementById('name');
-		var age = document.getElementById('age');
-		
-		db.transaction(function(tx){
-			tx.executeSql('INSERT INTO emp (emp_name, emp_age) VALUES (?,?)',[name.value, age.value],
-					function(tx,rs){
-						alert('사번['+rs.insertId +']번의 레코드 추가 성공');
-						
-						//초기화
-						name.value='';
-						age.value='';
-						
-						//목록 호출
-						load();
-					},
-					function(error){
-						alert('추가시 에러 발생!');
-					});
-		});
-	}
-	//삭제
-	function remove(){
-		
-	}
-	//수정폼 호출
-	function modify_form(){
-		
-	}
-	//수정
-	function modify(){
-		
-	}
-	
+ */
+   var db;
+   window.onload=function(){
+      if(!window.openDatabase){
+         alert('openDatabase를 지원하지 않습니다.');
+         return;
+      }
+      //1. 데이터베이스 오픈
+      db = openDatabase('dbemp','1.0','dbemp database',1024*1024);
+      //2. 테이블 생성
+      db.transaction(function(tx){
+         tx.executeSql('create table if not exists emp (emp_id integer primary key autoincrement,emp_name,emp_age integer)');
+      });
+      
+      //목록
+      load();
+      
+      document.getElementById('myForm').onsubmit=function(){
+    	 if(document.getElementById('btnAdd').value=='저장'){
+         	add();
+      	 }else{
+      		modify();
+      	 }
+      	 //기본 이벤트 제거
+         return false;
+      };
+      
+      document.getElementById('btnRemove').onclick=function(){
+         remove();
+         //기본 이벤트 제거
+         return false;
+      };
+      
+      document.getElementById('btnModify').onclick=function(){
+    	  modify_form();
+    	  //기본 이벤트 제거
+    	  return false;
+      }
+      
+   };
+   
+   //목록
+   function load(){
+      db.transaction(function(tx){
+         tx.executeSql('select emp_id,emp_name,emp_age,emp_age from emp order by emp_id desc',[],
+               function(tx,rs){
+                  var list = document.getElementById('list');
+                  list.innerHTML = '';
+                  
+                  var rows = rs.rows;//모든 레코드 반환
+                  for(var i=0;i<rows.length;i++){
+                     var row = rows.item(i);//하나의 레코드 읽기
+                                   			//(눈에보이는)데이터,                               value   
+                     var str = new Option(row.emp_id+', '+row.emp_name+', '+row.emp_age, row.emp_id);
+                     //생성한 Option 객체들을 select 태그메 추가
+                     list.options[i] = str;
+                  }
+               },
+               function(error){
+                  alert('읽기 에러 발생');                  
+               });
+      });
+   }
+   //등록
+   function add(){
+      var name = document.getElementById('name');
+      var age = document.getElementById('age');
+      
+      db.transaction(function(tx){
+         tx.executeSql('insert into emp (emp_name,emp_age) values (?,?)',[name.value,age.value],
+               function(tx,rs){
+                  alert('사번['+ rs.insertId+']번의 레코드 추가 성공');
+                  
+                  //초기화
+                  name.value = '';
+                  age.value = '';
+                  
+                  //목록
+                  load();
+               },
+               function(error){
+                  alert('추가시 에러발생!');
+               });
+      });
+   }
+   
+   //삭제
+   function remove(){
+      var list = document.getElementById('list');
+      if(list.selectedIndex < 0){
+         //삭제 항목이 없을 시
+         alert('항목을 선택하세요');
+         return;
+      }
+      
+      //선택한 항목의 value 값 반환
+      var select_data = list.options[list.selectedIndex].value;
+      
+      db.transaction(function(tx){
+         tx.executeSql('delete from emp where emp_id=?',[select_data],
+               function(tx,rs){
+                  alert('정상적으로 삭제 되었습니다.');
+                  load();
+               },
+               function(error){
+                  
+               });
+      });
+      
+   }
+   //수정폼 호출
+   function modify_form(){
+      var list = document.getElementById('list');
+      //수정할 항목이 없을시
+      if(list.selectedIndex < 0){
+    	  alert('항목을 선택하세요');
+    	  return;
+      }
+      
+      //선택한 항목의 value 값 반환
+      var select_data = list.options[list.selctedIndex].value;
+      
+      db.transaction(function(tx){
+    	 tx.executeSql('SELECT emp_id, emp_name, emp_age FROM emp WHERE emp_id=?',[select_data],
+    			 function(tx,rs){
+					 var rows = rs.rows;
+					 
+					 if(rows){
+						 var row = rows.item(0); //한 건의 레코드 읽기
+						 
+						 document.getElementById('id').value = row.emp_id;
+						 document.getElementById('name').value = row.emp_name;
+						 document.getElementById('age').value = row.emp_age;
+						 
+						 document.getElementById('btnAdd').value = '수정';
+					 }
+    			 },
+    			 function(error){
+    				 alert('읽기 에러 발생!');
+    			 }); 
+      });
+   }
+   
+   function modify(){
+	   var id= document.getElementById('id');
+	   var name= document.getElementById('name');
+	   var age= document.getElementById('age');
+	   
+	   db.transaction(function(tx){
+	    	 tx.executeSql('UPDATE emp SET emp_name=?, emp_age=? WHERE emp_id=?',[select_data],
+	    			 function(tx,rs){
+						 alert('사번[' + id.value + ']번의 레코드 수정 성공');
+						 
+						 //초기화
+						 id.value='';
+						 name.value='';
+						 age.value='';
+						 
+						 document.getElementById('btnAdd').value = '저장';
+						 
+						 load();
+	    			 },
+	    			 function(error){
+	    				 alert('읽기 에러 발생!');
+	    			 }); 
+	      });
+   }
+   
 </script>
 </head>
 <body>
 <form id="myForm">
-	<input type="hidden" id="id" name="name">
-	<fieldset>
-		<legend>직원 자료 관리</legend>
-		<ul>
-			<li>
-				<label for="name">이름</label>
-				<input type="text" id="name" name="name" required>
-			</li>
-			<li>
-				<label for="age">나이</label>
-				<input type="number" id="age" name="age" min="1" max="1000" required>
-			</li>
-			<li>
-				<p><input type="submit" id="btnAdd" value="저장"></p>
-			</li>
-			<li>
-				<select id="list" size="5"></select>
-			</li>
-			<li>
-				<button id="btnModify">선택항목 수정</button>
-				<button id="btnRemove">선택항목 삭제</button>
-			</li>
-		</ul>
-	</fieldset>
+   <input type="hidden" id="id" name="id">
+   <fieldset>
+      <legend>직원 자료 정리</legend>
+      <ul>
+         <li>
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" required>
+         </li>
+         <li>
+            <label for="age">나이</label>
+            <input type="number" id="age" name="age" min="1" max="1000" required>
+         </li>
+         <li>
+            <p><input type="submit" id="btnAdd" value="저장"></p>
+         </li>
+         <li>
+            <select id="list" size="5"></select>         
+         </li>
+         <li>
+            <button id="btnModify">선택항목 수정</button>
+            <button id="btnRemove">선택항목 삭제</button>
+         </li>
+      </ul>
+   </fieldset>   
 </form>
-
-
 </body>
 </html>
