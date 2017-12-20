@@ -66,9 +66,10 @@
 			<div class="text-center mt-4">
 				<h2>회원정보 수정 완료!!</h2>
 				<br>
-				<div class="result-display">
+				<div>
 					회원정보 수정이 완료되었습니다.<br><br>
-					<a href="../mypage_user/registerDetail.do"><h3>MyPage</h3></a>
+					<a href="../mypage_user/registerDetail.do">MyPage</a>
+					<a href="../main/main.do">Main</a>
 				</div>
 			</div>
 		</div>

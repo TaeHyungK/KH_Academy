@@ -19,10 +19,10 @@ public class ReservationAction implements Action{
 		req.setCharacterEncoding("utf-8");
 		HttpSession session = req.getSession();
 		String user_id = (String)session.getAttribute("user_id");
+		
 		if(user_id==null) {
 			return "redirect:/main/main.do";
 		}
-		
 		int num = Integer.parseInt(req.getParameter("snum"));
 		String a_ticket = req.getParameter("a_ticket");
 		String as_ticket = req.getParameter("as_ticket");
@@ -41,7 +41,11 @@ public class ReservationAction implements Action{
 		int c_ticket_num = Integer.parseInt(c_ticket);
 		
 		int ticket_num = a_ticket_num + as_ticket_num + c_ticket_num;
-				
+		
+		if(ticket_num==0) {
+			return "/views/reservation/reservation_zero.jsp";
+		}
+		
 		AirDao dao = AirDao.getInstance();
 		AirDto ada = dao.selectAir(num);
 		List<Integer> rsv = dao.selectReservNum();
@@ -53,7 +57,7 @@ public class ReservationAction implements Action{
 				i--;
 			}
 		} 
-		int seats = dao.seats(ada.getAp_num());
+		int seats = dao.seats(num);
 		if(ticket_num>seats) {
 			return "/views/reservation/notEnoughSeats.jsp";
 		}  

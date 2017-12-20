@@ -38,7 +38,7 @@ public class DeleteUserAction implements Action{
 		
 		request.setAttribute("check", check);
 		
-		return "/views/mypage_user/deleteUser.jsp";
+		return "/views/mypage_user/registerDelete.jsp";
 	}
 
 }

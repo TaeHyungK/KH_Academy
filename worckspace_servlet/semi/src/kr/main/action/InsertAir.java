@@ -31,7 +31,8 @@ public class InsertAir implements Action{
 		List<AirDto> list = new ArrayList<AirDto>();
 		list = dao.listSchedule();
 		req.setAttribute("list", list);
-		return "/views/admin/adminInsertForm.jsp";
+		
+		return "/views/admin/adminInsertComplete.jsp";
 	}
 
 }

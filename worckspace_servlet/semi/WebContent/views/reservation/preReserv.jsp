@@ -8,7 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SemiProject Main</title>
+    <title>예매 티켓 입력</title>
+    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/reservation.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template -->
@@ -39,7 +42,7 @@
               <a class="nav-link text-uppercase text-expanded" href="about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/registerDetail.do">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../reservation/detail.do">MyPage</a>
             </li>
             <c:if test="${user_id=='admin'}">
             	<li class="nav-item px-lg-4">
@@ -49,7 +52,7 @@
             <li class="nav-item px-lg-4">
               <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">Service</a>
             </li>
-            <li class="nav-item active px-lg-4">
+            <li class="nav-item px-lg-4">
             <c:if test="${user_id=='admin'}">
             	<li class="nav-item px-lg-4">
             		<a class="nav-link text-uppercase text-expanded" href="admin.do">Admin</a>
@@ -61,27 +64,27 @@
         </div>
       </div>
     </nav>
-
+    
 <div class="container">
 <div class="bg-faded p-4 my-4 style">
+<br>
+<h2 style="text-align:center">검색하신 비행이 현황</h2>
 		<table>
 			<tr>
-				<td class="">출발지</td>
+				<td>출발지</td>
 				<td>도착지</td>
 				<td>예상시간</td>
 				<td>출발날짜</td>
 				<td>도착날짜</td>
 				<td>출발시간</td>
 				<td>도착시간</td>
-				<td>남은 좌석</td>
+				<td>예매 가능 좌석수</td>
 			</tr>
 		</table>
-		<form action="preReserv.do" method="post" class="resForm">
-		<c:forEach var="ad" items="${list}">
-		<input type="hidden" id="snum" name="snum" value="${ad.snum}">	
-		<table>
-			<tr>
-			</tr>
+
+		<form action="reservation.do" method="post" class="resForm">
+			<input type="hidden" id="snum" name="snum" value="${ad.snum}">
+		<table>		
 				<tr>
 					<td>${ad.start_lo}</td>
 					<td>${ad.end_lo}</td>
@@ -92,21 +95,36 @@
 					<td>${ad.return_time}</td>
 					<td>${ad.seats}석</td>
 				</tr>
+				<tr>
+					<td colspan="2">
+						<label for="a_ticket">성인</label>
+						<input class="a_ticket" type="number" min="0" max="1000" name="a_ticket" class="a_ticket" value="0">
+					</td>
+					<td colspan="2">
+						<label for="as_ticket">청소년</label>
+						<input class="as_ticket" type="number" min="0" max="1000" name="as_ticket" class="as_ticket" value="0">
+					</td>
+					<td colspan="2">	
+						<label for="c_ticket">어린이</label>
+						<input class="c_ticket" type="number" min="0" max="1000" name="c_ticket" class="c_ticket" value="0">
+					</td>
+					<td colspan="2">
+					<div style="text-align:center">
+						<input type="submit" value="예약">
+					</div>
+					</td>
+				</tr>
 			</table>
-</c:forEach>
-</form>
-<br>
-<div>
-	<div id="la"></div>
-</div>
-<div class="buttons">
-<input type="button"  value="홈으로" onclick="location.href='../main/main.do'">
+			</form>
+			
+	<div class="buttons">
+			<input type="button" value="홈으로" onclick="location.href='../main/main.do'">
+	</div>
+	<br>
 </div>
 <br>
 </div>
 
-<br>
-</div>
 
 
 

@@ -82,7 +82,7 @@
 			<input type="button" value="modify" onclick="location.href='../mypage_user/registerModifyForm.do'"
 			<c:if test="${user_id != register.id}">disabled="disabled"</c:if>
 			>
-			<input type="button" value="delete" onclick="location.href='../mypage_user/deleteUserForm.do'" 
+			<input type="button" value="delete" onclick="location.href='../mypage_user/registerDeleteForm.do'" 
 			<c:if test="${user_id != register.id}">disabled="disabled"</c:if>
 			>
 		</div>

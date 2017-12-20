@@ -16,7 +16,7 @@ public class DetailAction implements Action{
 		HttpSession session = request.getSession();
 		String user_id =(String)session.getAttribute("user_id");
 		if(user_id==null) {
-			return "/views/register/loginCheck.jsp";
+			return "/views/mypage_user/loginCheck.jsp";
 		}
 		
 		Register_1Dao dao=Register_1Dao.getInstance();

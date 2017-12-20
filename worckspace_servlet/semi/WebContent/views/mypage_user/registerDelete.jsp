@@ -67,10 +67,8 @@
 			<div class="text-center mt-4">
 				<h2>회원 삭제 완료!!</h2>
 				<br>
-				<div class="result-display">
-					${id}회원 삭제가 완료되었습니다.<br><br>
-					<a href="../register/registerList.do"><h3>RegisterPage</h3></a>
-				</div>
+				${id}회원 삭제가 완료되었습니다.<br><br>
+				<a href="../main/main.do">Main</a>
 			</div>
 		</div>
 	</div>

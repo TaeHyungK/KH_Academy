@@ -78,7 +78,7 @@
 			</tr>
 		</table>
 		<c:forEach var="ad" items="${list}">
-		<form action="reservation.do" method="post" class="resForm2">
+		<form action="preReserv.do" method="post" class="resForm">
 			<input type="hidden" id="snum" name="snum" value="${ad.snum}">
 		<table>		
 				<tr>
@@ -89,25 +89,16 @@
 					<td>${ad.return_date}</td>
 					<td>${ad.go_time}</td>
 					<td>${ad.return_time}</td>
+					<td>${ad.seats}석</td>
 				</tr>
 				<tr>
-					<td>
-						<label for="a_ticket">성인</label>
-						<input class="ticket" type="number" min="0" max="1000" name="a_ticket" class="a_ticket1" value="0">
-						
-					</td>
-					<td>
-						<label for="as_ticket">청소년</label>
-						<input class="ticket" type="number" min="0" max="1000" name="as_ticket" class="as_ticket1" value="0">
-					</td>
-					<td>	
-						<label for="c_ticket">어린이</label>
-						<input class="ticket" type="number" min="0" max="1000" name="c_ticket" class="c_ticket1" value="0">
-					</td>
 					<td>
 						<div style="text-align:center">
 						<input type="submit" value="예약">
 					</div>
+					</td>
+					<td colspan="4">
+						<span class="iNum"></span>
 					</td>
 				</tr>
 			</table>
