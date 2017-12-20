@@ -93,7 +93,7 @@ public class ManagerDao {
 		              pstmt.setString(1, "%"+keyword+"%");
 		              pstmt.setInt(2, start);
 		              pstmt.setInt(3, end);
-		           }
+		        }
 				rs = pstmt.executeQuery();
 				
 				list = new ArrayList<ManagerDto>();
@@ -116,7 +116,7 @@ public class ManagerDao {
 			return list;
 		}
 		//»ó¼¼
-		public ManagerDto getManager(String name)throws Exception{
+		public ManagerDto getManager(String id)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -125,15 +125,16 @@ public class ManagerDao {
 			
 			try {
 				conn = getConnection();
-				sql = "select * FROM register_1 WHERE name=?";
+				sql = "select * FROM register_1 WHERE id=?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, name);
+				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
 					manager = new ManagerDto();
 					manager.setName(rs.getString("name"));
 					manager.setId(rs.getString("id"));
+					manager.setPasswd(rs.getString("passwd"));
 					manager.setPhone(rs.getString("phone"));
 					manager.setSex(rs.getString("sex"));
 					manager.setCard_num(rs.getString("card_num"));
@@ -156,7 +157,7 @@ public class ManagerDao {
 			int cnt = 0;
 			try {
 				conn = getConnection();
-				sql = "UPDATE register_1 name=?,phone=?,sex=?,card_num=? WHERE id = ?";
+				sql = "UPDATE register_1 SET name=?,phone=?,sex=?,card_num=? WHERE id=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(++cnt,manager.getName());
 				pstmt.setString(++cnt,manager.getPhone());

@@ -47,6 +47,30 @@ public class AirDao {
 		if(conn!=null)try {conn.close();}catch(SQLException e) {}
 	}
 	
+	public boolean reserv_num(int num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean res =false;
+		
+		try {
+			conn = getConnection();
+			sql = "select r.snum from reservation r join schedule s on r.snum = s.snum where r.snum=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				res = true;
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(rs, pstmt, conn);
+		}
+		return res;
+	}
+	
 	public void reservation(AirDto ad)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -233,17 +257,18 @@ public class AirDao {
 	}
 	
 	
-	public void updateReserv(AirDto ada,String user_id,int random, int ticket_num,int a_ticket_num,int as_ticket_num,int c_ticket_num)throws Exception{
+	public void updateReserv(AirDto ada, int num, String user_id,int random, int ticket_num,int a_ticket_num,int as_ticket_num,int c_ticket_num)throws Exception{
 		System.out.println(ada);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
 		String sql = null;
 		int cnt = 0;
 		
 		try {
 			conn = getConnection();
-			sql = "insert into reservation values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			sql = "insert into reservation values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(++cnt, random);
 			pstmt.setString(++cnt, ada.getStart_lo());
@@ -259,17 +284,24 @@ public class AirDao {
 			pstmt.setInt(++cnt, a_ticket_num);
 			pstmt.setInt(++cnt, as_ticket_num);
 			pstmt.setInt(++cnt, c_ticket_num);
+			pstmt.setInt(++cnt, num);
 			pstmt.executeUpdate();
 			sql = "update airplane set seats=seats-? where ap_num=?";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, ticket_num);
 			pstmt2.setString(2, ap_num);
 			pstmt2.executeUpdate();
+			sql = "update schedule set seats=seats-? where snum=?";
+			pstmt3 = conn.prepareStatement(sql);
+			pstmt3.setInt(1, ticket_num);
+			pstmt3.setInt(2, num);
+			pstmt3.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
 			executeClose(null, pstmt, conn);
 			executeClose(null, pstmt2, null);
+			executeClose(null, pstmt3, null);
 		}
 		
 	}
@@ -356,6 +388,29 @@ public class AirDao {
 		}finally {
 			executeClose(null, pstmt, conn);
 		}
+	}
+	
+	public int seats(String ap_num)throws Exception{
+		int seats = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		try {
+			conn = getConnection();
+			sql = "select seats from airplane where ap_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ap_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				seats = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(rs, pstmt, conn);
+		}
+		return seats;
 	}
 	
 /*	public void insertAirResv(AirDto ad,String user_id)throws Exception{

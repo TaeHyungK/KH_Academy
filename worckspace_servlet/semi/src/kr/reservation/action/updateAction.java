@@ -36,7 +36,7 @@ public class updateAction implements Action{
 		
 		dao.updateReservation(reservation);
 		
-		return "redirect:/reservation/list.do";
+		return "redirect:/mypage_reservation/list.do";
 	}
 
 }

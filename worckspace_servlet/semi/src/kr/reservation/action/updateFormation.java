@@ -24,7 +24,7 @@ public class updateFormation implements Action{
 		ReservationDto reservation=dao.getReservation(num);
 		
 		request.setAttribute("reservation",reservation);
-		return "/views/reservation/updateForm.jsp";
+		return "/views/mypage_reservation/updateForm.jsp";
 	}
 
 }

@@ -18,10 +18,14 @@ public class DeleteAir implements Action{
 		req.setCharacterEncoding("utf-8");
 		int snum = Integer.parseInt(req.getParameter("snum"));
 		AirDao dao = AirDao.getInstance();
-		dao.deleteAir(snum);
-		List<AirDto> list = new ArrayList<AirDto>();
-		list = dao.listSchedule();
-		req.setAttribute("list", list);
-		return "/views/admin/adminReserv.jsp";
+		boolean res = dao.reserv_num(snum);
+		if(res==false) {
+			dao.deleteAir(snum);
+			List<AirDto> list = new ArrayList<AirDto>();
+			list = dao.listSchedule();
+			req.setAttribute("list", list);
+			return "/views/admin/adminReserv.jsp";			
+		}
+		return "/views/admin/deleteFalse.jsp";
 	}
 }

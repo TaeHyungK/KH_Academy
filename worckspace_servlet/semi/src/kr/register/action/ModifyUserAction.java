@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.register.dao.Register_1Dao;
-import kr.register_1.domain.Register_1Dto;
+import kr.register.domain.Register_1Dto;
 
 public class ModifyUserAction implements Action{
 
@@ -23,16 +23,15 @@ public class ModifyUserAction implements Action{
 		Register_1Dto register=new Register_1Dto();
 		
 		register.setId(user_id);
-		register.setPasswd(request.getParameter("passwd"));
 		register.setName(request.getParameter("name"));
-		register.setPhone(Integer.parseInt(request.getParameter("phone")));
+		register.setPhone(request.getParameter("phone"));
 		register.setSex(request.getParameter("sex"));
 		register.setCard_num(Integer.parseInt(request.getParameter("card_num")));
 		
 		Register_1Dao dao=Register_1Dao.getInstance();
 		dao.updateRegister(register);
 		
-		return "/views/register/modifyUser.jsp";
+		return "/views/mypage_user/registerModify.jsp";
 	}
 
 }

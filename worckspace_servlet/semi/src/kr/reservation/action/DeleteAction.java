@@ -27,6 +27,6 @@ public class DeleteAction implements Action{
 		
 		dao.deleteReservation(num);
 		
-		return "redirect:/reservation/list.do";
+		return "redirect:/mypage_reservation/list.do";
 	}
 }

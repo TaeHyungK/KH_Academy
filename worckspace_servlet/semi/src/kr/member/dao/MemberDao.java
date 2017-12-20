@@ -66,7 +66,27 @@ public class MemberDao {
 	}
 	//아이디 중복 체크
 	public MemberDto checkId(String id) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
 		MemberDto member = null;
+		
+		try {
+			conn = getConnection();
+			sql = "SELECT * FROM register_1 WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				member = new MemberDto();
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(rs, pstmt, conn);
+		}
 		
 		return member;
 	}
@@ -164,4 +184,24 @@ public class MemberDao {
 			executeClose(null, pstmt, conn);
 		}
 	}
+	//비밀번호 수정
+		public void updatePassword(MemberDto member) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				conn = getConnection();
+				sql = "UPDATE register_1 SET passwd=? WHERE id=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, member.getPasswd());
+				pstmt.setString(2, member.getId());
+				
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				executeClose(null, pstmt, conn);
+			}
+		}
 }

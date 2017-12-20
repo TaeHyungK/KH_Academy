@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.register.dao.Register_1Dao;
-import kr.register_1.domain.Register_1Dto;
+import kr.register.domain.Register_1Dto;
 
 public class ModifyUserFormAction implements Action{
 
@@ -23,9 +23,10 @@ public class ModifyUserFormAction implements Action{
 		Register_1Dao dao=Register_1Dao.getInstance();
 		
 		Register_1Dto register=dao.getRegister(user_id);
+		
 		request.setAttribute("register", register);
 		
-		return "/views/register/modifyUserForm.jsp";
+		return "/views/mypage_user/registerModifyForm.jsp";
 	}
 
 }

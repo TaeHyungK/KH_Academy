@@ -1,11 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>회원정보 수정 폼</title>
+    <title>SemiProject Main</title>
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template -->
@@ -14,8 +17,9 @@
     <!-- Custom styles for this template -->
     <link href="../css/bootstrap/css/business-casual.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-  </head>
-  <body>
+    
+</head>
+<body>
     <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Team Seis Air</div>
     <div class="tagline-lower text-center text-expanded text-shadow text-white mb-5 d-none d-lg-block">Jae Hoon/Seung Hun/Woo Jin/Jung Min/Tae Hyung/Jae Geun</div>
     <!-- Navigation -->
@@ -27,56 +31,62 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item active px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="">Home
-                <span class="sr-only">(current)</span>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="../index.jsp">Home
+                <span class="sr-only">(current)</span> 
               </a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="">List</a>
+              <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
+            </li>
+            <li class="nav-item active px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/registerDetail.do">MyPage</a>
+            </li>
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+              		<a class="nav-link text-uppercase text-expanded" href="../register/registerList.do">RegisterPage</a>
+            	</li>
+            </c:if>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">Service</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="">MyPage</a>
-            </li>
-            <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="">Service</a>
-            </li>
-            <li class="nav-item px-lg-4">
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+            		<a class="nav-link text-uppercase text-expanded" href="../main/admin.do">Admin</a>
+            	</li>
+            </c:if>
             	
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
     <div class="container">
       <div class="bg-faded p-4 my-4">
-        <!-- Welcome Message -->
         <div class="text-center mt-4">
-        <form action="modifyUser.do" method="post" id="modifyUser_form">
-		<ul>
-			<li>
-				<label for="name">이름</label>
-				<input type="text" name="name" id="name" value="${register_1.name}" width="500">     
-			</li>
-			<li>
-				<label for="passwd">비밀번호</label>
-				<input type="text" name="passwd" id="passwd" value="${register_1.passwd}" width="500">
-			</li>
-			<li>
-				<label for="phone">전화번호</label>
-				<input type="text" name="phone" id="phone" value="${register_1.phone}" size="15">
-			</li>
-			<li>
-				<label for="sex">성별</label>
-				<input type="text" name="sex" id="sex" value="${register_1.sex}" size="15">
-			</li>
-			<li>
-				<label for="card_num">카드번호</label>
-				<input type="number" name="card_num" id="card_num" value="${register_1.card_num}" size="15">
-			</li>
-		</ul>
-	</form>
+        	<h1>&nbsp&nbsp&nbsp DeleteUser</h1>
+        	<form action="registerDelete.do" method="post" id="delete_form">
+        	<input type="hidden" id="id" name="id" value="${id}">
+				<ul>
+					<li>
+						<label><h2>ID : ${user_id}</h2></label>
+					</li>
+					<li>
+						<label for="passwd">Password :</label><br>
+						<input type="password" name="passwd" id="passwd" maxlength="30">
+					</li>
+					<li>
+						<label for="cpasswd">Password Confirm :</label><br>
+						<input type="password" name="cpasswd" id="cpasswd" maxlength="30">
+					</li>
+				</ul>
+				<div class="align-center">
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					<input type="submit" value="회원삭제">
+					<input type="button" value="삭제취소" onclick="location.href='../main/main.do'">
+				</div>
+			</form>
         </div>
       </div>
     </div>
@@ -91,7 +101,6 @@
     <!-- Bootstrap core JavaScript -->
     <script src="../css/bootstrap/vendor/jquery/jquery.min.js"></script>
     <script src="../css/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  </body>
-
+	<script type="text/javascript" src="../js/manager.js"></script>
+</body>
 </html>

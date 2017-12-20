@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script>
-	alert('회원정보 탈퇴 완료!');
-	location.href='../main/main.do';
+	alert('고객의 예약정보가 포함된 항로 입니다.');
+	location.href="admin.do";
 </script>

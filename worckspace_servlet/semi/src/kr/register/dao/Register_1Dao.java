@@ -9,7 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import kr.register_1.domain.Register_1Dto;
+import kr.register.domain.Register_1Dto;
 
 public class Register_1Dao {
 	
@@ -49,13 +49,14 @@ public class Register_1Dao {
 			sql="SELECT * FROM register_1 WHERE id=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				register=new Register_1Dto();
 				register.setId(rs.getString("id"));
 				register.setPasswd(rs.getString("passwd"));
 				register.setName(rs.getString("name"));
-				register.setPhone(rs.getInt("phone"));
+				register.setPhone(rs.getString("phone"));
 				register.setSex(rs.getString("sex"));
 				register.setCard_num(rs.getInt("card_num"));
 			}
@@ -76,15 +77,15 @@ public class Register_1Dao {
 		
 		try {
 			conn=getConnection();
-			sql="UPDATE register_1 SET passwd=?,name=?,"
-						+ "phone=?,sex=?,card_num=? WHERE id=?";
+			sql="UPDATE register_1 SET name=?,phone=?,sex=?,card_num=? WHERE id=?";
+			
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(++cnt, register.getPasswd());
+			
 			pstmt.setString(++cnt, register.getName());
-			pstmt.setInt(++cnt, register.getPhone());
+			pstmt.setString(++cnt, register.getPhone());
 			pstmt.setString(++cnt, register.getSex());
 			pstmt.setInt(++cnt, register.getCard_num());
-			pstmt.setString(++cnt, register.getId());
+			pstmt.setString(++cnt, register.getId());  
 			
 			pstmt.executeUpdate();
 			

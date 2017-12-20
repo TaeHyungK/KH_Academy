@@ -160,7 +160,7 @@ DB 사용 순서
       }
       
       //선택한 항목의 value 값 반환
-      var select_data = list.options[list.selctedIndex].value;
+      var select_data = list.options[list.selectedIndex].value;
       
       db.transaction(function(tx){
     	 tx.executeSql('SELECT emp_id, emp_name, emp_age FROM emp WHERE emp_id=?',[select_data],
@@ -187,9 +187,9 @@ DB 사용 순서
 	   var id= document.getElementById('id');
 	   var name= document.getElementById('name');
 	   var age= document.getElementById('age');
-	   
+	   	    
 	   db.transaction(function(tx){
-	    	 tx.executeSql('UPDATE emp SET emp_name=?, emp_age=? WHERE emp_id=?',[select_data],
+	    	 tx.executeSql('UPDATE emp SET emp_name=?, emp_age=? WHERE emp_id=?',[name.value,age.value,id.value],
 	    			 function(tx,rs){
 						 alert('사번[' + id.value + ']번의 레코드 수정 성공');
 						 

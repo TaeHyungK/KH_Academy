@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -16,8 +17,9 @@
     <!-- Custom styles for this template -->
     <link href="../css/bootstrap/css/business-casual.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-  </head>
-  <body>
+    
+</head>
+<body>
     <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Team Seis Air</div>
     <div class="tagline-lower text-center text-expanded text-shadow text-white mb-5 d-none d-lg-block">Jae Hoon/Seung Hun/Woo Jin/Jung Min/Tae Hyung/Jae Geun</div>
     <!-- Navigation -->
@@ -29,24 +31,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item active px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="index.html">Home
-                <span class="sr-only">(current)</span>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="../index.jsp">Home
+                <span class="sr-only">(current)</span> 
               </a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="about.html">List</a>
+              <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="blog.html">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/detail.do">MyPage</a>
+            </li>
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item active px-lg-4">
+              		<a class="nav-link text-uppercase text-expanded" href="../register/registerList.do">RegisterPage</a>
+            	</li>
+            </c:if>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">Service</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="../register/registerList.do">RegisterPage</a>
-            </li>
-            <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="contact.html">Service</a>
-            </li>
-            <li class="nav-item px-lg-4">
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+            		<a class="nav-link text-uppercase text-expanded" href="../main/admin.do">Admin</a>
+            	</li>
+            </c:if>
             	
             </li>
           </ul>
@@ -75,7 +84,7 @@
 				<div class="align-center">
 					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 					<input type="submit" value="회원삭제">
-					<input type="button" value="삭제취소" onclick="location.href='../register/registerList.do'">
+					<input type="button" value="삭제취소" onclick="location.href='../main/main.do'">
 				</div>
 			</form>
         </div>
@@ -92,7 +101,6 @@
     <!-- Bootstrap core JavaScript -->
     <script src="../css/bootstrap/vendor/jquery/jquery.min.js"></script>
     <script src="../css/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  </body>
-
+	<script type="text/javascript" src="../js/manager.js"></script>
+</body>
 </html>

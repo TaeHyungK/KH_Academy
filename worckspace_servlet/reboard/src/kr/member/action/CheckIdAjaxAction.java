@@ -20,9 +20,11 @@ public class CheckIdAjaxAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
 		String id = request.getParameter("id");
+		System.out.println("id: " + id);
 		
 		MemberDao dao = MemberDao.getInstance();
 		MemberDto member = dao.checkId(id);
+		System.out.println("member: " + member);
 		
 		HashMap<String,String> map = 
 				new HashMap<String,String>();

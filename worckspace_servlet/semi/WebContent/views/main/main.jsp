@@ -40,7 +40,7 @@
               <a class="nav-link text-uppercase text-expanded" href="about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="../reservation/detail.do">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/registerDetail.do">MyPage</a>
             </li>
             <c:if test="${user_id=='admin'}">
             	<li class="nav-item px-lg-4">
@@ -110,9 +110,6 @@
 		</ul>
 		<div class="align-center">
 		<c:if test="${!empty user_id}">
-			<input type="submit" value="search">
-		</c:if>
-		<c:if test="${!empty user_id && user_id=='admin'}">
 			<input type="submit" value="search">
 		</c:if>
 		<c:if test="${empty user_id}">

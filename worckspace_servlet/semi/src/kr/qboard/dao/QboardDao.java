@@ -12,6 +12,8 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import kr.qboard.domain.QboardDto;
+import kr.qboard.domain.QboardReply;
+import kr.util.StringUtil;
 
 
 public class QboardDao {
@@ -222,8 +224,102 @@ public class QboardDao {
 				
 				
 				//댓글 등록
-				//댓글 수정
+				public void replyInsertBoard(QboardReply qreply)throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					String sql = null;
+					int cnt = 0;
+					
+					try {
+						conn = getConnection();
+						sql = "INSERT INTO qna_reply(re_qnum,re_content,re_date,id) values(?,?,sysdate,?) ";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setInt(++cnt, qreply.getRe_qnum());
+						pstmt.setString(++cnt, qreply.getRe_content());
+						pstmt.setString(++cnt, qreply.getQ_id());
+						
+						pstmt.executeUpdate();
+						
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						executeClose(null,pstmt,conn);
+					}
+				}
+				
+				//댓글 갯수
+				public int getReplyBoardCount(int q_num)throws Exception{
+					int count = 0;
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					String sql = null;
+					
+					try {
+						conn = getConnection();
+						//같은 num으로 검색한 레코드수 구하기
+						sql = "SELECT COUNT(*) FROM qna_reply WHERE q_num=?";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setInt(1, q_num);
+						rs = pstmt.executeQuery();
+						
+						if(rs.next()) {
+							count =rs.getInt(1);
+						}
+						
+						
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						executeClose(rs,pstmt,conn);
+					}
+					
+					
+					
+					return count;
+				}
+				
+				//댓글 목록
+				public List<QboardReply> getListreplyBoard(int start,int end,int num)throws Exception{
+					List<QboardReply> list = null;
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					String sql = null;
+					
+					try {
+						conn = getConnection();
+						//같은 num으로 검색한 레코드 반환
+						sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM qna_reply WHERE num=? ORDER BY re_num DESC)a) WHERE rnum >=? AND rnum <=?";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setInt(1, num);
+						pstmt.setInt(2, start);
+						pstmt.setInt(3, end);
+						rs = pstmt.executeQuery();
+						
+						list = new ArrayList<QboardReply>();
+						while(rs.next()) {
+							QboardReply qboard = new QboardReply();
+							qboard.setRe_qnum(rs.getInt("re_qnum"));
+							qboard.setRe_content(StringUtil.useNoHtml(rs.getString("re_content")));
+							qboard.setRe_date(rs.getDate("re_date"));
+							qboard.setQ_id(rs.getString("id"));
+							
+							list.add(qboard);
+						}
+						
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						executeClose(rs,pstmt,conn);
+					}
+					
+					return list;
+				}
 				//댓글 삭제
+				public void deleteReplyBoard(int re_qnum)throws Exception{
+					
+				}
 				
 
 }

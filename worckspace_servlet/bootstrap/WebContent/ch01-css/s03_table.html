@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bootstrap</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css" type="text/css">
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<h4>.table 선택자를 사용하면 각 행에 밑줄이 있는 형태의 테이블이 만들어짐</h4>
+	<table class="table">
+		<tr>
+			<th>#</th>
+			<th>이름</th>
+			<th>나이</th>
+			<th>거주지</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>박문수</td>
+			<td>12</td>
+			<td>서울시 동작구</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>홍길동</td>
+			<td>32</td>
+			<td>경기도 이천시</td>
+		</tr>
+	</table>
+	
+	<h4>줄무늬형 .table-striped 선택자를 추가하면 스트라이프 형태의 테이블이 됨</h4>
+	<table class="table table-striped">
+		<tr>
+			<th>#</th>
+			<th>이름</th>
+			<th>나이</th>
+			<th>거주지</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>박문수</td>
+			<td>12</td>
+			<td>서울시 동작구</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>홍길동</td>
+			<td>32</td>
+			<td>경기도 이천시</td>
+		</tr>
+	</table>
+	
+	<h4>선 있는 테이블 .table-bordered 선택자를 추가하면 전체의 셀에 대해 테두리가 만들어짐</h4>
+	<table class="table table-bordered">
+		<tr>
+			<th>#</th>
+			<th>이름</th>
+			<th>나이</th>
+			<th>거주지</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>박문수</td>
+			<td>12</td>
+			<td>서울시 동작구</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>홍길동</td>
+			<td>32</td>
+			<td>경기도 이천시</td>
+		</tr>
+	</table>
+	
+	<h4>행 hover .table-hover 선택자를 추가하면 테이블에 마우스를 올렸을 때 마우스가 올라간 행의 색상이 변하는 hover 효과가 추가됨</h4>
+	<table class="table table-hover">
+		<tr>
+			<th>#</th>
+			<th>이름</th>
+			<th>나이</th>
+			<th>거주지</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>박문수</td>
+			<td>12</td>
+			<td>서울시 동작구</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>홍길동</td>
+			<td>32</td>
+			<td>경기도 이천시</td>
+		</tr>
+	</table>
+	
+	<h4>좁은 폭 테이블 .table-condensed 선택자를 추가하면 row의 상하 폭이 좁아짐</h4>
+	<table class="table table-condensed">
+		<tr>
+			<th>#</th>
+			<th>이름</th>
+			<th>나이</th>
+			<th>거주지</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>박문수</td>
+			<td>12</td>
+			<td>서울시 동작구</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>홍길동</td>
+			<td>32</td>
+			<td>경기도 이천시</td>
+		</tr>
+	</table>
+	
+	<h4>맥락적인 클래스들. 색상 표시</h4>
+	<!-- 
+	.success : 성공적이거나 긍정적인 액션을 표시
+	.danger : 위험하거나 잠재적으로 부정적인 액션을 표시
+	.warning : 주의가 필요한 경고를 표시
+	.info : 기본(default) 스타일을 대신해 사용
+	.active : 특정한 행이나 셀에 hover했을 때와 같은 색을 입힘
+	-->
+	<table class="table table-condensed">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>이름</th>
+				<th>나이</th>
+				<th>거주지</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="success">
+				<td>1</td>
+				<td>박문수</td>
+				<td>12</td>
+				<td>서울시 동작구</td>
+			</tr>
+			<tr class="danger">
+				<td>1</td>
+				<td>박문수</td>
+				<td>12</td>
+				<td>서울시 동작구</td>
+			</tr>
+			<tr class="warning">
+				<td>1</td>
+				<td>박문수</td>
+				<td>12</td>
+				<td>서울시 동작구</td>
+			</tr>
+			<tr class="info">
+				<td>1</td>
+				<td>박문수</td>
+				<td>12</td>
+				<td>서울시 동작구</td>
+			</tr>
+			<tr class="active">
+				<td>1</td>
+				<td>박문수</td>
+				<td>12</td>
+				<td>서울시 동작구</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h4>반응형 테이블 .table을 .table-responsive로 감싸서 작은 기기에서는 수평 스크롤을 할 수 있는 반응형 테이블</h4>
+	<div class="table-responsive">
+		<table class="table">
+			<tr>
+				<th>#</th>
+				<th>이름</th>
+				<th>나이</th>
+				<th>거주지</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>박문수</td>
+				<td>12</td>
+				<td>서울시 동작구</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>홍길동</td>
+				<td>32</td>
+				<td>경기도 이천시</td>
+			</tr>
+		</table>
+	</div>
+	
+</div>
+</body>
+</html>

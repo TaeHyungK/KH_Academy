@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${check}">
 <!DOCTYPE html>
 <html>
   <head>
@@ -30,24 +31,32 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item active px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="index.html">Home
-                <span class="sr-only">(current)</span>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="../index.jsp">Home
+                <span class="sr-only">(current)</span> 
               </a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="about.html">List</a>
+              <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="blog.html">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/detail.do">MyPage</a>
+            </li>
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item active px-lg-4">
+              		<a class="nav-link text-uppercase text-expanded" href="../register/registerList.do">RegisterPage</a>
+            	</li>
+            </c:if>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">Service</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="../register/registerList.do">RegisterPage</a>
-            </li>
-            <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="contact.html">Service</a>
-            </li>
-            <li class="nav-item px-lg-4">	
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+            		<a class="nav-link text-uppercase text-expanded" href="admin.do">Admin</a>
+            	</li>
+            </c:if>
+            	
             </li>
           </ul>
         </div>
@@ -59,7 +68,7 @@
 				<h2>회원 삭제 완료!!</h2>
 				<br>
 				<div class="result-display">
-					회원 삭제가 완료되었습니다.<br><br>
+					${id}회원 삭제가 완료되었습니다.<br><br>
 					<a href="../register/registerList.do"><h3>RegisterPage</h3></a>
 				</div>
 			</div>
@@ -77,6 +86,13 @@
     <script src="../css/bootstrap/vendor/jquery/jquery.min.js"></script>
     <script src="../css/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  </body>
-
+</body>
 </html>
+</c:if>
+<c:if test="${!check}">
+	<script>
+		alert('비밀번호 불일치!');
+		history.go(-1);
+	</script>
+</c:if>
+

@@ -23,7 +23,7 @@ $(document).ready(function(){
 				//로딩 이미지 감추기
 				$('#loading').hide();
 				
-				if(data.result == 'idNotFound'){
+				if(data.result == 'OK'){
 					//id 미중복
 					$('#message_id').css('color','#000')
 					                .text('등록가능 ID');

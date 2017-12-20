@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css" type="text/css">
+<style type="text/css">
+   [class*="col-"]{
+   	padding-top:15px;
+   	padding-bottom:15px;
+   	background-color:#eee;
+   	border:1px solid #999;
+   }
+</style>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- 
+그리드 옵션들
+다양한 기기들을 넘나드는 부트스트랩 그리드 시스템
+			매우 작은			작은 기기			중간 기기			큰 기기
+			기기 모바일폰		태블릿			데스크탑			데스크탑
+			(<768px)		(>=768px)		(>=992px)		(>=1200px)
+그리드 적용  항상				     	   분기점보다 크면 적용				
+클래스 최대 넓이	None(auto)		750px			970px			1170px
+
+접두사		.col-xs-		.col-sm-		.col-md-		.col-lg
+컬럼수		12개로 모두 동일
+-->
+<div class="container">
+	<h4>12개 컬럼</h4>
+	<div class="row">
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+	</div>
+	
+	<h4>2개 컬럼</h4>
+	<div class="row">
+		<div class="col-md-8">.col-md-8</div>
+		<div class="col-md-4">.col-md-4</div>
+	</div>
+	
+	<h4>3개 컬럼</h4>
+	<div class="row">
+		<div class="col-md-4">.col-md-4</div>
+		<div class="col-md-4">.col-md-4</div>
+		<div class="col-md-4">.col-md-4</div>
+	</div>
+	
+	<h4>2개 컬럼</h4>
+	<div class="row">
+		<div class="col-md-6">.col-md-6</div>
+		<div class="col-md-6">.col-md-6</div>
+	</div>
+	
+	<h4>모바일에서 컬럼들이 하나는 꽉찬 넓이로, 다른 하나는 절반 넓이로 쌓임</h4>
+	<div class="row">
+		<div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+		<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+	</div>
+	
+	<h4>커럼들은 모바일에서 50% 넓이로 시작하고 데스크탑에서는 33.3% 넓이가 됨</h4>
+	<div class="row">
+		<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+		<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+		<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+	</div>
+	
+	<h4>컬럼들은 모바일과 데스크탑에서 항상 50% 넓이가 됨</h4>
+	<div class="row">
+		<div class="col-xs-6">.col-xs-6</div>
+		<div class="col-xs-6">.col-xs-6</div>
+	</div>
+	
+	<h4>컬럼 중첩</h4>
+	<div class="row">
+		<div class="col-md-8">
+			.col-md-8
+			<div class="row">
+				<div class="col-md-6">.col-md-6</div>
+				<div class="col-md-6">.col-md-6</div>
+			</div>
+		</div>
+		<div class="col-md-4">.col-md-4</div>
+	</div>
+	
+	<h4>컬럼 위치 이동</h4>
+	<!-- col-md-offset-* 클래스를 사용하여 컬럼을 우측으로 옮김 
+		 이 클래스들은 * 컬럼만큼 한 컬럼의 좌측마진을 증가하게 함.
+		 예를 들면 .col-md-offset-4는 .col-md-4를 4컬럼만큼 이동시킴 
+	-->
+	<div class="row">
+		<div class="col-md-4">.col-md-4</div>
+		<div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+		<div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
+	</div>
+	
+</div>
+</body>
+</html>

@@ -17,13 +17,12 @@ public class ReservationAction implements Action{
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
 		req.setCharacterEncoding("utf-8");
-		//회원가입 완료 후 확인요망
 		HttpSession session = req.getSession();
 		String user_id = (String)session.getAttribute("user_id");
-		
 		if(user_id==null) {
 			return "redirect:/main/main.do";
 		}
+		
 		int num = Integer.parseInt(req.getParameter("snum"));
 		String a_ticket = req.getParameter("a_ticket");
 		String as_ticket = req.getParameter("as_ticket");
@@ -42,7 +41,7 @@ public class ReservationAction implements Action{
 		int c_ticket_num = Integer.parseInt(c_ticket);
 		
 		int ticket_num = a_ticket_num + as_ticket_num + c_ticket_num;
-		
+				
 		AirDao dao = AirDao.getInstance();
 		AirDto ada = dao.selectAir(num);
 		List<Integer> rsv = dao.selectReservNum();
@@ -53,8 +52,12 @@ public class ReservationAction implements Action{
 				random = 0;
 				i--;
 			}
-		}
-		dao.updateReserv(ada,user_id,random, ticket_num,a_ticket_num,as_ticket_num,c_ticket_num);
+		} 
+		int seats = dao.seats(ada.getAp_num());
+		if(ticket_num>seats) {
+			return "/views/reservation/notEnoughSeats.jsp";
+		}  
+		dao.updateReserv(ada,num,user_id,random, ticket_num,a_ticket_num,as_ticket_num,c_ticket_num);
 		AirDto ad = dao.selectReservAir(random);
 		req.setAttribute("ad", ad);
 		req.setAttribute("random", random);

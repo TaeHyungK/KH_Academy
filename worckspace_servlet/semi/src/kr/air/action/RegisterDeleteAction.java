@@ -16,17 +16,31 @@ public class RegisterDeleteAction implements Action{
 		//로그인 여부 체크
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
-		System.out.println(user_id);
+		String id = request.getParameter("id");
+		
 		if(user_id == null) {
 			return "redirect:/member/loginForm.do";
 		}
-		String id = request.getParameter("id");
-		
-		System.out.println(id);
 		
 		ManagerDao dao = ManagerDao.getInstance();
+		ManagerDto manager = dao.getManager(user_id);
+		boolean check = false;
 		
-		dao.deleteRegister_1(id);
+		if(manager!=null) {
+
+			//전송된 데이터에 대한 인코딩 처리
+			request.setCharacterEncoding("utf-8");
+			//전송된 데이터 반환
+			String passwd = request.getParameter("passwd");
+			//비밀번호 일치 여부 체크
+			check = manager.isCheckedPasswd(passwd);
+		}
+		
+		if(check) {
+			dao.deleteRegister_1(id);
+		}
+		
+		request.setAttribute("check", check);
 		
 		return "/views/register/registerDelete.jsp";
 	}

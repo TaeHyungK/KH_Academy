@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>회원정보 탈퇴 폼</title>
+    <title>SemiProject Main</title>
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template -->
@@ -27,57 +30,50 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item active px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="">Home
-                <span class="sr-only">(current)</span>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="../index.jsp">Home
+                <span class="sr-only">(current)</span> 
               </a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="">List</a>
+              <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
+            </li>
+            <li class="nav-item active px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/registerDetail.do">MyPage</a>
+            </li>
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+              		<a class="nav-link text-uppercase text-expanded" href="../register/registerList.do">RegisterPage</a>
+            	</li>
+            </c:if>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">Service</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="">MyPage</a>
-            </li>
-            <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="">Service</a>
-            </li>
-            <li class="nav-item px-lg-4">
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+            		<a class="nav-link text-uppercase text-expanded" href="../main/admin.do">Admin</a>
+            	</li>
+            </c:if>
             	
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
-    <div class="container">
-      <div class="bg-faded p-4 my-4">
-        <!-- Welcome Message -->
-        <div class="text-center mt-4">
-        <form action="deleteUser.do" method="post" id="deleteUser_form">
-		<ul>
-			<li>
-				<label for="id">아이디</label>
-				${user_id}     
-			</li>
-			<li>
-				<label for="passwd">비밀번호</label>
-				<input type="password" name="passwd" id="passwd" maxlength="12">
-			</li>
-			<li>
-				<label for="cpasswd">비밀번호 확인</label>
-				<input type="password" name="cpasswd" id="cpasswd" maxlength="12">
-			</li>
-		</ul>
-		<div class="align-center">
-			<input type="submit" value="회원탈퇴">
-			<input type="button" value="홈으로"
-					onclick="location.href='../main/main.do'">
+	<div class="container">
+		<div class="bg-faded p-4 my-4">
+			<div class="text-center mt-4">
+				<h2>예매 취소 완료!!</h2>
+				<br>
+				<div class="result-display">
+					예매 취소가 완료되었습니다.<br><br>
+					<a href="../register/registerList.do"><h3>RegisterPage</h3></a>
+				</div>
+			</div>
 		</div>
-	</form>
-        </div>
-      </div>
-    </div>
-    <!-- /.container -->
+	</div>
+	<!-- /.container -->
 
     <footer class="bg-faded text-center py-5">
       <div class="container">
@@ -89,6 +85,5 @@
     <script src="../css/bootstrap/vendor/jquery/jquery.min.js"></script>
     <script src="../css/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  </body>
-
+</body>
 </html>

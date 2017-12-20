@@ -34,19 +34,29 @@
           <ul class="navbar-nav mx-auto">
             <li class="nav-item active px-lg-4">
               <a class="nav-link text-uppercase text-expanded" href="../index.jsp">Home
-                <span class="sr-only">(current)</span>
+                <span class="sr-only">(current)</span> 
               </a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="about.html">List</a>
+              <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="blog.html">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/registerDetail.do">MyPage</a>
+            </li>
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+              		<a class="nav-link text-uppercase text-expanded" href="../register/registerList.do">RegisterPage</a>
+            	</li>
+            </c:if>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">Service</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="contact.html">Service</a>
-            </li>
-            <li class="nav-item px-lg-4">
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+            		<a class="nav-link text-uppercase text-expanded" href="admin.do">Admin</a>
+            	</li>
+            </c:if>
             	
             </li>
           </ul>
@@ -60,7 +70,7 @@
       <div class="bg-faded p-4 my-4">
         <hr class="divider">
         <h2 class="text-center text-lg text-uppercase my-0">
-          <strong>Join Form</strong>
+          <strong>Modify Form</strong>
         </h2>
         <hr class="divider">
         <form id="modify_form" action="modifyUser.do" method="post">

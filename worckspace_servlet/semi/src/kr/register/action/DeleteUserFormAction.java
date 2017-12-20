@@ -18,7 +18,7 @@ public class DeleteUserFormAction implements Action{
 			return "redirect:/register/loginForm.jsp";
 		}
 		
-		return "views/register/deleteUserForm.jsp";
+		return "views/mypage_user/deleteUserForm.jsp";
 	}
 
 }

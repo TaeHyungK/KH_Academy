@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest">
+<head>
+<meta charset="UTF-8">
+<title>Application Cache</title>
+<script type="text/javascript" src="versionCheck.js"></script>
+<script type="text/javascript">
+/*
+애플리케이션 캐쉬 : 
+한 번 로딩한 후 기기에 캐쉬된 상태로 웹(웹앱)의 파일을 사용하다가 서버에 파일을
+업데이트하면 그 때 캐쉬된 내용을 갱신하는 형태
+
+1. tomcat 서버 사용시 web.xml에 mime-type을 등록
+	<mime-mapping>
+		<extension>.manifest</extension>
+		<mime-type>text/cache-manifest</mime-type>
+	</mime-mapping>
+
+2. cache.manifest 파일 작성(파일의 업데이트 여부 체크)
+    사이트당 캐시는 5MB까지만 허용
+    내용 :
+    	CACHE MANIFEST
+    	#버전 1.1
+    	#주석
+    	CACHE:
+    		파일명.html <----캐쉬되는 파일 목록
+    		파일명.js
+    		
+    	#Network Section : 무조건 Network 상태에서만 사용
+    	#아래 파일과 디렉토리에 있는 파일들은 offline에서는 사용할 수 없음
+    	NETWORK:
+    		search.jsp
+    		/core/
+    		
+    	#FALLBACK SECTION : html5news.html 파일을 찾을 수 없을 경우
+    						notice.html을 cache하도록 함
+    	FALLBACK:
+    		html5news.html notice.html
+  
+3. HTML 파일에 cache.manifest 링크
+<html manifest="cache.manifest"> 명시
+
+ [캐시 자동 업데이트]
+ manifest 파일을 수정하면 자동으로 업데이트가 이루어짐
+ 
+ [업데이트가 되지 않는 경우]
+ 1. manifest파일을 수정하지 않고 manifest파일에 나열되어 있는 리소스 파일(html,jsp 등)만 수정했을 경우
+ 2. 이전 버전과 비교해서 manifest파일의 내용이 달라진 것이 없을 경우
+ 3. manifest파일의 수정 날짜를 바꾸는 것 역시 업데이트로 취급하지 않음
+ 
+ 만약 특별히 수정할 내용은 없는데 업데이트를 하고 싶은 경우,
+ manifest 파일의 주석 내용을 살짝 바꾸면 됨
+ 
+ 자바스크립트를 이용한 캐시 수동 업데이트
+ applicationCache의 Status
+ 상태				정수값			설명
+ UNCACHE		0			Cache하지 않음
+ IDLE			1			최신 Cache를 이용중
+ CHECKING		2			Update Check 중
+ DOWNLOADING	3			Update Download 중
+ UPDATEREADY	4			최신 Cache를 이용할 수 있음
+ OBSOLETE		5			Error에 의해 cache 무효화
+*/
+	window.onload=function(){
+		//업데이트할 준비가 되었을 때 호출되는 콜백 함수
+		applicationCache.addEventListner('updateready',function(){
+			var doUpdate = confirm('새 버전이 있습니다. 업데이트 하기');
+			if(doUpdate){
+				//캐쉬할 내용을 새로 로딩해서 덮어쓰기
+				applicationCache.update(); //업데이트 실행
+				applicationCache.swapCache(); //새로운 캐시로 교체
+				location.reload(); //새로고침
+			}
+			
+		},false);
+	};
+</script>
+</head>
+<body>
+	<button onclick="checkVersion()">버전 체크</button>
+	<div>오늘은 화요일입니다.</div>
+</body>
+</html>

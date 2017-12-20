@@ -11,7 +11,6 @@ import kr.air.domain.AirDto;
 import kr.controller.Action;
 
 public class ModifyAir implements Action{
-
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		req.setCharacterEncoding("utf-8");

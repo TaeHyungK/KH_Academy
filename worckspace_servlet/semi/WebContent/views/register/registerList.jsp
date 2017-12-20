@@ -30,24 +30,32 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item active px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="index.html">Home
-                <span class="sr-only">(current)</span>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="../index.jsp">Home
+                <span class="sr-only">(current)</span> 
               </a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="about.html">List</a>
+              <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="blog.html">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/detail.do">MyPage</a>
+            </li>
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item active px-lg-4">
+              		<a class="nav-link text-uppercase text-expanded" href="../register/registerList.do">RegisterPage</a>
+            	</li>
+            </c:if>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">Service</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="../register/registerList.jsp">RegisterPage</a>
-            </li>
-            <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="contact.html">Service</a>
-            </li>
-            <li class="nav-item px-lg-4">
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+            		<a class="nav-link text-uppercase text-expanded" href="../main/admin.do">Admin</a>
+            	</li>
+            </c:if>
+            	
             </li>
           </ul>
         </div>
@@ -79,22 +87,31 @@
 									<th>PHONE</th>
 									<th>SEX</th>
 									<th>CARD_NUM</th>
+									<!-- 예매 내역,삭제 -->
+									<th>RESEVATION</th>
 									<!-- 회원정보 수정,삭제-->
 									<th>UPDATE</th>
 									<th>DELETE</th> 
 									
 								</tr>
-								<c:forEach var="manager" items="${list}">
+								<c:forEach var="i" begin="0" end="${list.size()-1}" step="1">
 									<tr>
-										<td>${manager.name}</td>
-										<td>${manager.id}</td>
-										<td>${manager.phone}</td>
-										<td>${manager.sex}</td>
-										<td>${manager.card_num}</td>
+										<td>${list.get(i).name}</td>
+										<td>${list.get(i).id}</td>
+										<td>${list.get(i).phone}</td>
+										<td>${list.get(i).sex}</td>
+										<td>${list.get(i).card_num}</td>
 										<!-- 회원정보 수정,삭제-->
-										<td><a href="">UPDATE</a></td>
-										<td><a href="registerDeleteForm.do?id=${manager.id}">DELETE</a></td>
-										
+										<td><a href="reservationDetail.do?id=${list.get(i).id}">RSV_DETAIL</a></td>
+										<!-- 예매 내역,삭제 -->
+										<td><a href="registerModifyLoginForm.do?id=${list.get(i).id}">UPDATE</a></td>
+										<c:if test="${!empty rs_list.get(i)}">	
+											<td>예약중</td>	
+										</c:if>
+										<c:if test="${empty rs_list.get(i)}">
+											<td><a href="registerDeleteForm.do?id=${list.get(i).id}">DELETE</a></td>
+										</c:if>
+									
 									</tr>
 								</c:forEach>
 							</table>

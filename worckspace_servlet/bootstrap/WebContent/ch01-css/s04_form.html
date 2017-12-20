@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bootstrap</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css" type="text/css">
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<h4>기본 폼 태그</h4>
+	<!--  
+	.form-control이 있는 모든 텍스트 기반의 <input>, <textarea>, <select>요소는 
+	기본적으로 width:100%가 적용됨
+	.form-group으로 라벨과 컨트롤을 감쌈
+	-->
+	<form>
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input type="email" class="form-control" name="email" id="email" placeholder="example@email.com">
+		</div>
+		<div class="form-group">
+			<label for="password">비밀번호</label>
+			<input type="password" class="form-control" name="password" id="passwrd" placeholder="비밀번호">
+		</div>
+		<div class="check">
+			<label><input type="checkbox">Check me out</label>
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+</div>
+</body>
+</html>

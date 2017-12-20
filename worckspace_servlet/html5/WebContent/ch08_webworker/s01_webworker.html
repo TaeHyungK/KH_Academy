@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Web Worker 연습</title>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	//Worker객체 생성			 백그라운드 실행코드가 있는 js 파일명
+	var worker = new Worker('worker1.js');
+	
+	$(function(){
+		$('#btnOk').click(function(){
+			worker.postMessage($('#guguNum').val());
+		});
+		
+		//백그라운드 작업이 완료되면 호출
+		worker.onmessage = function(event){
+			//백그라운드 실행의 결과값을 반환
+			$('#result').html(event.data);
+		};
+		//에러 발생시
+		worker.onerror = function(event){
+			$('#result').html('에러 발생!!');
+		};
+		
+		//백그라운드 작업 중지
+		$('#btnStop').click(function(){
+			if(worker){
+				worker.terminate();
+			}
+		});
+	});
+</script>
+</head>
+<body>
+<!-- 
+웹워커 : 자바스크립트 코드를 백그라운드에서 실행시키는 기술
+
+ -->
+구구단 출력<br>
+<input type="text" id="guguNum">
+<input type="button" id="btnOk" value="확인">
+<input type="button" id="btnStop" value="정지">
+<br>
+<div id="result"></div>
+</body>
+</html>

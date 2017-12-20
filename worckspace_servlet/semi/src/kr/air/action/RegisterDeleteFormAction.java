@@ -16,5 +16,5 @@ public class RegisterDeleteFormAction implements Action{
 		
 		return "/views/register/registerDeleteForm.jsp";
 	}
-
+		
 }

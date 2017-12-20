@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
     <link href="../css/bootstrap/css/business-casual.css" rel="stylesheet">
+    <link href="../css/bootstrap/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -25,21 +26,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item active px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="index.html">Home
-                <span class="sr-only">(current)</span>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="../index.jsp">Home
+                <span class="sr-only">(current)</span> 
               </a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">List</a>
+              <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="blog.html">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/detail.do">MyPage</a>
+            </li>
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+              		<a class="nav-link text-uppercase text-expanded" href="../register/registerList.do">RegisterPage</a>
+            	</li>
+            </c:if>
+            <li class="nav-item active px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">Service</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="contact.html">Service</a>
-            </li>
-            <li class="nav-item px-lg-4">
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+            		<a class="nav-link text-uppercase text-expanded" href="../main/admin.do">Admin</a>
+            	</li>
+            </c:if>
             	
             </li>
           </ul>
@@ -51,6 +62,7 @@
     </div>  
      <form id="search_form" action="qlist.do" method="get" align="center">
           <ul class="ul_form">
+             <li class="li_form">  문의글 찾기  </li>
              <li class="li_form">
                  <select name="keyfield">
                     <option value="title">제목</option>
@@ -73,7 +85,7 @@
            </div>
        </c:if>
        <c:if test="${count>0}">
-         <table id="qboard_table" align="center">
+         <table id="qboard_table" align="center" >
            <tr>
              <th>글번호</th>
              <th>제목</th>
@@ -100,6 +112,7 @@
          <input type="button" value="문의 하기" onclick="location.href='qwriteForm.do'">
          <input type="button" value="메인페이지 가기" onclick="location.href='../main/main.do'">
      </div>
+     <br><br><br>
        
    
     <!-- /.container -->

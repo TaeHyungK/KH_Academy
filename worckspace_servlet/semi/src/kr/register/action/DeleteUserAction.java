@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.register.dao.Register_1Dao;
-import kr.register_1.domain.Register_1Dto;
+import kr.register.domain.Register_1Dto;
 
 public class DeleteUserAction implements Action{
 
@@ -38,7 +38,7 @@ public class DeleteUserAction implements Action{
 		
 		request.setAttribute("check", check);
 		
-		return "/views/register/deleteUser.jsp";
+		return "/views/mypage_user/deleteUser.jsp";
 	}
 
 }

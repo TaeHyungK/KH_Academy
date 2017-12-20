@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="UTF-8">
 <title>질문 작성하기</title>
 <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -12,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
     <link href="../css/bootstrap/css/business-casual.css" rel="stylesheet">
+    <link href="../css/bootstrap/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -24,29 +26,42 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item active px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="index.html">Home
-                <span class="sr-only">(current)</span>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="../index.jsp">Home
+                <span class="sr-only">(current)</span> 
               </a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">List</a>
+              <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="blog.html">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/detail.do">MyPage</a>
+            </li>
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+              		<a class="nav-link text-uppercase text-expanded" href="../register/registerList.do">RegisterPage</a>
+            	</li>
+            </c:if>
+            <li class="nav-item active px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="/semi/qboard/qlist.do">Service</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="contact.html">Service</a>
-            </li>
-            <li class="nav-item px-lg-4">
+            <c:if test="${user_id=='admin'}">
+            	<li class="nav-item px-lg-4">
+            		<a class="nav-link text-uppercase text-expanded" href="../main/admin.do">Admin</a>
+            	</li>
+            </c:if>
             	
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    <div align="center">
+       <h1 class="text-heading">QnA</h1>
+    </div> 
     <div align="center" class="one">
-        <h2 id="text-heading">문의글 작성</h2>
+        <h2 id="text-h2">문의글 작성</h2>
         <form id="qboard_form" action="qwrite.do" method="post">
           <input type="hidden" name="q_num" id="q_num">
           <ul>
@@ -60,7 +75,7 @@
              </li>
              <li>
                 <label for="content">내용</label><br>
-                <textarea rows="5" cols="30" name="content" id="content"></textarea>
+                <textarea rows="6" cols="40" style="resize:none;" name="content" id="content"></textarea>
              </li>
           </ul>
           <input type="hidden" name="solve" id="solve" value="0">
@@ -73,6 +88,7 @@
     
     
     </div>
+    <br><br><br>
         <!-- /.container -->
 
     <footer class="bg-faded text-center py-5">

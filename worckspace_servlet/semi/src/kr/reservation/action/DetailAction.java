@@ -20,6 +20,7 @@ public class DetailAction implements Action{
 		
 		request.setAttribute("reservation", reservation);
 		
-		return "/views/reservation/detail.jsp";
+		return "/views/mypage_reservation/detail.jsp";
 	}
+
 }
