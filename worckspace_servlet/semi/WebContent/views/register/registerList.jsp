@@ -39,7 +39,7 @@
               <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/detail.do">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/registerDetail.do">MyPage</a>
             </li>
             <c:if test="${user_id=='admin'}">
             	<li class="nav-item active px-lg-4">
@@ -73,7 +73,7 @@
 								<option value="name">이름</option>
 							</select> 
 								<input type="search" size="16" name="keyword" id="keyword">
-								<input type="submit" value="Search">
+								<input type="submit" class="btn btn-primary btn-sm" value="Search">
 						</li>
 							<br>
 						<c:if test="${count == 0}">

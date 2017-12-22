@@ -8,7 +8,8 @@ public class QboardDto {
 	private String q_content;
 	private String q_id;
 	private Date regdate;
-	private int q_solve;
+	private String q_solve;
+	
 	public int getQ_num() {
 		return q_num;
 	}
@@ -39,10 +40,10 @@ public class QboardDto {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	public int getQ_solve() {
+	public String getQ_solve() {
 		return q_solve;
 	}
-	public void setQ_solve(int q_solve) {
+	public void setQ_solve(String q_solve) {
 		this.q_solve = q_solve;
 	}
 	

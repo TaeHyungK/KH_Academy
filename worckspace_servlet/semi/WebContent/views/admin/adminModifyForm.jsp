@@ -64,7 +64,7 @@
       
     	<div class="container">
 		<div class="bg-faded p-4 my-4 style">
-		<form action="admin.do" method="post" class="miForm">
+		<form action="modifyAir.do" method="post" class="miForm">
 			<input type="hidden" name="snum" value="${ad.snum}">
 			<table>
 			<tr>
@@ -97,12 +97,14 @@
 				</tr>
 			<tr>
 				<td>비행기 번호</td>
-				<td><input class="size300" type="text" id="ap_num" name="ap_num" value="${ad.ap_num}"></td>
+				<td>
+				<select name="ap_num">
+					<c:forEach var="ad" items="${list}">
+						<option value="${ad.ap_num}">${ad.ap_num}</option>
+					</c:forEach>
+				</select>
+				</td>
 				</tr>
-			<tr>
-				<td>좌석 수</td>
-				<td><input class="size300" type="number" id="seats" name="seats" value="${ad.seats}"></td>
-			</tr>
 			</table>
 			<br>
 			<div class="buttons">

@@ -35,7 +35,7 @@
               <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/detail.do">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/registerDetail.do">MyPage</a>
             </li>
             <c:if test="${user_id=='admin'}">
             	<li class="nav-item px-lg-4">
@@ -59,8 +59,10 @@
     </nav>
     <div align="center">
        <h1 class="text-heading">QnA</h1>
-    </div>  
-     <form id="search_form" action="qlist.do" method="get" align="center">
+    </div>
+    <div class="container">
+      <div class="bg-faded p-4 my-4 style">
+       <form id="search_form" action="qlist.do" method="get" align="center">
           <ul class="ul_form">
              <li class="li_form">  문의글 찾기  </li>
              <li class="li_form">
@@ -78,39 +80,43 @@
              </li>
           </ul>
       </form> 
-       <div class="text-center mt-4" >
-       <c:if test="${count==0}">
+     </div>
+        <div class="text-center mt-4" >
+         <c:if test="${count==0}">
            <div>
-             등록된 문의 글이 없습니다.
+               등록된 문의 글이 없습니다.
            </div>
-       </c:if>
+         </c:if>
+        </div>
        <c:if test="${count>0}">
-         <table id="qboard_table" align="center" >
-           <tr>
-             <th>글번호</th>
-             <th>제목</th>
-             <th>작성자</th>
-             <th>등록일</th>
-             <th>답변여부</th>
-           </tr>
+       <div class="bg-faded p-4 my-4 style">
+        <div class="text-center mt-4" >
+         <table id="qboard_table" width="70%" align="center" >
+              <tr bgcolor="#bac9e2">
+                <th>글번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>답변여부</th>
+              </tr>
            <c:forEach var="qboard" items="${list }">
             <tr> 
              <td>${qboard.q_num}</td>
              <td><a href="qdetail.do?q_num=${qboard.q_num}">${qboard.q_title}</a></td>
              <td>${qboard.q_id}</td>
-             <td>${qboard.regdate}</td>
              <td>${qboard.q_solve}</td>
             </tr>
            </c:forEach>
          </table>
+        </div>
+       </div>    
          <div class="text-center mt-4">
           ${pagingHtml}
          </div>
        </c:if>
-     </div>
      <div class="text-center mt-4">
          <input type="button" value="문의 하기" onclick="location.href='qwriteForm.do'">
          <input type="button" value="메인페이지 가기" onclick="location.href='../main/main.do'">
+     </div>
      </div>
      <br><br><br>
        

@@ -26,10 +26,12 @@ ul{
 	display:inline;
 }
 #qboard_table {
-	  font-size:18;
-	  font-style:white;
-	  
+	 width:75%;
+	 margin:80px auto;
+	 padding:15px;
+     border-collapse:collapse;
 }
+
 
 tr td{
 	border-bottom:1px solid #ddd;

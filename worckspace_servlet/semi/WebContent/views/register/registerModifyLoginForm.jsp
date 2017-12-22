@@ -39,7 +39,7 @@
               <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/detail.do">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/registerDetail.do">MyPage</a>
             </li>
             <c:if test="${user_id=='admin'}">
             	<li class="nav-item active px-lg-4">
@@ -82,8 +82,8 @@
 				</ul>
 				<div class="align-center">
 					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-					<input type="submit" value="회원정보수정">
-					<input type="button" value="수정취소" onclick="location.href='../register/registerList.do'">
+					<input type="submit" class="btn btn-primary" value="회원정보수정">
+					<input type="button" class="btn btn-primary" value="수정취소" onclick="location.href='../register/registerList.do'">
 				</div>
 			</form>
         </div>

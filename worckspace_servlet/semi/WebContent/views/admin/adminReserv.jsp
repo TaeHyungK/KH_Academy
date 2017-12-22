@@ -93,7 +93,8 @@
 </c:forEach>
 <br> 
 		<div class="buttons">
-			<input type="button" value="추가" onclick="location.href='insertFormAir.do'">
+			<input type="button" value="스케줄 추가" onclick="location.href='insertFormAir.do'">
+			<input type="button" value="비행기 관리" onclick="location.href='AirList.do'">
 			<input type="button" value="홈으로" onclick="location.href='main.do'">
 		</div>
 		<br>

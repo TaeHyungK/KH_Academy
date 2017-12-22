@@ -45,68 +45,33 @@ $(document).ready(function(){
 			return false;
 		}
 	});
-	var count = 0;
-	function sumData(a_ticket,as_ticket,c_ticket){
-	$.ajax({
-		type:'post',
-		url:'people.do',
-		data:{a_ticket:a_ticket,as_ticket:as_ticket,c_ticket:c_ticket},
-		dataType:'json',
-		cache:false,
-		timeout:10000,
-		success:function(data){
-			if(data.result =='idNotFound'){
-				alert('로그인 해야 예약이 가능합니다.');
-			}else if(data.result=='success'){
-				$('.iNum').html('예약인원을 입력해 주세요.');
-				count = 0;
-			}else if(data.result=='exist'){
-				$('.iNum').html('예약버튼을 눌러 주세요.');
-				count = 1;
+	function duData(){
+		$.ajax({
+			type:'post',
+			data:{ap_num:$('input#ap_num').val()},
+			url:'checkNum.do',
+			dataType:'json',
+			cache:false,
+			timeout:10000,
+			success:function(data){
+				if(data.result=='numDu'){
+					$('#not_pass').text('중복된 비행기명 입니다.');
+					document.getElementById('du_submit').disabled=true;
+				}else if(data.result=='success'){
+					$('#not_pass').text('추가를 눌러주세요.');
+					document.getElementById('du_submit').disabled='';
+				}else if(data.result=='adminOnly'){
+					alert('관리자 전용입니다.');
+				}
+			},
+			error:function(){
+				alert('네트워크 오류!');
 			}
-		},error:function(){
-			alert('네트워크 오류 발생');
-		}
-	});
+		});
 	};
-	a_ticket = $('.a_ticket').val();
-	as_ticket = $('.as_ticket').val();
-	c_ticket = $('.c_ticket').val();
-	if(a_ticket==''){
-		a_ticket=0;
-	}
-	if(as_ticket==''){
-		as_ticket=0;
-	}
-	if(c_ticket==''){
-		c_ticket=0;
-	}
+	$('#ap_num').keyup(function(){
+		duData();
+	});
 
-	sumData(a_ticket,as_ticket,c_ticket);
-	$('input.a_ticket, input.as_ticket, input.c_ticket').on('keyup click',function(){
-		$('.iNum').html('');
-		a_ticket = $('.a_ticket').val();
-		as_ticket = $('.as_ticket').val();
-		c_ticket = $('.c_ticket').val();
-		if(a_ticket==''){
-			a_ticket=0;
-		}
-		if(as_ticket==''){
-			as_ticket=0;
-		}
-		if(c_ticket==''){
-			c_ticket=0;
-		}
-		sumData(a_ticket,as_ticket,c_ticket);
-	});
-	$(document).submit(function(){
-		if(count<=0){
-			alert('0명은 가입이 불가능 합니다');
-			return false;
-		}
-	});
+
 });
-
-
-
-

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bootstrap</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css" type="text/css">
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<h4>탭의 기본 형태</h4>
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#">Home</a></li>
+		<li><a href="#">Profile</a></li>
+		<li><a href="#">Messages</a></li>		
+	</ul>
+	<br><br>
+	
+	<h4>탭과 내용</h4>
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab1" data-toggle="tab">Section1</a></li>
+		<li><a href="#tab2" data-toggle="tab">Section2</a></li>
+		<li><a href="#tab3" data-toggle="tab">Section3</a></li>		
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab1">
+			<p>여기는 Section1입니다.</p>
+		</div>
+		<div class="tab-pane" id="tab2">
+			<p>여기는 Section2입니다.</p>
+		</div>
+		<div class="tab-pane" id="tab3">
+			<p>여기는 Section3입니다.</p>
+		</div>
+	</div>
+	<br><br>
+	
+	<h4>페이드 효과</h4>
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab4" data-toggle="tab">Section4</a></li>
+		<li><a href="#tab5" data-toggle="tab">Section5</a></li>
+		<li><a href="#tab6" data-toggle="tab">Section6</a></li>		
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active fade in" id="tab4">
+			<p>여기는 Section4입니다.</p>
+		</div>
+		<div class="tab-pane fade" id="tab5">
+			<p>여기는 Section5입니다.</p>
+		</div>
+		<div class="tab-pane fade" id="tab6">
+			<p>여기는 Section6입니다.</p>
+		</div>
+	</div>
+	<br><br>
+	
+	<h4>탭을 아래에 배치</h4>
+	<div class="tabable tabs-below">
+		<div class="tab-content">
+			<div class="tab-pane active" id="tab7">
+				<p>여기는 Section7입니다.</p>
+			</div>
+			<div class="tab-pane" id="tab8">
+				<p>여기는 Section8입니다.</p>
+			</div>
+			<div class="tab-pane" id="tab9">
+				<p>여기는 Section9입니다.</p>
+			</div>
+		</div>
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#tab7" data-toggle="tab">Section7</a></li>
+			<li><a href="#tab8" data-toggle="tab">Section8</a></li>
+			<li><a href="#tab9" data-toggle="tab">Section9</a></li>
+		</ul>
+	</div>
+	<br><br>
+	
+	<h4>세로형 탭</h4>
+	<ul class="nav nav-tabs nav-stacked">
+		<li class="active"><a href="#tab10" data-toggle="tab">Section10</a></li>
+		<li><a href="#tab11" data-toggle="tab">Section11</a></li>
+		<li><a href="#tab12" data-toggle="tab">Section12</a></li>		
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab10">
+			<p>여기는 Section10입니다.</p>
+		</div>
+		<div class="tab-pane" id="tab11">
+			<p>여기는 Section11입니다.</p>
+		</div>
+		<div class="tab-pane" id="tab12">
+			<p>여기는 Section12입니다.</p>
+		</div>
+	</div>
+	<br><br>
+	
+	<h4>탭과 드롭다운 메뉴</h4>
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab13" data-toggle="tab">Section13</a></li>
+		<li><a href="#tab14" data-toggle="tab">Section14</a></li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				Dropdown
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a href="#tab-d1" data-toggle="tab">Dropdown d1</a></li>
+				<li><a href="#tab-d2" data-toggle="tab">Dropdown d2</a></li>
+				<li><a href="#tab-d3" data-toggle="tab">Dropdown d3</a></li>
+			</ul>
+		</li>
+		
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab13">
+			<p>여기는 Section13입니다.</p>
+		</div>
+		<div class="tab-pane" id="tab14">
+			<p>여기는 Section14입니다.</p>
+		</div>
+		<div class="tab-pane" id="tab-d1">
+			<p>여기는 Dropdown d1입니다.</p>
+		</div>
+		<div class="tab-pane" id="tab-d2">
+			<p>여기는 Dropdown d2입니다.</p>
+		</div>
+		<div class="tab-pane" id="tab-d3">
+			<p>여기는 Dropdown d3입니다.</p>
+		</div>
+	</div>
+	<br><br>
+	
+	<h4>알약(Pills)</h4>
+	<ul class="nav nav-pills">
+		<li class="active"><a href="#tab15" data-toggle="tab">Section15</a></li>
+		<li><a href="#tab16" data-toggle="tab">Section16</a></li>
+		<li><a href="#tab17" data-toggle="tab">Section17</a></li>		
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab15">
+			<p>여기는 Section15입니다.</p>
+		</div>
+		<div class="tab-pane" id="tab16">
+			<p>여기는 Section16입니다.</p>
+		</div>
+		<div class="tab-pane" id="tab17">
+			<p>여기는 Section17입니다.</p>
+		</div>
+	</div>
+	<br><br>
+	
+</div>
+</body>
+</html>

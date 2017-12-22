@@ -19,6 +19,7 @@ public class ListAction implements Action {
 	    String keyword = request.getParameter("keyword");
 	    
 	    if(keyfield ==null) keyfield="";
+	    else keyfield = "q_"+keyfield;
 	    if(keyword ==null) keyword="";
 		
 		//페이지 num 처리

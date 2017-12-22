@@ -37,7 +37,7 @@
               <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/detail.do">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/registerDetail.do">MyPage</a>
             </li>
             <c:if test="${user_id=='admin'}">
             	<li class="nav-item px-lg-4">
@@ -59,15 +59,18 @@
         </div>
       </div>
     </nav>
+    
     <div align="center">
        <h1 class="text-heading">QnA</h1>
     </div><br>
        
+   <div class="container">    
+    <div class="bg-faded p-4 my-4 style">
+      <div class="text-center mt-4">
        <div align="center">
             <h2 class="text-heading">문의글 자세히 보기</h2>
        </div>
-    <div align="center">
-    <table id="qboard_table1">
+       <table id="qboard_table" width="70%" align="center">
       <tr>
         <td>글번호 : ${qboard.q_num}</td>
         <td>글 제목 : ${qboard.q_title}</td>
@@ -77,47 +80,49 @@
         <td>해결여부 : ${qboard.q_solve}</td>
       </tr>
       <tr>
-         <td> <p>${qboard.q_content} </p></td>
+         <td colspan="2"> <p>${qboard.q_content} </p></td>
       </tr>
-      <tr><td><div align="center">등록날짜 : ${qboard.regdate}</div></td></tr>
+      <tr><td colspan="2"><div align="center">등록날짜 : ${qboard.regdate}</div></td></tr>
     </table>   
-      <br><br>  
+      
       <div>
        <input type="button" value="수정" onclick="location.href='qupdateForm.do?q_num=${qboard.q_num}'">
        <!-- 로그인 아이디와 작성자 아이디 체크 -->
        <input type="button" value="삭제" onclick="location.href='qdeleteForm.do?q_num=${qboard.q_num}'">
        <!-- 로그인 아이디와 작성자 아이디 체크 -->
       </div>  
-     </div>  
+     </div><br><br> 
       <!-- 댓글 처리 -->
       <!-- 관리자만 댓글 작성 가능 -->
-     <c:if test="${user_id != 'admin' }">
      <div id="qreply_div" align="center">
-        <span>답변</span>
+        <h4 class="text-heading">답변</h4>
         <form id="re_qform">
-            <input type="hidden" name="re_qnum" value="${qboard.q_num}" id="re_qnum">
-            <input type="hidden" name="id" value="관리자" id="id">
-            <textarea rows="2" cols="80" name="re_content" id="re_content" style="resize:none;"></textarea>
-                 <div id="qre-first">
-                    <span class="letter-count">300/300</span>
-                 </div>
+            <input type="hidden" name="q_num" value="${qboard.q_num}" id="q_num">
+            <input type="hidden" name="q_id" value="관리자" id="q_id">
+      <c:if test="${user_id == 'admin' }">      
+            <textarea rows="2" cols="60" name="re_content" id="re_content" width="70%" style="resize:none;"></textarea>
+                 
                  <div class="qre-second" >
+                 
+     
                      <input type="submit" value="전송">
+     
                  </div>
-               
+           </c:if>    
         </form>
      </div>
-     </c:if>
              <!-- 목록 출력 -->
           
-        <div id="output"></div>
+        <div id="output" align="center"></div>
       
       
-     <div class="text-center mt-4">
-         <input type="button" value="문의 하기" onclick="location.href='qwriteForm.do'">
-         <input type="button" value="QnA 목록" onclick="location.href='qlist.do'">
-     </div>
-     <br><br><br>
+         <div class="text-center mt-4">
+           <input type="button" value="문의 하기" onclick="location.href='qwriteForm.do'">
+           <input type="button" value="QnA 목록" onclick="location.href='qlist.do'">
+         </div>
+      </div>
+   </div>  
+     <br><br>
     
      <!-- /.container -->
 

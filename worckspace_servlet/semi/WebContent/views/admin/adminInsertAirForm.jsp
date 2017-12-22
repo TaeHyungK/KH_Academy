@@ -10,6 +10,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>SemiProject Main</title>
+    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../js/reservation.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template -->
@@ -65,54 +68,21 @@
 	
 	<div class="container">
 	<div class="bg-faded p-4 my-4 style">
-		<form action="insertAir.do" method="post" class="miForm">
+		<form action="insertAirPlane.do" method="post" class="miForm">
 			<table>
 			<tr>
-				<td>출발지</td>
-				<td><input type="text" name="start_lo" id="start_lo"></td>
-			</tr>
-			<tr>  
-				<td>도착지</td>
-				<td><input type="text" name="end_lo" id="end_lo"></td>
-				</tr>
-			<tr>
-				<td>출발날짜</td>
-				<td><input type="date" name="go_date" id="go_date"></td>
-				</tr>
-			<tr>
-				<td>돌아오는 날짜</td>
-				<td><input type="date" name="return_date" id="return_date"></td>
-				</tr>
-			<tr>
-				<td>출발 비행기 시간</td>
-				<td><input type="time" name="go_time" id="go_time"></td>
-				</tr>
-			<tr>
-				<td>왕복 비행기 시간</td>
-				<td><input type="time" name="return_time" id="return_time"></td>
-				</tr>
-			<tr>
-				<td>비행시간</td>
-				<td><input type="text" name="take_time" id="take_time"></td>
-				</tr>
-			<tr>
 				<td>비행기 번호</td>
-				<td>
-				<c:if test="${!empty list}">
-				<select name="ap_num">
-					<c:forEach var="ad" items="${list}">
-						<option value="${ad.ap_num}">${ad.ap_num}</option>
-					</c:forEach>
-				</select>
-				</c:if>
-				<c:if test="${empty list}">
-					등록된 비행기가 없습니다.
-				</c:if>
-				</td>
-				</tr>
+				<td><input type="text" name="ap_num" id="ap_num" autocomplete="off"></td>
+				<td id="not_pass"></td>
+			</tr>
+			<tr>
+				<td>좌석 수</td>
+				<td><input type="number" name="seats" id="seats"></td>
+				<td>석</td>
+			</tr>
 			</table>
 			<div class="buttons">
-				<input type="submit" value="추가">
+				<input type="submit" value="추가" id="du_submit" disabled="disabled">
 				<input type="button" value="관리자 페이지" onclick="location.href='admin.do'">
 			</div>
 			<br>

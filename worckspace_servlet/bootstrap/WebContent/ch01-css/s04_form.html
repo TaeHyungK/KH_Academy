@@ -31,6 +31,55 @@
 		</div>
 		<button type="submit" class="btn btn-default">Submit</button>
 	</form>
+	
+	<h4>인라인 폼 .sr-only 라벨 감추기</h4>
+    <form class="form-inline">
+       <div class="form-group">
+          <label class="sr-only" for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="email입력">
+       </div>
+       <div class="form-group">
+          <label class="sr-only" for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호 입력">
+       </div>
+       <div class="checkbox">
+          <label><input type="checkbox">email저장</label>
+       </div>
+       <button type="submit" class="btn btn-default">전송</button>
+    </form>
+	
+	<h4>수평 폼</h4>
+	<!-- 
+	.form-horizontal을 추가하여 수평 레이아웃 만들기
+	부트스트랩의 그리드 클래스를 사용하여 라벨과 폼컨트롤 그룹을 정렬 
+	그리드행 역할은 .form-group이 하기 때문에 .row는 필요가 없음
+	-->
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label for="email" class="col-lg-2">Email</label>
+			<div class="col-lg-10">
+				<input type="email" class="form-control" id="email" name="email" placeholder="Email">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="password" class="col-lg-2">password</label>
+			<div class="col-lg-10">
+				<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-lg-offset-2 col-lg-10">
+				<div class="checkbox">
+					<label><input type="checkbox">Email 저장</label>
+				</div>
+			</div> 
+		</div>
+		<div class="form-group">
+			<div class="col-lg-offset-2 col-lg-10">
+				<button type="submit" class="btn btn-default">전송</button>
+			</div>
+		</div>
+	</form>
 </div>
 </body>
 </html>

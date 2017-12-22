@@ -92,6 +92,16 @@
 					<td>${ad.return_time}</td>
 					<td>${ad.seats}석</td>
 				</tr>
+				<tr>
+					<td>
+						<div style="text-align:center">
+						<input type="submit" value="예약">
+						</div>
+					</td>
+					<td colspan="4">
+						<span class="iNum"></span>
+					</td>
+				</tr>
 			</table>
 </c:forEach>
 </form>

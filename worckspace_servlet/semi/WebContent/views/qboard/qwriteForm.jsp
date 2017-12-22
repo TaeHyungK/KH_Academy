@@ -15,6 +15,10 @@
     <link href="../css/bootstrap/css/business-casual.css" rel="stylesheet">
     <link href="../css/bootstrap/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
+    <!-- 유효성검사 js추가 -->
+    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/qboard.js"></script>
+    
 </head>
 <body>
  <!-- Navigation -->
@@ -35,7 +39,7 @@
               <a class="nav-link text-uppercase text-expanded" href="../main/about.do">List</a>
             </li>
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/detail.do">MyPage</a>
+              <a class="nav-link text-uppercase text-expanded" href="../mypage_user/registerDetail.do">MyPage</a>
             </li>
             <c:if test="${user_id=='admin'}">
             	<li class="nav-item px-lg-4">
@@ -57,35 +61,39 @@
         </div>
       </div>
     </nav>
-    <div align="center">
+     <div align="center">
        <h1 class="text-heading">QnA</h1>
     </div> 
-    <div align="center" class="one">
+   <div class="container">  
+   <div class="bg-faded p-4 my-4 style">
+     <div class="text-center mt-4">  
+    <div align="center">
         <h2 id="text-h2">문의글 작성</h2>
-        <form id="qboard_form" action="qwrite.do" method="post">
+        <form id="qboard_form" action="qwrite.do" method="post" class="test_form_hi">
           <input type="hidden" name="q_num" id="q_num">
           <ul>
              <li>
-                <label for="title">제목</label>
-                <input type="text" name="title" id="title" maxlength="50">
+                <label for="name">작성자 : ${user_id}</label>
+                <input type="hidden" name="name" id="name" value="${user_id }">
              </li>
              <li>
-                <label for="name">작성자</label>
-                <input type="text" name="name" id="name" maxlength="20">
+                <label for="title">제목</label>
+                <input type="text" name="title" id="title" maxlength="50">
              </li>
              <li>
                 <label for="content">내용</label><br>
                 <textarea rows="6" cols="40" style="resize:none;" name="content" id="content"></textarea>
              </li>
           </ul>
-          <input type="hidden" name="solve" id="solve" value="0">
+          <input type="hidden" name="solve" id="solve" value="X">
           <div class="">
              <input type="submit" value="등록">
              <input type="button" value="목록" onclick="location.href='../qboard/qlist.do'">
           </div>
-        </form>
-    
-    
+        </form> 
+       </div>
+     </div>
+   </div>  
     
     </div>
     <br><br><br>

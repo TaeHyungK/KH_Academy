@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
@@ -62,66 +61,41 @@
         </div>
       </div>
     </nav>
-	
-	<div class="container">
-	<div class="bg-faded p-4 my-4 style">
-		<form action="insertAir.do" method="post" class="miForm">
-			<table>
+    
+<div class="container">
+<div class="bg-faded p-4 my-4 style">
+	<c:if test="${empty list}">
+		<h2>등록된 항목이 없습니다.</h2>
+	</c:if>
+<c:forEach var="ad" items="${list}">
+	<div>
+		<table>
 			<tr>
-				<td>출발지</td>
-				<td><input type="text" name="start_lo" id="start_lo"></td>
-			</tr>
-			<tr>  
-				<td>도착지</td>
-				<td><input type="text" name="end_lo" id="end_lo"></td>
-				</tr>
-			<tr>
-				<td>출발날짜</td>
-				<td><input type="date" name="go_date" id="go_date"></td>
-				</tr>
-			<tr>
-				<td>돌아오는 날짜</td>
-				<td><input type="date" name="return_date" id="return_date"></td>
-				</tr>
-			<tr>
-				<td>출발 비행기 시간</td>
-				<td><input type="time" name="go_time" id="go_time"></td>
-				</tr>
-			<tr>
-				<td>왕복 비행기 시간</td>
-				<td><input type="time" name="return_time" id="return_time"></td>
-				</tr>
-			<tr>
-				<td>비행시간</td>
-				<td><input type="text" name="take_time" id="take_time"></td>
-				</tr>
-			<tr>
-				<td>비행기 번호</td>
 				<td>
-				<c:if test="${!empty list}">
-				<select name="ap_num">
-					<c:forEach var="ad" items="${list}">
-						<option value="${ad.ap_num}">${ad.ap_num}</option>
-					</c:forEach>
-				</select>
-				</c:if>
-				<c:if test="${empty list}">
-					등록된 비행기가 없습니다.
-				</c:if>
+				비행기 : ${ad.ap_num}
 				</td>
-				</tr>
-			</table>
-			<div class="buttons">
-				<input type="submit" value="추가">
-				<input type="button" value="관리자 페이지" onclick="location.href='admin.do'">
-			</div>
-			<br>
-		</form>
+				<td>
+				좌석수 : ${ad.seats}
+				</td>
+			</tr>
+		</table>
+		<div class="buttons">
+			<input type="button" value="수정" onclick="location.href='adminMoAirpForm.do?ap_num=${ad.ap_num}&seats=${ad.seats}'">
+			<input type="button" value="삭제" onclick="location.href='adminDeAirp.do?ap_num=${ad.ap_num}'">
+		</div>
 	</div>
-	<br>
+</c:forEach>
+<br> 
+		<div class="buttons">
+			<input type="button" value="비행기 추가" onclick="location.href='insertAirPlaneForm.do'">
+			<input type="button" value="홈으로" onclick="location.href='main.do'">
+		</div>
+		<br>
+</div>
+<br>
 </div>
 
-	
+
 
     <!-- /.container -->
 
@@ -138,3 +112,5 @@
   </body>
 
 </html>
+
+

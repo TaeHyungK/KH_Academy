@@ -76,10 +76,12 @@
 	        </form>
 	    </c:if>
 	    <c:if test="${!empty user_id }">
-	    <a href="../member/modifyPasswordForm.do">비밀번호수정</a>
+		<!-- 
 		<a href="../member/modifyUserForm.do">회원정보수정</a>
 		<a href="../member/deleteUserForm.do">회원탈퇴</a>
+		-->
 	    [${user_id}님 로그인중]
+	    <a href="../member/modifyPasswordForm.do">비밀번호수정</a>
 	    <a href="logout.do">로그아웃</a>
 	    </c:if>
     	</div>
@@ -107,6 +109,7 @@
 				<label for="return_date">Return Date</label>
 				<input type="date" name="return_date" id="return_date" size="15">
 			</li>
+			
 		</ul>
 		<div class="align-center">
 		<c:if test="${!empty user_id}">

@@ -95,7 +95,7 @@
 					<td>
 						<div style="text-align:center">
 						<input type="submit" value="예약">
-					</div>
+						</div>
 					</td>
 					<td colspan="4">
 						<span class="iNum"></span>

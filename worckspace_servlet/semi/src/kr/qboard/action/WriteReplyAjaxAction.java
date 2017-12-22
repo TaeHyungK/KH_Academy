@@ -19,20 +19,21 @@ public class WriteReplyAjaxAction implements Action{
 		//Hashmap 생성
 		 HashMap<String,String> map = new HashMap<String,String>();
         //로그인 여부 체크인
-		// HttpSession session = request.getSession();
-		// String user_id = (String)session.getAttribute("user_id");
-		// if(user_id == "admin") {//로그인 안됨
-		//	 map.put("result", "logout");
-		// }else {
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("user_id");
+		if(!user_id.equals("admin")) {//로그인 안됨
+		 map.put("result", "logout");
+	     }else {
 			 //관리자 로그인
 			 //전송된 데이터에 대한 인코딩 처리
 			 request.setCharacterEncoding("utf-8");
 			 //자바빈 생성
 			 QboardReply qreply = new QboardReply();
-			 //부모 글번호
-			 qreply.setRe_qnum(Integer.parseInt(request.getParameter("re_qnum")));
-			 qreply.setQ_id(request.getParameter("id"));
+			 
+			 qreply.setQ_id(request.getParameter("q_id"));
 			 qreply.setRe_content(request.getParameter("re_content"));
+			 qreply.setQ_num(Integer.parseInt(request.getParameter("q_num")));
+			 qreply.setQ_id(user_id);
 			 //QboardDao 호출
 			 QboardDao dao = QboardDao.getInstance();
 			 dao.replyInsertBoard(qreply);
@@ -40,7 +41,7 @@ public class WriteReplyAjaxAction implements Action{
 			//댓글 등록이 성공하면 전송할 데이터 셋팅
 			 map.put("result","success");
 			 
-		// }
+		 }
 		 
 		 //JSON 데이터 생성
 		 ObjectMapper mapper = new ObjectMapper();
