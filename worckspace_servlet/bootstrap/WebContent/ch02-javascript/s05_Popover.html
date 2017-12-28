@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bootstrap</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css" type="text/css">
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('a.popover1').on('click', function(event){
+			
+			//기본 이벤트 제거
+			event.preventDefault();
+		});
+		
+		$('.popover1').popover();
+		
+		$('#myPopover2').popover({
+			title:'제목 입니다.',
+			content:'내용 입니다.',
+			placement:'button',
+			trigger:'hover'
+		});
+		
+	});
+</script>
+</head>
+<body>
+<div class="container">
+	<h4>팝오버</h4>
+	<br><br><br>
+	<a href="#" class="btn btn-lg btn-danger popover1" data-toggle="popover" title="팝오버보기" data-content="팝오버를 표시합니다.">팝오버를 표시하려면 클릭하세요.</a>
+	
+	<br><br>
+	<button class="btn btn-danger btn-lg" id="myPopover2">hover!</button>
+	
+	
+</div>
+</body>
+</html>

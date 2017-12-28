@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bootstrap</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css" type="text/css">
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.mytooltip').tooltip({
+			selector:'a[rel=tooltip]',
+			html:true //툴팁에 HTML태그를 사용할 수 있게 함
+		});
+		$('.mytooltip2').tooltip({
+			selector:'button',
+			html:true
+		});
+	});
+</script>
+</head>
+<body>
+<div class="container">
+	<h4>툴팁</h4>
+	<br><br><br>
+	<div class="mytooltip">
+		<p>
+			오늘은 날씨가 매우 추워서 
+			<a href="#" rel="tooltip" data-original-title="Default tooltip" data-placement="top" onclick="return false">날씨</a>
+			를 잘 확인하고 야외 활동을 해야 할 것 같다.
+		</p>
+	</div>
+	<br><br><br>
+	
+	<h4>4가지 방향</h4>
+	<div class=mytooltip2>
+		<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on Left">Tooltip on Left</button>
+		<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Tooltip on top</button>
+		<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Tooltip on bottom</button>
+		<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Tooltip on right">Tooltip on right</button>		
+	</div>
+	
+</div>
+</body>
+</html>

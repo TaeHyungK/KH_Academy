@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bootstrap</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css" type="text/css">
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#loading-example-btn').click(function(){
+			var btn=$(this);
+			btn.button('loading');
+			/* $.ajax({
+				success:function(data){
+					btn.button('reset');
+				}
+				
+			}); */
+		});
+		
+		
+	});
+</script>
+</head>
+<body>
+<div class="container">
+	<h4>버튼</h4>
+	<button type="button" id="loading-example-btn" data-loading-text="loading" class="btn btn-primary">로딩 상태</button>
+	
+</div>
+</body>
+</html>

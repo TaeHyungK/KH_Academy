@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bootstrap</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css" type="text/css">
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<h4>아코디언 예제</h4>
+	<div class="panel-group" id="accordion">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">질문1</a>
+				</h4>
+			</div>											<!-- in은 기본적으로 펼쳐진 형태  -->
+			<div id="collapseOne" class="panel-collapse collapse in">
+				<div class="panel-body">
+					내용1
+				</div>				
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">질문2</a>
+				</h4>
+			</div>											
+			<div id="collapseTwo" class="panel-collapse collapse">
+				<div class="panel-body">
+					내용2
+				</div>				
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">질문3</a>
+				</h4>
+			</div>											
+			<div id="collapseThree" class="panel-collapse collapse">
+				<div class="panel-body">
+					내용3
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
