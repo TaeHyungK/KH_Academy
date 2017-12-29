@@ -41,7 +41,7 @@ CREATE TABLE register_1(
     id varchar2(20) not null PRIMARY KEY,
     passwd varchar2(30) not null,
     name varchar2(20) not null,
-    phone varchar2(12) not null,
+    phone number(12,0) not null,
     sex varchar2(10) not null,
     card_num number(16,0) not null   
 );

@@ -69,8 +69,8 @@
 						<ul class="search">
 						<li>
 							<select name="keyfield">
-								<option value="departure">출발지</option>
-								<option value="destination">도착지</option>
+								<option value="start_lo">출발지</option>
+								<option value="end_lo">도착지</option>
 							</select> 
 								<input type="search" size="16" name="keyword" id="keyword">
 								<input type="submit" class="btn btn-primary" value="Search">
@@ -80,8 +80,8 @@
 								<tr bgcolor="#bac9e2">
 									<th>ID</th>
 									<th>REGDATE</th>
-									<th>DEPARTURE</th>
-									<th>DESTINATION</th>
+									<th>Start</th>
+									<th>End</th>
 									<th>AP_NUM</th>
 									<th>RSV_NUM</th>
 									<th>DELETE</th> 
@@ -90,8 +90,8 @@
 									<tr>
 										<td>${reservation.id}</td>
 										<td>${reservation.regdate}</td>
-										<td>${reservation.departure}</td>
-										<td>${reservation.destination}</td>
+										<td>${reservation.start_lo}</td>
+										<td>${reservation.end_lo}</td>
 										<td>${reservation.ap_num}</td>
 										<td>${reservation.rsv_num}</td>
 										<td><a href="reservationDelete.do?rsv_num=${reservation.rsv_num}">DELETE</a></td>

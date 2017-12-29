@@ -18,7 +18,14 @@ public class AirDto {
 	private String take_time;
 	private int seats;
 	private int total_ticket;
+	private String rsv_num;
 	
+	public String getRsv_num() {
+		return rsv_num;
+	}
+	public void setRsv_num(String rsv_num) {
+		this.rsv_num = rsv_num;
+	}
 	public int getTotal_ticket() {
 		return total_ticket;
 	}

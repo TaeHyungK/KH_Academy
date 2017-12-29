@@ -88,6 +88,32 @@
 		</div>
 	</form>
         </div>
+        	<table>
+			<tr>
+				<td>예약번호</td>
+				<td>출발지</td>
+				<td>도착지</td>
+				<td>예상시간</td>
+				<td>출발날짜</td>
+				<td>돌아올 날짜</td>
+				<td>출발시간</td>
+				<td>도착시간</td>
+				<td colspan="2">티켓매수(성인,학생,어린이)</td>
+			</tr>
+        <c:forEach var="ad" items="${list}">
+			<tr>
+        		<td>${ad.rsv_num}</td>
+				<td>${ad.start_lo}</td>
+				<td>${ad.end_lo}</td>
+				<td>${ad.take_time}</td>
+				<td>${ad.go_date}</td>
+				<td>${ad.return_date}</td>
+				<td>${ad.go_time}</td>
+				<td>${ad.return_time}</td>
+				<td colspan="2">${ad.total_ticket}(${ad.adult},${ad.student},${ad.kid})</td>
+			</tr>
+        </c:forEach>
+			</table>
       </div>
     </div>
     <!-- /.container -->

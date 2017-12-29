@@ -88,8 +88,8 @@ public class ReservationDao {
 					reservation = new ReservationDto();
 					reservation.setId(rs.getString("id"));
 					reservation.setRegdate(rs.getDate("regdate"));
-					reservation.setDeparture(rs.getString("departure"));
-					reservation.setDestination(rs.getString("destination"));
+					reservation.setStart_lo(rs.getString("start_lo"));
+					reservation.setEnd_lo(rs.getString("end_lo"));
 					reservation.setAp_num(rs.getString("ap_num"));
 					reservation.setRsv_num(rs.getString("rsv_num"));
 				}
@@ -136,8 +136,8 @@ public class ReservationDao {
 					ReservationDto reservation = new ReservationDto();
 					reservation.setId(rs.getString("id"));
 					reservation.setRegdate(rs.getDate("regdate"));
-					reservation.setDestination(rs.getString("end_lo"));
-					reservation.setDeparture(rs.getString("start_lo"));
+					reservation.setStart_lo(rs.getString("start_lo"));
+					reservation.setEnd_lo(rs.getString("end_lo"));
 					reservation.setAp_num(rs.getString("ap_num"));
 					reservation.setRsv_num(rs.getString("rsv_num"));
 

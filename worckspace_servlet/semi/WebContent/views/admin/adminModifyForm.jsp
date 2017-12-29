@@ -99,8 +99,8 @@
 				<td>비행기 번호</td>
 				<td>
 				<select name="ap_num">
-					<c:forEach var="add" items="${list}">
-						<option value="${add.ap_num}">${add.ap_num}</option>
+					<c:forEach var="ad" items="${list}">
+						<option value="${ad.ap_num}">${ad.ap_num}</option>
 					</c:forEach>
 				</select>
 				</td>

@@ -45,6 +45,46 @@ public class AirDao {
 		if(conn!=null)try {conn.close();}catch(SQLException e) {}
 	}
 	
+	public List<AirDto> checkReserv(String user_id)throws Exception{
+		List<AirDto> list = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		try {
+			conn = getConnection();
+			sql = "select * from reservation where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<AirDto>();
+			while(rs.next()) {
+				AirDto ad = new AirDto();
+				ad.setRsv_num(rs.getString("rsv_num"));
+				ad.setStart_lo(rs.getString("start_lo"));
+				ad.setEnd_lo(rs.getString("end_lo"));
+				ad.setGo_date(rs.getString("go_date"));
+				ad.setReturn_date(rs.getString("return_date"));
+				ad.setGo_time(rs.getString("go_time"));
+				ad.setReturn_time(rs.getString("return_time"));		
+				ad.setTake_time(rs.getString("take_time"));
+				ad.setAp_num(rs.getString("ap_num"));
+				ad.setSnum(rs.getInt("rsv_num"));
+				ad.setAdult(rs.getInt("a_ticket"));
+				ad.setStudent(rs.getInt("as_ticket"));
+				ad.setKid(rs.getInt("c_ticket"));
+				ad.setTotal_ticket(rs.getInt("a_ticket")+rs.getInt("as_ticket")+rs.getInt("c_ticket"));
+				list.add(ad);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+	
 	public int seats(int num)throws Exception{
 		int seats = 0;
 		Connection conn = null;
