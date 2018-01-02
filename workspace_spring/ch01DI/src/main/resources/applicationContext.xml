@@ -5,14 +5,123 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+						
 	<!-- 객체 생성을 위한 설정(Spring Container에 생성된 객체를 보관) -->
-	<!-- 
-	name : 빈 객체를 구분할 때 사용할 이름
-	class : 빈 객체를 생성할 때 사용할 클래스
-	 -->
-	 <bean name="messageBean" class="kr.spring.ch01.MessageBean"/>
-	 <bean name="studentBean" class="kr.spring.ch02.StudentBean"/>
-	 
+	<!-- name : 빈 객체를 구분할 때 사용할 이름 class : 빈 객체를 생성할 때 사용할 클래스 -->
+	<bean name="messageBean" class="kr.spring.ch01.MessageBean" />
+	<bean name="studentBean" class="kr.spring.ch02.StudentBean" />
+	<bean name="productBean" class="kr.spring.ch03.ProductBean" />
+	
+	<!-- 의존관계 주입 : 생성자 방식 -->
+	<bean name="writeArticleService" class="kr.spring.ch04.WriteArticleService">
+		<constructor-arg>
+		<!-- ref : 주입할 의존 객체에 해당하는 빈 객체의 식별값 -->
+			<ref bean="writeArticleDao"/>
+		</constructor-arg>
+	</bean>
+	<bean name="writeArticleDao" class="kr.spring.ch04.WriteArticleDao"/>
+	<bean id="monitor" class="kr.spring.ch05.SystemMonitor">
+		<!-- 주의! 인자의 순서대로 기재해야함 -->
+		<!-- <constructor-arg>
+			<value>10</value> or <value type="long">10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="smsSender"/>
+		</constructor-arg> -->
+		
+		<!-- 속성으로 값 또는 객체 설정 -->
+		<!-- <constructor-arg value="20"/>
+		<constructor-arg ref="smsSender"/> -->
+		
+		<!-- 순서를 무시할 때는 index 표시 -->
+		<!-- <constructor-arg index="1" ref="smsSender"/>
+		<constructor-arg index="0" value="30"/> -->
+		
+		<!-- 생성자의 인자명 기재 -->
+		<constructor-arg name="periodTime" value="40"/>
+		<constructor-arg name="sender" ref="smsSender"/>
+	</bean>
+	<bean id="smsSender" class="kr.spring.ch05.SmsSender"/>
+	
+	<!-- 프로퍼티 설정 방식 -->
+	<bean name="writeArticleService2" class="kr.spring.ch06.WriteArticleService">
+		<!-- name : 의존관계를 주입할 때 사용할 설정 메소드의 프로퍼티(멤버변수) 이름 -->
+		<property name="writeArticleDao">
+			<!-- ref : 주입할 의존객체에 해당하는 빈 객체의 식별값 -->
+			<ref bean="writeArticleDao2"/>
+		</property>
+	</bean>
+	<bean name="writeArticleDao2" class="kr.spring.ch06.WriteArticleDao"/>
+	
+	<!-- 프로퍼티 설정 방식 -->
+	<!-- <bean id="monitor2" class="kr.spring.ch07.SystemMonitor">
+		<property name="periodTime">
+			<value>10</value>
+		</property>
+		<property name="sender">
+			<ref bean="smsSender2"/>
+		</property>
+	</bean> -->
+	
+	<!-- XML 네임스페이스를 이용한 프로퍼티 설정 -->
+	<bean id="monitor2" class="kr.spring.ch07.SystemMonitor" p:periodTime="10" p:sender-ref="smsSender2"/>
+	
+	<bean id="smsSender2" class="kr.spring.ch07.SmsSender"/>
+	
+	<!-- 싱글턴 패턴 -->
+	<bean id="parser" class="kr.spring.ch08.ParserFactory" factory-method="getInstance"/>
+	<bean id="parser2" class="kr.spring.ch08.ParserFactory" factory-method="getInstance"/>
+	
+	<!-- List 타입 프로퍼티 설정 -->
+	<bean name="performanceMonitor" class="kr.spring.ch09.PerformanceMonitor">
+		<property name="deviations">
+			<!-- List 명시 -->
+			<list value-type="java.lang.Double">
+				<value>0.2</value>
+				<value>0.3</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Map 타입 프로퍼티 설정 -->
+	<bean name="protocolHandlerFactory" class="kr.spring.ch10.ProtocolHandlerFactory">
+		<property name="map">
+			<!-- Map -->
+			<map key-type="java.lang.String" value-type="java.lang.Object">
+				<entry>
+					<key><value>soap</value></key>
+					<ref bean="soapHandler"/>
+				</entry>
+				<entry>
+					<key><value>rest</value></key>
+					<ref bean="restHandler"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean name="soapHandler" class="kr.spring.ch10.SoapHandler"/>
+	<bean name="restHandler" class="kr.spring.ch10.RestHandler"/>
+	
+	<!-- Properties 타입 프로퍼티 설정 -->
+	<bean name="bookClient" class="kr.spring.ch11.BookClient">
+		<property name="prop">
+			<props>
+				<prop key="server">192.168.10.4</prop>
+				<prop key="connectionTimeout">5000</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- Set 타입 프로퍼티 설정 -->
+	<bean name="videoClient" class="kr.spring.ch12.VideoClient">
+		<property name="subSet">
+			<set>
+				<value>10</value>
+				<value>20</value>
+			</set>
+		</property>
+	</bean>
+	
 </beans>
