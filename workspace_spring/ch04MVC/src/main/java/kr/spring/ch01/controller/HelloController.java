@@ -10,7 +10,7 @@ public class HelloController {
 	public ModelAndView hello() {
 		ModelAndView mav = new ModelAndView();
 		//뷰 이름 지정
-		mav.setViewName("hello"); //-> hello.jsp에서 .jsp를 생략한 형태
+		mav.setViewName("hello"); //-> hello.jsp에서 .jsp를 생략한 형태, ViewResolver가 자동으로 붙여줌
 		//뷰에서 사용할 데이터 셋팅
 		mav.addObject("greeting", "안녕하세요!"); // request에 저장됨
 		
