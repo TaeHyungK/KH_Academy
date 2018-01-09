@@ -1,4 +1,4 @@
-package kr.spring.ch04.Model;
+package kr.spring.ch04.model;
 
 public class NewArticleCommand {
 	private String id;
@@ -23,10 +23,10 @@ public class NewArticleCommand {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
 	@Override
 	public String toString() {
 		return "NewArticleCommand [id=" + id + ", title=" + title + ", content=" + content + "]";
 	}
+	
 	
 }

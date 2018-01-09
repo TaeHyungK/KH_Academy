@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	
+	<!-- @Autowired 사용시 -->
+	<context:annotation-config/>
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+		
+	<!-- 메세지 처리 -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>messages.label</beans:value>
+				<beans:value>messages.validation</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<!-- 커스텀 태그를 이용한 국제화 -->
+	<beans:bean class="kr.spring.ch01.controller.LoginController"/>
+	<beans:bean class="kr.spring.ch01.service.LoginService"/>
+	
+	<!-- =====로케일 변경===== -->
+	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+	
+	<!-- 로케일 변경하기 -->
+	<beans:bean class="kr.spring.ch02.controller.LocaleChangeController"/>
+	
+	<!-- localeChangeInterceptor를 이용한 로케일 처리 -->
+	<beans:bean id="localeChangeInterCeptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" 
+				p:paramName="language"/>
+				
+	<interceptors>
+		<interceptor>
+			<mapping path="/login/login.do"/>
+			<beans:ref bean="localeChangeInterCeptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<!-- p:order : Resolver간 충돌을 막기위해 사용하는 태그 -->
+	<!-- 뷰의 이름과 빈의 이름이 일치하면 호출되도록 지정 -->
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" 
+				p:order="0"/>
+	
+	<!-- 파일 다운로드 -->
+	<beans:bean id="downloadController" class="kr.spring.ch03.controller.DownloadController"/>
+	<beans:bean id="download" class="kr.spring.ch03.view.DownloadView"/>
+	
+	<!-- 엑셀 다운로드 -->
+	<beans:bean id="pageRanksController" class="kr.spring.ch04.controller.PageRanksController"/>
+	<beans:bean id="pageRanks" class="kr.spring.ch04.view.PageRanksView"/>
+	
+	
+	
+	
+</beans:beans>
