@@ -116,6 +116,12 @@
 			<artifactId>poi</artifactId>
 			<version>3.13</version>
 		</dependency>
+		<!-- json 문자열 처리 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.7.9</version>
+		</dependency>
 		<!-- 라이브러리 추가 끝 -->
 	
 		<!-- Test -->

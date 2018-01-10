@@ -15,6 +15,8 @@
 <a href="${pageContext.request.contextPath}/login/login.do?language=en">/login/login.do?language=en</a><br>
 <a href="${pageContext.request.contextPath}/file.do">DownloadController</a><br>
 <a href="${pageContext.request.contextPath}/pageRanks.do">pageRanks.do(엑셀)</a><br>
+<a href="${pageContext.request.contextPath}/pageXmlReport.do">pageXmlReport.do</a><br>
+<a href="${pageContext.request.contextPath}/pageJsonReport.do">pageJsonReport.do</a><br>
 
 </body>
 </html>

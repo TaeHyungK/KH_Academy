@@ -67,9 +67,12 @@
 	<beans:bean id="download" class="kr.spring.ch03.view.DownloadView"/>
 	
 	<!-- 엑셀 다운로드 -->
+	
 	<beans:bean id="pageRanksController" class="kr.spring.ch04.controller.PageRanksController"/>
 	<beans:bean id="pageRanks" class="kr.spring.ch04.view.PageRanksView"/>
 	
+	<!-- xml,json -->
+	<beans:bean id="pageReportController" class="kr.spring.ch05.controller.PageReportController"/>
 	
 	
 	
