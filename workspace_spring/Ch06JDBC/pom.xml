@@ -15,15 +15,15 @@
 	</properties>
 	
 	<!-- ====ojdb6.jar 설정 -->
-    	<repositories>
-       		<repository>
-	         	<id>oracle</id>
-	         	<name>ORACLE JDBC Repository</name>
-	         	<url>https://code.lds.org/nexus/content/groups/main-repo</url>
-       		</repository>
-    	</repositories>
+    <repositories>
+   		<repository>
+	      	<id>oracle</id>
+	      	<name>ORACLE JDBC Repository</name>
+	      	<url>https://code.lds.org/nexus/content/groups/main-repo</url>
+   		</repository>
+   	</repositories>
+    	
 	<dependencies>
-	
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -120,7 +120,7 @@
 		</dependency>
 		
 		<!--  라이브러리 추가 시작 -->
-		<!-- ===ojdbc6.jar 설정시 -->
+		<!-- ===ojdbc6.jar 설정시작 -->
 	   <dependency>
 	         <groupId>org.springframework</groupId>
 	         <artifactId>spring-jdbc</artifactId>
@@ -146,7 +146,7 @@
         	 <artifactId>ojdbc6</artifactId>
          	<version>11.2.0.3</version>
       	</dependency>
-   		<!-- ===ojdbc6.jar 설정시 -->
+   		<!-- ===ojdbc6.jar 설정끝 -->
      	<!--  라이브러리 추가 끝 -->
      	
 		<!-- Test -->

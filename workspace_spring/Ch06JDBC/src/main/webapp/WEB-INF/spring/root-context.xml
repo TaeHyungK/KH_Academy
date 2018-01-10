@@ -12,6 +12,7 @@
 	</context:component-scan>
 	
 	<!-- db 설정 파일 -->
+	<!-- 									┌> src/main/resources를 가리킴 -->
 	<context:property-placeholder location="classpath:config/jdbc.properties"/>
 	
 	<!-- 커넥션 풀을 이용한 DataSource 설정 -->
