@@ -33,6 +33,15 @@
 		</beans:property>
 	</beans:bean>
 	
+	<!-- exception 설정 -->
+	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="exceptionMappings">
+			<beans:props>
+				<beans:prop key="java.lang.Exception">exception</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+	
 	
 	
 </beans:beans>

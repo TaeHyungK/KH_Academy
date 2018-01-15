@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="kr.spring.member">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->

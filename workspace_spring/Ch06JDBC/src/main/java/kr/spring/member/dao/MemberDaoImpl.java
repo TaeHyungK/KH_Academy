@@ -18,6 +18,9 @@ public class MemberDaoImpl implements MemberDao{
 	private static final String INSERT_SQL = "INSERT INTO zmember (id, passwd, name,reg_date) VALUES (?,?,?,sysdate)";
 	private static final String SELECT_COUNT_SQL = "SELECT count(*) FROM zmember";
 	private static final String SELECT_LIST_SQL = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM zmember ORDER BY reg_date DESC)a) WHERE rnum >= ? AND rnum <= ?";
+	private static final String SELECT_DETAIL_SQL = "SELECT * FROM zmember WHERE id=?";
+	private static final String UPDATE_SQL = "UPDATE zmember SET passwd=,name=? WHERE id=?";
+	private static final String DELETE_SQL = "DELETE FROM zmember WHERE id=?";
 
 	private RowMapper<MemberCommand> rowMapper = new RowMapper<MemberCommand>() {
 
@@ -56,20 +59,18 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public MemberCommand getMember(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.queryForObject(SELECT_DETAIL_SQL, new Object[] {id}, rowMapper);
 	}
 
 	@Override
 	public void updateMember(MemberCommand member) {
-		// TODO Auto-generated method stub
+		jdbcTemplate.update(UPDATE_SQL, new Object[] {member.getPasswd(), member.getName(), member.getId()});
 		
 	}
 
 	@Override
 	public void deleteMember(String id) {
-		// TODO Auto-generated method stub
-		
+		jdbcTemplate.update(DELETE_SQL, new Object[] {id});
 	}
 
 }
