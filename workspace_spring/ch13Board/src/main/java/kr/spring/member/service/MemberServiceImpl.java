@@ -21,17 +21,18 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberCommand selectMember(String id) {
-		return null;
+		return memberMapper.selectMember(id);
 	}
 
 	@Override
 	public void update(MemberCommand member) {
-		
+		memberMapper.update(member);
 	}
 
 	@Override
 	public void delete(String id) {
-		
+		memberMapper.delete(id);
+		memberMapper.deleteDetail(id);
 	}
 
 }

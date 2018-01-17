@@ -17,6 +17,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	
 	<context:component-scan base-package="kr.spring.member.controller" />
+	<context:component-scan base-package="kr.spring.board.controller" />
 
 	<view-controller path="/main/main.do" view-name="main"/>
 
@@ -26,20 +27,24 @@
 			<beans:list>
 				<beans:value>/WEB-INF/tiles-def/main.xml</beans:value>
 				<beans:value>/WEB-INF/tiles-def/member.xml</beans:value>
+				<beans:value>/WEB-INF/tiles-def/board.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
 	
 	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+		<beans:property name="order" value="0"/>
 	</beans:bean>
+	
 	<!-- tiles 설정 끝 -->
-
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<!-- <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	
+	<!-- popup창 또는 Ajax 통신 등 타일스를 이용하지 않고 JSP를 호출해야 하는 경우 -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-	</beans:bean> -->
+		<beans:property name="order" value="1"/>
+	</beans:bean>
 	
 	<!-- 메세지 처리 -->
 	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -49,6 +54,16 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
+	
+	<!-- 로그인 여부 체크 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/detail.do"/>
+			<mapping path="/member/update.do"/>
+			<mapping path="/member/delete.do"/>
+			<beans:bean class="kr.spring.interceptor.LoginCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 	
 	

@@ -1,10 +1,12 @@
 package kr.spring.member.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,36 +16,38 @@ import kr.spring.member.domain.MemberCommand;
 import kr.spring.member.service.MemberService;
 
 @Controller
-public class MemberWriteController {
+public class MemberUpdateController {
 	private Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource
 	private MemberService memberService;
 	
-	//커맨드 객체(자바빈) 초기화
-	@ModelAttribute("command")
-	public MemberCommand initCommand() {
-		return new MemberCommand();
+	@RequestMapping(value="/member/update.do", method=RequestMethod.GET)
+	public String form(HttpSession session, Model model) {
+		String id = (String) session.getAttribute("user_id");
+		
+		MemberCommand member = memberService.selectMember(id);
+		model.addAttribute("command", member);
+		
+		return "memberModify";
 	}
 	
-	@RequestMapping(value="/member/write.do", method=RequestMethod.GET)
-	public String form() {
-		return "memberWrite";
-	}
-	
-	@RequestMapping(value="/member/write.do", method=RequestMethod.POST)
-	public String submit(@ModelAttribute("command") @Valid MemberCommand memberCommand, BindingResult result) {
+	@RequestMapping(value="/member/update.do", method=RequestMethod.POST)
+	public String submit(@ModelAttribute("command")
+						 @Valid MemberCommand memberCommand, BindingResult result) {
 		if(log.isDebugEnabled()) {
 			log.debug("<<memberCommand>> : " + memberCommand);
 		}
 		
 		if(result.hasErrors()) {
-			return form();
+			return "memberModify";
 		}
 		
-		//회원가입
-		memberService.insert(memberCommand);
+		//회원정보 수정
+		memberService.update(memberCommand);
 		
-		return "redirect:/main/main.do";			
+		return "redirect:/member/detail.do";
 	}
+	
+	
 }
