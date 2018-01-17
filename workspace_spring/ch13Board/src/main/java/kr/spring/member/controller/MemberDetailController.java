@@ -19,11 +19,11 @@ public class MemberDetailController {
 	private MemberService memberService;
 	
 	@RequestMapping("/member/detail.do")
-	public String process(HttpSession session, Model model) {
+	public String process(HttpSession session,Model model) {
 		
-		String id = (String) session.getAttribute("user_id");
+		String id = (String)session.getAttribute("user_id");
 		
-		MemberCommand member = memberService.selectMember(id); 
+		MemberCommand member = memberService.selectMember(id);
 		
 		if(log.isDebugEnabled()) {
 			log.debug("<<memberCommand>> : " + member);
@@ -33,4 +33,8 @@ public class MemberDetailController {
 		
 		return "memberView";
 	}
+	
 }
+
+
+

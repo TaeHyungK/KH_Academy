@@ -17,15 +17,14 @@ import kr.spring.member.service.MemberService;
 
 @Controller
 public class MemberDeleteController {
-	
 	private Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource
 	private MemberService memberService;
-
-	@RequestMapping(value="/member/delete.do", method=RequestMethod.GET)
-	public String form(HttpSession session, Model model) {
-		String id = (String) session.getAttribute("user_id");
+	
+	@RequestMapping(value="/member/delete.do",method=RequestMethod.GET)
+	public String form(HttpSession session,Model model) {
+		String id = (String)session.getAttribute("user_id");
 		
 		MemberCommand member = new MemberCommand();
 		member.setId(id);
@@ -35,14 +34,12 @@ public class MemberDeleteController {
 		return "memberDelete";
 	}
 	
-	@RequestMapping(value="/member/delete.do", method=RequestMethod.POST)
-	public String submit(@ModelAttribute("command")
-						 @Valid MemberCommand memberCommand, BindingResult result, HttpSession session) {
+	@RequestMapping(value="/member/delete.do",method=RequestMethod.POST)
+	public String submit(@ModelAttribute("command")@Valid MemberCommand memberCommand,BindingResult result,HttpSession session) {
+		
 		if(log.isDebugEnabled()) {
 			log.debug("<<memberCommand>> : " + memberCommand);
 		}
-		
-		String id = (String) session.getAttribute("user_id");
 		
 		//id,passwd 필드의 에러만 체크
 		if(result.hasFieldErrors("id") || result.hasFieldErrors("passwd")) {
@@ -53,27 +50,29 @@ public class MemberDeleteController {
 		try {
 			MemberCommand member = memberService.selectMember(memberCommand.getId());
 			boolean check = false;
-						
-			if(member != null) {
+			if(member!=null) {
 				//비밀번호 체크
 				check = member.isCheckedPasswd(memberCommand.getPasswd());
 			}
-			
 			if(check) {
-				//인증 성공, 회원 정보 삭제
+				//인증 성공, 회원정보삭제
 				memberService.delete(memberCommand.getId());
 				//로그아웃
 				session.invalidate();
 				return "redirect:/main/main.do";
 			}else {
+				//인증 실패
 				throw new Exception();
-			}	
+			}
 		}catch(Exception e) {
-			result.rejectValue("passwd", "invalidPassword");
+			result.reject("passwd", "invalidPassword");
 			return "memberDelete";
 		}
-		
+				
 	}
 	
-	
 }
+
+
+
+

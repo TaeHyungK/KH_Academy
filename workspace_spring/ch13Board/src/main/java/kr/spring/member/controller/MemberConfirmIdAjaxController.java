@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,24 +22,23 @@ public class MemberConfirmIdAjaxController {
 	private MemberService memberService;
 	
 	@RequestMapping("/member/confirmId.do")
-	@ResponseBody							//id는 무조건 전달 받아야함!!
-	public Map<String,String> process(@RequestParam("id") String id){
+	@ResponseBody
+	public Map<String,String> process(@RequestParam("id")String id){
 		if(log.isDebugEnabled()) {
 			log.debug("<<id>> : " + id);
 		}
 		
-		Map<String, String> map = new HashMap<String,String>();
+		Map<String,String> map = new HashMap<String,String>();
 		
 		MemberCommand member = memberService.selectMember(id);
-		if(member != null) {
+		if(member!=null) {
 			//아이디 중복
 			map.put("result", "idDuplicated");
 		}else {
 			//아이디 미중복
 			map.put("result", "idNotFound");
 		}
-		
 		return map;
+		
 	}
-	
 }

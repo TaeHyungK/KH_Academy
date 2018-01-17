@@ -17,3 +17,19 @@ CREATE TABLE spmember_detail(
 	CONSTRAINT spmember_detail_pk PRIMARY KEY (id),
 	CONSTRAINT spmember_detail_fk1 FOREIGN KEY (id) REFERENCES spmember (id)
 );
+
+CREATE TABLE spboard(
+	num number not null,
+	title varchar2(100) not null,
+	content clob not null,
+	hit number(5)default 0 not null,
+	reg_date date not null,
+	uploadfile blob,
+	filename varchar2(100),
+	ip varchar2(40) not null,
+	id varchar2(12)not null,
+	CONTSTRAINT spboard_pk primary key (num),
+	CONSTRAINT spboard_spmember_fk1 foreign key (id) references spmember (id)
+);
+
+create sequence board_seq;

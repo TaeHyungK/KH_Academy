@@ -10,10 +10,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class MemberCommand {
 	@NotEmpty
 	private String id;
-	private int auth; //0탈퇴회원, 1일반회원, 2관리자
+	private int auth;/*0탈퇴회원,1일반회원,2관리자*/
 	@NotEmpty
 	private String name;
-	@Size(min=4, max=10)
+	@Size(min=4,max=10)
 	private String passwd;
 	@NotEmpty
 	private String phone;
@@ -95,13 +95,11 @@ public class MemberCommand {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-	
 	@Override
 	public String toString() {
 		return "MemberCommand [id=" + id + ", auth=" + auth + ", name=" + name + ", passwd=" + passwd + ", phone="
 				+ phone + ", email=" + email + ", zipcode=" + zipcode + ", address1=" + address1 + ", address2="
 				+ address2 + ", reg_date=" + reg_date + "]";
 	}
-	
-	
+
 }

@@ -22,9 +22,9 @@ public class MemberUpdateController {
 	@Resource
 	private MemberService memberService;
 	
-	@RequestMapping(value="/member/update.do", method=RequestMethod.GET)
-	public String form(HttpSession session, Model model) {
-		String id = (String) session.getAttribute("user_id");
+	@RequestMapping(value="/member/update.do",method=RequestMethod.GET)
+	public String form(HttpSession session,Model model) {
+		String id = (String)session.getAttribute("user_id");
 		
 		MemberCommand member = memberService.selectMember(id);
 		model.addAttribute("command", member);
@@ -32,9 +32,9 @@ public class MemberUpdateController {
 		return "memberModify";
 	}
 	
-	@RequestMapping(value="/member/update.do", method=RequestMethod.POST)
-	public String submit(@ModelAttribute("command")
-						 @Valid MemberCommand memberCommand, BindingResult result) {
+	@RequestMapping(value="/member/update.do",method=RequestMethod.POST)
+	public String submit(@ModelAttribute("command")@Valid MemberCommand memberCommand,BindingResult result) {
+		
 		if(log.isDebugEnabled()) {
 			log.debug("<<memberCommand>> : " + memberCommand);
 		}
@@ -43,11 +43,13 @@ public class MemberUpdateController {
 			return "memberModify";
 		}
 		
-		//회원정보 수정
+		//회정보수정
 		memberService.update(memberCommand);
 		
 		return "redirect:/member/detail.do";
 	}
-	
-	
 }
+
+
+
+

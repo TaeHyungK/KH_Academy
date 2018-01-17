@@ -9,14 +9,14 @@ import kr.spring.member.domain.MemberCommand;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
-
+	
 	@Resource
 	private MemberMapper memberMapper;
 	
 	@Override
 	public void insert(MemberCommand member) {
 		memberMapper.insert(member);
-		memberMapper.insertDetail(member);
+		memberMapper.insertDetail(member);		
 	}
 
 	@Override

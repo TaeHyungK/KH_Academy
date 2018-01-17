@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 네임스페이스는 MemberMapper.xml과 맵핑되는 인터페이스 package를 포함해서 명시함. 불일치시 오류 발생 -->        
+<mapper namespace="kr.spring.board.dao.BoardMapper">
+	<select id="list" parameterType="map" resultType="boardCommand">
+		SELECT
+			*
+		FROM (SELECT 
+				a.*,
+				rownum rnum
+			  FROM(SELECT 
+			  		 *
+			  	   FROM spboard
+			  	   ORDER BY num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<select id="getRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM spboard
+	</select>
+</mapper>

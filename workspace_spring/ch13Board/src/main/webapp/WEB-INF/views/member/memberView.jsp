@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="page-main-style">
-	<h2>회원 상세 정보</h2>
+	<h2>회원상세정보</h2>
 	<ul>
 		<li>아이디 : ${member.id}</li>
 		<li>이름 : ${member.name}</li>

@@ -15,6 +15,7 @@ import kr.spring.member.service.MemberService;
 
 @Controller
 public class MemberWriteController {
+	
 	private Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource
@@ -26,13 +27,14 @@ public class MemberWriteController {
 		return new MemberCommand();
 	}
 	
-	@RequestMapping(value="/member/write.do", method=RequestMethod.GET)
+	@RequestMapping(value="/member/write.do",method=RequestMethod.GET)
 	public String form() {
 		return "memberWrite";
 	}
 	
-	@RequestMapping(value="/member/write.do", method=RequestMethod.POST)
-	public String submit(@ModelAttribute("command") @Valid MemberCommand memberCommand, BindingResult result) {
+	@RequestMapping(value="/member/write.do",method=RequestMethod.POST)
+	public String submit(@ModelAttribute("command")@Valid MemberCommand memberCommand,BindingResult result) {
+		
 		if(log.isDebugEnabled()) {
 			log.debug("<<memberCommand>> : " + memberCommand);
 		}
@@ -40,10 +42,10 @@ public class MemberWriteController {
 		if(result.hasErrors()) {
 			return form();
 		}
-		
 		//회원가입
 		memberService.insert(memberCommand);
 		
-		return "redirect:/main/main.do";			
+		return "redirect:/main/main.do";
 	}
+	
 }
