@@ -28,8 +28,8 @@ public class BoardListController {
 	
 	@RequestMapping("/board/list.do")
 	public ModelAndView process(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
-								@RequestParam(value="keyfield", defaultValue="1") String keyfield,
-								@RequestParam(value="keyword", defaultValue="1") String keyword) {
+								@RequestParam(value="keyfield", defaultValue="") String keyfield,
+								@RequestParam(value="keyword", defaultValue="") String keyword) {
 		if(log.isDebugEnabled()) {
 			log.debug("<<pageNum>> : " + currentPage);
 			log.debug("<<keyfield>> : " + keyfield);

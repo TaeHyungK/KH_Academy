@@ -33,3 +33,17 @@ CREATE TABLE spboard(
 );
 
 create sequence board_seq;
+
+CREATE TABLE spboard_reply(
+	re_num NUMBER NOT NULL,
+	re_content VARCHAR2(900) NOT NULL,
+	re_date DATE NOT NULL,
+	re_ip varchar2(40) NOT NULL,
+	num number NOT NULL,
+	id VARCHAR2(12) NOT NULL,
+	CONSTRAINT spboard_reply_pk PRIMARY KEY (re_num),
+	CONSTRAINT reply_spboard_fk1 FOREIGN KEY (num) REFERENCES spboard (num),
+	CONSTRAINT reply_spboard_fk2 FOREIGN KEY (id) REFERENCES spmember (id)
+);
+
+create sequence reply_seq;

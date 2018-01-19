@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.board.domain.BoardCommand;
 import kr.spring.board.service.BoardService;
+import kr.spring.util.StringUtil;
 
 @Controller
 public class BoardDetailController {
@@ -32,7 +33,8 @@ public class BoardDetailController {
 		boardService.updateHit(num);
 		
 		BoardCommand board = boardService.selectBoard(num);
-				
+		board.setTitle(StringUtil.useNoHtml(board.getTitle()));
+		board.setContent(StringUtil.useBrNoHtml(board.getContent()));
 		
 		return new ModelAndView("boardView", "board", board);
 	}

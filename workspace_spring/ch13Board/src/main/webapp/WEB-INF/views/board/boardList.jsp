@@ -1,8 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/board.js"></script>
+
 <div class="page-main-style">
 	<h2>게시판 목록</h2>
+	<form action="list.do" id="search_form" method="get">
+		<ul class="search">
+			<li>
+				<select name="keyfield">
+					<option value="title">제목</option>
+					<option value="id">ID</option>
+					<option value="content">내용</option>
+				</select>
+			</li>
+			<li>
+				<input type="text" name="keyword" id="keyword">
+			</li>
+			<li>
+				<input type="submit" value="찾기">
+			</li>
+		</ul>
+	</form>
 	<div class="align-right">
 		<c:if test="${!empty user_id}">
 		<input type="button" value="글쓰기" onclick="location.href='write.do'">
@@ -23,7 +43,7 @@
 		<c:forEach var="article" items="${list}">
 			<tr>
 				<td>${article.num}</td>
-				<td><a href="detail.do?num=${article.num}">${article.title}</a></td>
+				<td><a href="detail.do?num=${article.num}">${article.title}(${article.reply_cnt})</a></td>
 				<td>${article.id}</td>
 				<td>${article.reg_date}</td>
 				<td>${article.hit}</td>
@@ -33,5 +53,3 @@
 	<div class="align-center">${pagingHtml}</div>
 	</c:if>
 </div>
-
-110-479-225996

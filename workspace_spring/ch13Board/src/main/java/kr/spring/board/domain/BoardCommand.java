@@ -21,6 +21,8 @@ public class BoardCommand {
 	@NotEmpty
 	private String id;
 	
+	private int reply_cnt; //댓글수
+	
 	public void setUpload(MultipartFile upload)throws IOException{
 		
 		this.upload = upload;
@@ -88,11 +90,18 @@ public class BoardCommand {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public int getReply_cnt() {
+		return reply_cnt;
+	}
+	public void setReply_cnt(int reply_cnt) {
+		this.reply_cnt = reply_cnt;
+	}
+
 	/*주의 byte[] 타입의 변수(uploadfile)는 제외*/
 	@Override
 	public String toString() {
 		return "BoardCommand [num=" + num + ", title=" + title + ", content=" + content + ", hit=" + hit + ", regdate="
-				+ reg_date + ", upload=" + upload + ", filename=" + filename + ", ip=" + ip + ", id=" + id + "]";
+				+ reg_date + ", upload=" + upload + ", filename=" + filename + ", ip=" + ip + ", id=" + id + ", reply_cnt=" + reply_cnt + "]";
 	}
 	
 	

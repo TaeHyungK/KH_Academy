@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.board.domain.BoardCommand;
+import kr.spring.board.domain.BoardReplyCommand;
 
 public interface BoardService {
 	//ºÎ¸ð±Û
@@ -19,4 +20,13 @@ public interface BoardService {
 	public void updateHit(Integer num);
 	public void update(BoardCommand board);
 	public void delete(Integer num);
+
+	//´ñ±Û
+	@Transactional(readOnly=true)
+	public List<BoardReplyCommand> listReply(Map<String, Object> map);
+	@Transactional(readOnly=true)
+	public int getRowCountReply(Map<String, Object> map);
+	public void insertReply(BoardReplyCommand boardReply);
+	public void updateReply(BoardReplyCommand boardReply);
+	public void deleteReply(Integer re_num);
 }

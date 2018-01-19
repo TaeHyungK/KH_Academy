@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.spring.board.dao.BoardMapper;
 import kr.spring.board.domain.BoardCommand;
+import kr.spring.board.domain.BoardReplyCommand;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService{
@@ -44,12 +45,42 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void update(BoardCommand board) {
-		
+		boardMapper.update(board);
 	}
 
 	@Override
 	public void delete(Integer num) {
-		
+		//댓글이 존재하면 댓글을 우선 삭제하고 부모글을 삭제
+		boardMapper.deleteReplyByNum(num);
+		//부모글 삭제
+		boardMapper.delete(num);
+	}
+	
+	
+	//댓글
+	@Override
+	public List<BoardReplyCommand> listReply(Map<String, Object> map) {
+		return boardMapper.listReply(map);
+	}
+
+	@Override
+	public int getRowCountReply(Map<String, Object> map) {
+		return boardMapper.getRowCountReply(map);
+	}
+
+	@Override
+	public void insertReply(BoardReplyCommand boardReply) {
+		boardMapper.insertReply(boardReply);
+	}
+
+	@Override
+	public void updateReply(BoardReplyCommand boardReply) {
+		boardMapper.updateReply(boardReply);
+	}
+
+	@Override
+	public void deleteReply(Integer re_num) {
+		boardMapper.deleteReply(re_num);
 	}
 	
 }

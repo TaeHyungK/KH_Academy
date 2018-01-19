@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/board.reply.js"></script>
+
 <div class="page-main-style">
 	<h2>${board.title}</h2>
 	<ul>
@@ -30,5 +33,32 @@
 		<input type="button" value="삭제" onclick="location.href='delete.do?num=${board.num}'">
 		</c:if>
 		<input type="button" value="목록" onclick="location.href='list.do'"> 
+	</div>
+	
+	<div id="reply_div">
+		<span class="reply-title">댓글 달기</span>
+		<form id="re_form">
+			<input type="hidden" name="num" value="${board.num}" id="num">
+			<input type="hidden" name="id" value="${user_id}" id="user_id">
+			<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
+					<c:if test="${empty user_id}">disalbed="disabled"</c:if>
+					><c:if test="${empty user_id}">로그인을 해야 볼 수 있습니다.</c:if></textarea>
+			<c:if test="${!empty user_id}">
+			<div id="re_first">
+				<span class="letter-count">300/300</span>
+			</div>
+			<div id="re_second" class="align-right">
+				<input type="submit" value="전송">
+			</div>
+			</c:if>
+		</form>
+	</div>
+	<!-- 목록 출력 -->
+	<div id="output"></div>
+	<div class="paging-button" style="display:none;">
+		<input type="button" value="다음글 보기">
+	</div>
+	<div id="loading" style="display:none;">
+		<img src="${pageContext.request.contextPath}/resources/images/ajax-loader.gif">
 	</div>
 </div>
