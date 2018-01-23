@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="kr.android.linear2.MainActivity"
+    android:gravity="center">
+    <!--
+    gravity : 자신 내부의 구성 요소의 위치 정의
+    ex) 레이아웃에 명시해 버튼위 위치 지정
+    ex) 버튼에 명시해 버튼내의 레이블(text)의 위치 지정
+
+    layout_gravity : 부모를 기준으로 자신의 위치를 정의
+    ex) 버튼에 명시해서 레이아웃 기준으로 버튼이 배치되는 위치 지정
+
+    center : 정중앙
+    center_vertical : 세로 중앙
+    center_horizontal : 좌우 중앙
+    -->
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:text="배치!"
+        android:gravity="center_horizontal"/>
+
+</LinearLayout>

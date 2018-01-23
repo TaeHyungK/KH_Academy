@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="kr.android.edit.MainActivity">
+
+    <!--
+    android:ems="10" 수평크기를 EM크기 기준으로 지정
+    EM은 가장 큰 글자를 기준으로 한 영역을 의미
+    [기본값은 멀티라인]
+    멀티라인을 사용하고자 할때는 android:inputType="textMultiLine"
+    싱글라인 사용시
+    android:inputType="text"
+    힌트 기능
+    android:hint="텍스트"
+
+    string.xml에 문자열을 등록할 때는 먼저 태그의 속성에 문자열을 입력한 후
+    Alt+Enter를 클릭하고 string.xml에 키를 저장하면 됨
+    -->
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:ems="10"
+        android:hint="@string/edit_hint"
+        android:inputType="textPersonName"/>
+
+</android.support.constraint.ConstraintLayout>
