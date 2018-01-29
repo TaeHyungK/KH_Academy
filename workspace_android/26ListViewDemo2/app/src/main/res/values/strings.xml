@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">26ListViewDemo2</string>
+    <string name="hint_word">일정 입력</string>
+    <string name="save_word">저장</string>
+</resources>

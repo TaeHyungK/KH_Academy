@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
+app:showAsAction -> 현재 메뉴가 액션바의 액션 아이템으로 보여질 시점과 방식을 정하는 속성
+속성값
+ifRoom : 액션 아이템을 표시할 공간이 있다면 액션 아이템을 표시
+never : 기본값으로서 항상 액션 아이템으로 표시하징 ㅏㄶ음
+withText :메뉴 항목의 아이콘과 텍스트를 함께 액션 아이콘으로 표시
+alyways:항상
+
+android:orderIncategory:여러 애견 아이템이 나열되ㅡ는 선수ㅡㄹ 정으
+-->
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:orderInCategory="1"
+        android:title="검색"
+        app:showAsAction="always|withText"
+        />
+    <item
+        android:id="@+id/menu_chat"
+        android:icon="@android:drawable/sym_action_chat"
+        android:orderInCategory="0"
+        android:title="채팅"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/menu_email"
+        android:icon="@android:drawable/sym_action_email"
+        android:orderInCategory="1"
+        android:title="이메일"
+        app:showAsAction="ifRoom"
+        />
+
+    <!-- 오버플로우 메뉴 형태로 보여짐-->
+    <item
+        android:id="@+id/action_settings"
+        android:title="세팅"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        />
+
+</menu>
