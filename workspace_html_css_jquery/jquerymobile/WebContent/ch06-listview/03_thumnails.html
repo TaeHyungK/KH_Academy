@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 모바일 장치에서 웹사이트가 원하는 사이즈로 보여지게 처리 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jquery Mobile</title>
+<link rel="stylesheet" href="../mobile/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="../mobile/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<!-- page 지정 -->
+	<div data-role="page">
+		<!-- header 지정 -->
+		<div data-role="header">
+			<h1>화면 상단</h1>
+		</div>
+		<!-- content -->
+		<div role="main" class="ui-content">
+			<ul data-role="listview" data-inset="true">
+				<li>
+					<a href="#">
+						<!-- 썸네일 지정 80px 사각형-->
+						<!-- 썸네일 아니라 아이콘 형태로 표시하고 싶으면 class="ui-li-icon" 명시 -->
+						<img src="../images/ie.png">
+						<h3>List Item1</h3>
+						<p>문경 서울 부산 대구</p>
+					</a>
+					<a href="#" data-icon="search">검색</a>
+				</li>
+				<li>
+					<a href="#">
+						<!-- 썸네일 지정 -->
+						<img src="../images/google.png">
+						<h3>List Item1</h3>
+						<p>문경 서울 부산 대구</p>
+					</a>
+					<a href="#" data-icon="search">검색</a>
+				</li>
+				<li>
+					<a href="#">
+						<!-- 썸네일 지정 -->
+						<img src="../images/Opera.png">
+						<h3>List Item1</h3>
+						<p>문경 서울 부산 대구</p>
+					</a>
+					<a href="#" data-icon="search">검색</a>
+				</li>
+				<li>
+					<a href="#">
+						<!-- 썸네일 지정 -->
+						<img src="../images/FF.png">
+						<h3>List Item1</h3>
+						<p>문경 서울 부산 대구</p>
+					</a>
+					<a href="#" data-icon="search">검색</a>
+				</li>
+				<li>
+					<a href="#">
+						<!-- 썸네일 지정 -->
+						<img src="../images/Safari.png">
+						<h3>List Item1</h3>
+						<p>문경 서울 부산 대구</p>
+					</a>
+					<a href="#" data-icon="search">검색</a>
+				</li>
+			</ul>
+		</div>
+		<!-- footer 지정 -->
+		<div data-role="footer">
+			<h1>화면 하단</h1>
+		</div>
+	</div>
+</body>
+</html>

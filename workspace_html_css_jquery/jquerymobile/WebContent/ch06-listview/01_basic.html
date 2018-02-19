@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 모바일 장치에서 웹사이트가 원하는 사이즈로 보여지게 처리 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jquery Mobile</title>
+<link rel="stylesheet" href="../mobile/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="../mobile/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<!-- page 지정 -->
+	<div data-role="page">
+		<!-- header 지정 -->
+		<div data-role="header">
+			<h1>ListView</h1>
+		</div>
+		<!-- content -->
+		<div role="main" class="ui-content">
+			<h3>읽기전용(순서없음)</h3>
+			<ul data-role="listview">
+				<li>고구마</li>
+				<li>감자</li>
+				<li>오이</li>
+				<li>당근</li>
+			</ul>
+			
+			<h3>읽기전용(순서있음)</h3>
+			<ol data-role="listview">
+				<li>고구마</li>
+				<li>감자</li>
+				<li>오이</li>
+				<li>당근</li>
+			</ol>
+			
+			<h3>링크하기</h3>
+			<ul data-role="listview">
+				<li><a href="#">문경</a></li>
+				<li><a href="#">서울</a></li>
+				<li><a href="#">부산</a></li>
+				<li><a href="#">대구</a></li>
+			</ul>
+			
+			
+		</div>
+		<!-- footer 지정 -->
+		<div data-role="footer">
+			<h1>화면 하단</h1>
+		</div>
+	</div>
+</body>
+</html>

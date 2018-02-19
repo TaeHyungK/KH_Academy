@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="button2.o.mund.hola.mx.es.kr.android.fragment2.MainActivity">
+
+    <fragment
+        android:id="@+id/fragment_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="button2.o.mund.hola.mx.es.kr.android.fragment2.FragmentMenu"
+        tools:layout="@layout/activity_fragment_menu"
+        />
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+</LinearLayout>

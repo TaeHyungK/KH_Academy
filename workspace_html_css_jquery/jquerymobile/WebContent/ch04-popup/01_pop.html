@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 모바일 장치에서 웹사이트가 원하는 사이즈로 보여지게 처리 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jquery Mobile</title>
+<link rel="stylesheet" href="../mobile/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="../mobile/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<!-- page 지정 -->
+	<div data-role="page">
+		<!-- header 지정 -->
+		<div data-role="header">
+			<h1>화면 상단</h1>
+		</div>
+		<!-- content -->
+		<div role="main" class="ui-content">
+			<p>기본 popup</p>
+			<a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline"
+				data-transition="pop">Basic Popup</a>
+			<div data-role="popup" id="popupBasic">
+				<p>This is a completely basic popup</p>
+			</div>
+			
+			<h1>툴팁</h1>
+			<p>A paragraph with a tooltip
+				<a href="#popupInfo" data-rel="popup" data-transition="pop" class="ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info ui-btn-icon-notext" title="Learn more">Learn more</a>
+			</p>
+			<div data-role="popup" id="popupInfo" class="ui-content" style="max-width:350px;">
+				<p>Here is a <strong>tiny popup</strong></p>
+			</div>
+			
+			<h1>Dialog</h1>
+			<!-- 
+			화면 전환 효과
+			data-transition="pop" (pop,fade,flip,turn,flow,slide,slidefade,slideup,slidedown 등)
+			 -->
+			<a href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left">Delete page</a>
+			<div data-role="popup" id="popupDialog" data-overlay-theme="a" data-theme="a" data-dismissible="false" style="max-width:400px;">
+				<div data-role="header" data-theme="a">
+					<h1>Delete Page?</h1>
+				</div>
+				<div role="main" class="ui-content">
+					<p>삭제하시겠습니까?</p>
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">삭제</a>
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-rel="back">취소</a>
+				</div>
+			</div>
+			
+		</div>
+		<!-- footer 지정 -->
+		<div data-role="footer">
+			<h1>화면 하단</h1>
+		</div>
+	</div>
+</body>
+</html>

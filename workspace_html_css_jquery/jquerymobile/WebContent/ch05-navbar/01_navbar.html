@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 모바일 장치에서 웹사이트가 원하는 사이즈로 보여지게 처리 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jquery Mobile</title>
+<link rel="stylesheet" href="../mobile/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="../mobile/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<!-- page 지정 -->
+	<div data-role="page">
+		<!-- header 지정 -->
+		<div data-role="header" data-position="fixed">
+			<h1>화면 상단</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#">One</a></li>
+					<li><a href="#">Two</a></li>
+					<li><a href="#">Three</a></li>
+					<li><a href="#">Four</a></li>
+					<li><a href="#">Five</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- content -->
+		<div role="main" class="ui-content">
+			<p>Hello World</p>
+		</div>
+		<!-- footer 지정 -->
+		<div data-role="footer" data-position="fixed">
+			<h1>화면 하단</h1>
+		</div>
+	</div>
+</body>
+</html>

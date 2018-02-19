@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 모바일 장치에서 웹사이트가 원하는 사이즈로 보여지게 처리 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jquery Mobile</title>
+<link rel="stylesheet" href="../mobile/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="../mobile/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<!-- page 지정 -->
+	<div data-role="page">
+		<!-- header 지정 -->
+		<div data-role="header">
+			<h1>화면 상단</h1>
+		</div>
+		<!-- content -->
+		<div role="main" class="ui-content">
+			<h4>머릿글과 내용</h4>
+			<h3 class="ui-bar ui-bar-a">Heading</h3>
+			<div class="ui-body">
+				<p>오늘은 월요일!!!</p>
+			</div>
+			
+			<h4>모서리가 둥근 머릿글과 내용</h4>
+			<h3 class="ui-bar ui-bar-a ui-corner-all">Heading</h3>
+			<div class="ui-body ui-body-a ui-corner-all">
+				<p>오늘은 월요일!!!</p>
+			</div>
+			
+			<h4>모서리가 둥근 머릿글과 내용이 분리되지 않은 형태</h4>
+			<div class="ui-bar ui-bar-a ui-corner-all">
+				<h3>Heading</h3>
+				<p>내일은 화요일!!</p>
+			</div>
+			
+			<h4>모서리가 둥글며 머릿글과 내용이 붙어있는 형태</h4>
+			<div class="ui-corner-all">
+				<div class="ui-bar ui-bar-a">
+					<h3>Heading</h3>
+				</div>
+				<div class="ui-body ui-body-a">
+					<p>모레는 수요일!!</p>
+				</div>
+			</div>
+			
+		</div>
+		<!-- footer 지정 -->
+		<div data-role="footer">
+			<h1>화면 하단</h1>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 모바일 장치에서 웹사이트가 원하는 사이즈로 보여지게 처리 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jquery Mobile</title>
+<link rel="stylesheet" href="../mobile/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="../mobile/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+   <!-- page 지정 -->
+   <div data-role="page">
+      <!-- header 지정 -->
+      <div data-role="header">
+         <h1>버튼 그룹</h1>
+      </div>
+      <!-- content -->
+      <div role="main" class="ui-content">
+         <!-- 
+         data-role="controlgroup" 버튼을 수직 또는 수평으로 그룹핑(수직이 기본)
+         data-type="horizontal | vertical" 수평,수직 지정
+          -->
+          <h4>수직 버튼 그룹</h4>
+          <div data-role="controlgroup">
+             <a href="#" class="ui-btn ui-corner-all">No icon</a>
+             <a href="#" class="ui-btn ui-corner-all ui-icon-action ui-btn-icon-left">Left</a>
+             <a href="#" class="ui-btn ui-corner-all ui-icon-alert ui-btn-icon-right">Right</a>
+             <a href="#" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-top">Top</a>
+             <a href="#" class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-bottom">Bottom</a>
+             <a href="#" class="ui-btn ui-corner-all ui-icon-clock ui-btn-icon-notext">Icon only</a>
+          </div>
+          
+           <h4>수평 버튼 그룹</h4>
+          <div data-role="controlgroup" data-type="horizontal">
+             <a href="#" class="ui-btn ui-corner-all">No icon</a>
+             <a href="#" class="ui-btn ui-corner-all ui-icon-action ui-btn-icon-left">Left</a>
+             <a href="#" class="ui-btn ui-corner-all ui-icon-alert ui-btn-icon-right">Right</a>
+             <a href="#" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-top">Top</a>
+             <a href="#" class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-bottom">Bottom</a>
+             <a href="#" class="ui-btn ui-corner-all ui-icon-clock ui-btn-icon-notext">Icon only</a>
+          </div>
+      </div>
+      <!-- footer 지정 -->
+      <div data-role="footer">
+         <h1>화면 하단</h1>
+      </div>
+   </div>
+</body>
+</html>

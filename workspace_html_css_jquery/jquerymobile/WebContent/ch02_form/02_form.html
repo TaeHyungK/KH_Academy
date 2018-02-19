@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<!-- 모바일 장치에서 웹사이트가 원하는 사이지로 보여지게 처리 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jquery Mobile</title>
+<link rel="stylesheet" href="../mobile/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="../mobile/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<!-- page 지정 -->
+	<div data-role="page">
+		<!-- header 지정 -->
+		<div data-role="header">
+			<h1>Checkbox and Radio</h1>
+		</div>
+		<!-- content -->
+		<div role="main" class="ui-content">
+			<h4>싱글 Checkbox</h4>
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup">
+					<legend>Single checkbox</legend>
+					<label for="check">I agree</label>
+					<input type="checkbox" name="ckeck" id="check">				
+				</fieldset>
+			</div>
+			
+			<h4>수평 Checkbox</h4>
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend>checkbox</legend>
+					<input type="checkbox" name="ckeck" id="check-1">
+					<label for="check-1">One</label>
+					<input type="checkbox" name="ckeck" id="check-2">
+					<label for="check-2">Two</label>
+					<input type="checkbox" name="ckeck" id="check-3">
+					<label for="check-3">Three</label>				
+				</fieldset>
+			</div>
+			
+			<h4>수직 Radio</h4>
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup">
+					<legend>Radio</legend>
+					<label for="red">빨강</label>
+					<input type="radio" name="radioinput" id="red">
+					<label for="blue">파랑</label>
+					<input type="radio" name="radioinput" id="blue">		
+				</fieldset>
+			</div>
+		</div>
+		<!-- footer 지정 -->
+		<div data-role="footer">
+			<h1>화면 하단</h1>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

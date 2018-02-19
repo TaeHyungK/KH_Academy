@@ -34,7 +34,7 @@ public class BoardWriteController {
 		return "boardWrite";
 	}
 	@RequestMapping(value="/board/write.do",method=RequestMethod.POST)
-	public String submit(@ModelAttribute("command")@Valid BoardCommand boardCommand,BindingResult result,HttpServletRequest request) {
+	public String submit(@ModelAttribute("command")@Valid BoardCommand boardCommand,BindingResult result, HttpServletRequest request) {
 		
 		if(log.isDebugEnabled()) {
 			log.debug("<<boardCommand>> : " + boardCommand);

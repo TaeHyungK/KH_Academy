@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>메인 화면</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="text/javascript" src="../../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/member.login.js"></script>
+<script type="text/javascript" src="../../js/board.update.js"></script>
+</head>
+<body>
+	<!-- 상단 네비게이션 시작 -->
+	<nav class="navbar" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle custom-navbar" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar custom-icon-bar"></span> <span
+						class="icon-bar custom-icon-bar"></span> <span
+						class="icon-bar custom-icon-bar"></span>
+				</button>
+				<a href="../main/main.html" class="navbar-brand">Hybrid</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right nav-ex" id="main_menu">
+					<li><a href="../board/list.html">게시판</a></li>
+					<li><a href="../member/loginForm.html">로그인</a></li>
+					<li><a href="../member/registerUserForm.html">회원가입</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- 상단 네비게이션 끝 -->
+	<!-- 전체 화면 컨텐츠 시작 -->
+	<div class="content-ex">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-lg-3">
+					<h2>게시판 글 수정</h2>
+					<p>게시판 글을 수정할 수 있습니다.</p>
+				</div>
+				<div class="col-md-9 col-lg-9">
+					<div class="custom-image-space">
+						<img src="../../images/Penguins.jpg" class="img-responsive"
+							alt="board 이미지">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 중앙 컨텐츠 시작 -->
+	<div class="container">
+		<div class="row">
+		    <div class="col-md-12 col-lg-12">
+				<form method="post" id="update_form">
+				    <input type="hidden" name="num" id="num">
+					<div class="form-group custom-input">
+						<div class="col-sm-3 col-lg-3">
+							<label for="title" class="form-label">제목</label>
+						</div>
+						<div class="col-sm-9 col-lg-9">
+							<input class="form-control" type="text" name="title" id="title" maxlength="50">
+				        </div>				                               
+					</div>
+					<div class="form-group custom-input">
+						<div class="col-sm-3 col-lg-3">
+							<label for="content" class="form-label">내용</label>
+						</div>
+						<div class="col-sm-9 col-lg-9">
+								<textarea class="form-control" rows="5" cols="30" name="content"
+								                  id="content"></textarea>
+						</div>		                  
+					</div>
+					<div class="form-group custom-input">
+						<div class="col-sm-3 col-lg-3">
+							<label for="filename" class="form-label">파일</label>
+						</div>	
+						<div class="col-sm-9 col-lg-9">	
+							<input class="form-control" type="file" name="filename" id="filename">
+							<span class="text-size" id="file_notice"></span>
+						</div>		
+					</div>
+					<div class="form-group custom-register-submit">
+								<input type="submit" value="수정" class="btn btn-default">
+								<input type="button" value="목록으로" class="btn btn-default"
+								                           onclick="location.href='../board/list.html'">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<!-- 모바일 장치에서 웹사이트가 원하는 사이지로 보여지게 처리 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jquery Mobile</title>
+<link rel="stylesheet" href="../mobile/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="../mobile/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<!-- 첫번째 페이지 -->
+	<div data-role="page" id="first_page">
+		<!-- header 지정 -->
+		<div data-role="header">
+			<h1>첫번째 페이지</h1>
+		</div>
+		<!-- content -->
+		<div role="main" class="ui-content">
+			<a href="#second_page" data-role="button" data-transition="slide">두번째 화면으로 이동</a>
+		</div>
+		<!-- footer 지정 -->
+		<div data-role="footer">
+			<h1>화면 하단</h1>
+		</div>
+	</div>
+	
+	<!-- 두번째 페이지 -->
+	<div data-role="page" id="second_page">
+		<!-- header 지정 -->
+		<div data-role="header">
+			<h1>두번째 페이지</h1>
+			<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-left ui-btn-icon-notext">이전</a>
+		</div>
+		<!-- content -->
+		<div role="main" class="ui-content">
+			<p>두번째 페이지 입니다.</p>
+		</div>
+		<!-- footer 지정 -->
+		<div data-role="footer">
+			<h1>화면 하단</h1>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

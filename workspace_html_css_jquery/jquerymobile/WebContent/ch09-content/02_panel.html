@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 모바일 장치에서 웹사이트가 원하는 사이즈로 보여지게 처리 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jquery Mobile</title>
+<link rel="stylesheet" href="../mobile/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="../mobile/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<!-- page 지정 -->
+	<div data-role="page">
+		<!-- header 지정 -->
+		<div data-role="header">
+			<h1>Panel</h1>
+		</div>
+		<!-- content -->
+		<div role="main" class="ui-content">
+			<h4>왼쪽 Panel</h4>
+			<a href="#leftpanel01" class="ui-btn ui-btn-shadow ui-corner-all ui-btn-inline ui-btn-mini">Overlay</a>
+			<a href="#leftpanel02" class="ui-btn ui-btn-shadow ui-corner-all ui-btn-inline ui-btn-mini">Reveal</a>
+			<a href="#leftpanel03" class="ui-btn ui-btn-shadow ui-corner-all ui-btn-inline ui-btn-mini">Push</a>
+		</div>
+		<!-- footer 지정 -->
+		<div data-role="footer">
+			<h1>화면 하단</h1>
+		</div>
+		<!-- leftpanel01  시작 -->
+			<div data-role="panel" id="leftpanel01" data-position="left" data-display="overlay">
+				<h3>Left Panel : Overlay</h3>
+				<p>오늘은 월요일, 내일은 화요일, 모레는 수요일</p>
+				<a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline">Close panel</a>
+			</div>
+			<!-- leftpanel01  끝 -->
+			
+			<!-- leftpanel02  시작 -->
+			<div data-role="panel" id="leftpanel02" data-position="left" data-display="reveal">
+				<h3>Left Panel : Reveal</h3>
+				<p>오늘은 월요일, 내일은 화요일, 모레는 수요일</p>
+				<a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline">Close panel</a>
+			</div>
+			<!-- leftpanel02  끝 -->
+			
+			<!-- leftpanel03  시작 -->
+			<div data-role="panel" id="leftpanel03" data-position="left" data-display="push">
+				<h3>Left Panel : Push</h3>
+				<p>오늘은 월요일, 내일은 화요일, 모레는 수요일</p>
+				<a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline">Close panel</a>
+			</div>
+			<!-- leftpanel03  끝 -->
+	</div>
+</body>
+</html>

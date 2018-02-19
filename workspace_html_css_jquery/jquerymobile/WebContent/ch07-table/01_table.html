@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 모바일 장치에서 웹사이트가 원하는 사이즈로 보여지게 처리 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jquery Mobile</title>
+<link rel="stylesheet" href="../mobile/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="../mobile/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<!-- page 지정 -->
+	<div data-role="page">
+		<!-- header 지정 -->
+		<div data-role="header">
+			<h1>Table</h1>
+			<!-- 
+			ui-responsive: 반응형 테이블을 만들어줌. 표시하지 않으면 device 넓이가 변해도
+						       모든 컬럼을 표시하려고 해서 실제로는 안보여지는 컬럼이 발생할 수 있음.
+			ui-responsive를 명시하지 않고 아래 th에 data-priority를 명시하면 실제로는
+			data-priority를 명시하지 않은 컬럼만 보여지고 토글 메뉴에 안보여지는 컬럼이 비활성화 되어 있음.
+			체크하면 활성화 됨.
+			 -->
+			<table data-role="table" data-mode="columntoggle" class="ui-responsive table-stroke">
+				<thead>
+					<tr>
+						<th data-priority="2">Rank</th>
+						<th>Movie Title</th>
+						<th data-priority="3">Year</th>
+						<th data-priority="1">Rating</th>
+						<th data-priority="5">Reviews</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td><a href="http://en.wikipedia.org/wiki/Citizen_Kane">위키피디아</a></td>
+						<td>1941</td>
+						<td>100%</td>
+						<td>74</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td><a href="http://en.wikipedia.org/wiki/Citizen_Kane">위키피디아</a></td>
+						<td>1941</td>
+						<td>100%</td>
+						<td>74</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td><a href="http://en.wikipedia.org/wiki/Citizen_Kane">위키피디아</a></td>
+						<td>1941</td>
+						<td>100%</td>
+						<td>74</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- content -->
+		<div role="main" class="ui-content">
+			<p>Hello World</p>
+		</div>
+		<!-- footer 지정 -->
+		<div data-role="footer">
+			<h1>화면 하단</h1>
+		</div>
+	</div>
+</body>
+</html>
