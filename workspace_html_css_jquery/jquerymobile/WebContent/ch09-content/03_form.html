@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<!-- 모바일 장치에서 웹사이트가 원하는 사이지로 보여지게 처리 -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jquery Mobile</title>
+<link rel="stylesheet" href="../mobile/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="../mobile/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+   <!-- page 지정 -->
+   <div data-role="page">
+      <!-- header 지정 -->
+      <div data-role="header">
+         <h1>form</h1>
+      </div>
+      <!-- content -->
+      <div role="main" class="ui-content">
+         <form action="#" method="post">
+            <div class="ui-field-contain">
+               <label for="date">Date Input:</label>
+               <input data-role="date" type="date" id="date">
+            </div>
+            
+            <div class="ui-field-contain">
+               <label for="name">Text Input:</label>
+               <input type="text" name="name" id="name">
+            </div>
+            
+            <div class="ui-field-contain">
+               <label for="content">Content Input:</label>
+               <textarea cols="40" rows="8" name="content" id="content"></textarea>
+            </div>
+            
+            <div class="ui-field-contain">
+               <label for="search">Search Input:</label>
+               <input type="search" name="search" id="search">
+            </div>
+            
+            <div class="ui-field-contain">
+               <label for="switch">Flip switch:</label>
+               <select name="switch" id="switch" data-role="slider">
+					<option value="off">Off</option>	
+					<option value="on" selected>On</option>
+               </select>
+            </div>
+            
+            <div class="ui-field-contain">
+               <fieldset data-role="controlgroup">
+               		<legend>Choose a pet:</legend>
+               		<input type="radio" name="choice" id="c1" value="choice-1" checked="checked">
+               		<label for="c1">Cat</label>
+               		<input type="radio" name="choice" id="c2" value="choice-2">
+               		<label for="c2">Dog</label>
+               		<input type="radio" name="choice" id="c3" value="choice-3">
+               		<label for="c3">Hamster</label>
+               </fieldset>
+            </div>
+            
+            <div class="ui-field-contain">
+               <fieldset data-role="controlgroup">
+               		<legend>Font styling:</legend>
+               		<input type="checkbox" name="font1" id="f1" value="font1">
+               		<label for="f1">b</label>
+               		<input type="checkbox" name="font2" id="f2" value="font2">
+               		<label for="f2">i</label>
+               		<input type="checkbox" name="font3" id="f3" value="font3">
+               		<label for="f3">u</label>
+               </fieldset>
+            </div>
+            
+            <div class="ui-field-contain">
+            	<label for="choice2" class="select">Choose shipping</label>
+            	<select name="choice2" id="choice2">
+            		<option value="standard">standard</option>
+            		<option value="rush">rush</option>
+            		<option value="express">express</option>
+            	</select>
+            </div>
+            
+            <div class="ui-grid-a">
+            	<div class="ui-block-a"><button type="submit">Submit</button></div>
+            	<div class="ui-block-b"><button type="reset">Reset</button></div>
+            </div>
+         </form>
+      </div>
+      <!-- footer 지정 -->
+      <div data-role="footer">
+         <h1>화면 하단</h1>
+      </div>
+   </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
