@@ -196,7 +196,7 @@
                               <td><a href="academyDetail.do?a_num=<%=mList.get(i).getA_num()%>"><%=mList.get(i).getA_name() %>(<%=mList.get(i).getA_num()%>)</a></td>
                               <td colspan="2"><%=mList.get(i).getA_location() %></td>
                               <td><%=mList.get(i).getA_phone() %></td>
-                              <td><%=mList.get(i).getA_num() %>/<%=mList.get(i).getCurNum() %>/<%=mList.get(i).getC_m_num() %>/<%=user_num %></td>
+                              <td><%=mList.get(i).getA_content() %></td>
                               <td id="a_good_<%=mList.get(i).getA_num() %>"><%=mList.get(i).getA_good()%> </td>
                               <td>
                          <%     

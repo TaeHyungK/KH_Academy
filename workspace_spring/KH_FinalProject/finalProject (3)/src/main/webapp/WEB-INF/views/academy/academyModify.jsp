@@ -122,11 +122,22 @@
 					<label for="a_phone">전화 번호</label>
 					<form:input path="a_phone" class="form-control"/>
 				</div>
+				
 				<div class="form-group">
-					<label for="cp_num">쿠폰번호</label>
-					<form:input path="cp_num" class="form-control"/>
+					<label for="a_phone">전화 번호</label>
+					<form:input path="a_phone" class="form-control"/>
 				</div>
 				
+				<div class="form-group">
+					<label for="upload">회사 로고</label>
+					<input type="file" name="upload"/>
+					<c:if test="${!empty command.a_logo}">
+						<br>
+						<span>(${command.a_logo})파일이 등록되어 있습니다. 다시 업로드하면 기존 파일은
+							삭제됩니다.</span>
+					</c:if>
+				</div>
+								
 				<input type="submit" name="submit" class="btn btn-primary" id="submit_btn" value="전송">
 
 

@@ -138,7 +138,7 @@
                         <form:input path="m_address"/>
                      </div>
                   	<div class="col-md-4 col-md-offset-6">
-                     <input type="submit" name="submit" class="btn btn-primary" id="submit_btn" value="전송">
+                     <input type="submit" name="submit" class="btn btn-primary" id="submit_btn" value="회원가입">
                         <input type="button" class="btn btn-primary" value="Home" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
                      </div>
                   </div>

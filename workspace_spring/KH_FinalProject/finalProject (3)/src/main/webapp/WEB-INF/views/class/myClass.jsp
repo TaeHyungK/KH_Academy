@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <head> 
@@ -53,7 +54,7 @@
                     </li>
                     <c:if test="${!empty user_id}">
                     <li>
-                        <a href="${pageContext.request.contextPath}/academy/academyMain.do">내 정보 관리</a> <!-- 일반회원(1) : 정보보기/찜목록, 학원회원(2): 학원등록/강사등록 -->
+                        <a href="#">내 정보 관리</a> <!-- 일반회원(1) : 정보보기/찜목록, 학원회원(2): 학원등록/강사등록 -->
                         
                         <c:if test="${user_group == 1}">
                         <ul class="dropdown">
@@ -68,7 +69,7 @@
                         <c:if test="${user_group == 2}">
                         <ul class="dropdown">
                         <li>
-                       		<a href="#">학원 정보 보기</a> <!-- 학원 정보 등록, 수정 -->
+                       		<a href="${pageContext.request.contextPath}/academy/academyInfo.do">학원 정보 보기</a> <!-- 학원 정보 등록, 수정 -->
                        	</li>
                        	<li>
                        		<a href="${pageContext.request.contextPath}/class/classMain.do">강의 정보 보기</a> <!-- 강의 등록, 수정, 삭제 -->
@@ -339,7 +340,7 @@ function insert_Ck(){
 					<table class="table table-condensed">
 						<thead>
 							<tr class="cart_menu" align="center">
-								<td class="image">LOGO</td>
+								<td class="image">선택</td>
 								<td class="description">강의 명</td>
 								<td class="price">개강/종강</td>
 								<td class="quantity">현재인원/총인원</td>
@@ -362,7 +363,7 @@ function insert_Ck(){
 								</td>
 								<td class="cart_description">
 									<h4><a href="">${list.c_name}</a></h4>
-									<p>학원 이름 : ${list.a_num}</p>
+									<p>학원 이름 : ${academy.a_name}</p>
 								</td>
 								<td class="cart_price">
 									<p>${list.c_start} ~ ${list.c_end}</p>
@@ -371,7 +372,7 @@ function insert_Ck(){
 								${list.c_count}/${list.c_max_count}
 								</td> 
 								<td class="cart_total">
-									<p class="cart_total_price">${list.c_tuition}</p>
+									<p class="cart_total_price"><fmt:formatNumber value="${list.c_tuition}" pattern="#,###원"/></p>
 			 					</td>
 								
 								<td class="cart_delete"> 
@@ -387,8 +388,7 @@ function insert_Ck(){
 					</table>
 					총 수강료 :  <span id="total">0</span>&nbsp;원
 					<input type="hidden" name="total_price" id="total_price">
-
-					<a class="btn btn-primary" id="submit_btn" href="#" onclick="complete();">수강신청</a>
+					<p align="center"><a class="btn btn-primary" id="submit_btn" href="#" onclick="complete();">수강신청</a></p>
 				</div>
         	</div>
 			<div class="col-md-4">

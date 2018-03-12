@@ -41,7 +41,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">게시판</a> <!-- 정보교류게시판/스터디그룹 모집 게시판 -->
+                        <a href="${pageContext.request.contextPath}/board/list.do">게시판</a> <!-- 정보교류게시판/스터디그룹 모집 게시판 -->
                        	<ul class="dropdown">
                         	<li>
                         		<a href="${pageContext.request.contextPath}/board/list.do">정보 교류 게시판</a>
@@ -95,42 +95,66 @@
 		<div class="form-area">
 		<div class="contact-section" >
 			<form:form commandName="command" action="insert.do" id="cform"
-				class="contactForm" name="cform" enctype="multipart/form-data">
+				class="contactForm" name="cform">
 				<form:errors element="div" cssClass="error-color" />
 				<br style="clear: both">
 				<h3 style="margin-bottom: 25px; text-align: center;">Contact
 					Form</h3>
-					<form:hidden path="m_id"/>
-					<form:hidden path="m_num"/>
+					<form:hidden path="a_num"/>
+				
+				<div class="form-group">
+					<label for="t_num">강사 이름<span class="required">*</span></label>
+					<form:select path="t_num">
+						<c:forEach var="list" items="${list}">
+							<option value="${list.t_num}">${list.t_name}</option>
+						</c:forEach>
+					</form:select>
+				</div>	 
 					 
 				<div class="form-group">
-					<label for="a_name">학원 이름<span class="required">*</span></label>
-					<form:input path="a_name" class="form-control"/>
-				</div>
+					<label for="c_category">카테고리<span class="required">*</span></label>
+					<form:select path="c_category">
+						<form:option value="java"/>
+						<form:option value="android"/>
+						<form:option value="jsp"/>
+						<form:option value="보안"/>
+					</form:select>
+				</div>	 
+				
+				
+					
+					 
 				<div class="form-group">
-					<label for="a_location">학원 위치<span class="required">*</span></label>
-					<form:input path="a_location" class="form-control"/>
-				</div>
-				<div class="form-group">
-				<label for="cp_num">학원 소개</label>
-					<form:textarea path="a_content" class="form-control" placeholder="Message" maxlength="140" rows="7"/>
+					<label for="c_name">강의 이름<span class="required">*</span></label>
+					<form:input path="c_name" class="form-control"/>
 				</div>
 				
 				<div class="form-group">
-					<label for="a_phone">전화 번호</label>
-					<form:input path="a_phone" class="form-control"/>
+				<label for="c_content">강의 내용</label>
+					<form:textarea path="c_content" class="form-control" placeholder="Message" maxlength="300" rows="7"/>
 				</div>
-				<div class="form-group">
-					<label for="cp_num">쿠폰번호</label>
-					<input type="text" name="cp_num" class="form-control">
-					<%-- <form:input path="cp_num" class="form-control" value=""/> --%>
-				</div>
-				<div class="form-group">
-	               <label for="upload">학원 로고 이미지</label>
-	               <input type="file" name="upload"/>
-	            </div>
 				
-				<input type="submit" name="submit" class="btn btn-primary" id="submit_btn" value="전송">
+				<div class="form-group">
+				<label for="c_max_count">최대 인원</label>
+					<form:input path="c_max_count" type="number" max="50" style="width:65px;" step="5" min="0"/>
+				</div>
+					
+				<div class="form-group">
+				<label for="c_start">개강일</label>
+					<form:input path="c_start" type="date"/>
+				</div>
+				
+				<div class="form-group">
+				<label for="c_end">종강일</label>
+					<form:input path="c_end" type="date"/>
+				</div>
+				
+					<div class="form-group">
+				<label for="c_tuition">수강료</label>
+					<form:input path="c_tuition" type="number" step="10000" min="0"/>
+				</div>
+				
+				<p align="center"><input type="submit" name="submit" class="btn btn-primary" id="submit_btn" value="전송"></p>
 
 
 			</form:form>
