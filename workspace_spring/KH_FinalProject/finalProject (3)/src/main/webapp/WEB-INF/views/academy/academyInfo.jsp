@@ -214,6 +214,10 @@
 					<li><i class="fa fa-globe">  </i> <strong>위치:</strong> ${academy.a_location}</li>
 					<li><i class="fa fa-envelope-o"></i> <strong>전화번호:</strong> ${academy.a_phone}</li>
 					<li><i class="fa fa-mobile"></i> <strong>좋아요: </strong> ${academy.a_good}</li>
+					<li><strong>할인행사 유무: </strong>
+					<c:if test="${empty academy.cp_num}">X</c:if>
+					<c:if test="${!empty academy.cp_num}">O</c:if>
+					</li>
 				</ul>
 				
 			</div>
@@ -234,25 +238,20 @@
             </div>
         </div>
         
-        <div class="col-md-4 col-md-offset-8">
+        <div class="col-md-4">
 
 			<!-- Categories Widget -->
-	         <div class="widget widget-categories">
-	            <h3 class="section-title">Categories</h3>
-	            <ul>
-	               <li><a href="${pageContext.request.contextPath}/class/myClass.do">내가 찜한 강의</a></li>
-	               <c:if test="${empty academy.a_num}"> 
-	               <li><a href="${pageContext.request.contextPath}/academy/insert.do">학원   등록</a></li>
-	               </c:if>
-	               <c:if test="${!empty academy.a_num}">
-	               <li><a href="${pageContext.request.contextPath}/academy/modify.do">학원   수정</a></li>
-	               </c:if>
-	               <li><a href="${pageContext.request.contextPath}/teacher/insert.do">강사  등록</a></li>
-	               <li><a href="${pageContext.request.contextPath}/class/insert.do">강의   등록</a></li>
-	               <li><a href="${pageContext.request.contextPath}/main/main.do">홈으로</a></li>
-	            </ul>
-	         </div>
-
+			<div class="widget widget-categories">
+				<h3 class="section-title">Categories</h3>
+				<ul>
+					<li><a href="${pageContext.request.contextPath}/class/myClass.do">내가 찜한 강의</a></li>
+					<c:if test="${empty academy.a_num}"> 
+					<li><a href="${pageContext.request.contextPath}/academy/insert.do">학원	등록</a></li>
+					</c:if>
+					<li><a href="${pageContext.request.contextPath}/academy/modify.do">학원	수정</a></li>
+					<li><a href="${pageContext.request.contextPath}/main/main.do">홈으로</a></li>
+				</ul>
+			</div>
 
 		</div>
     </div>

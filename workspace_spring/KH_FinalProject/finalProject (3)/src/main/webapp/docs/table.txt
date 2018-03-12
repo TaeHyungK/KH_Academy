@@ -1,465 +1,413 @@
+create sequence m_seq; -- 회원 번호 시퀀스
+create sequence my_seq; -- 찜 번호 시퀀스
+create sequence a_seq; -- 학원 번호 시퀀스
+create sequence t_seq; -- 강사 번호 시퀀스
+create sequence c_seq; -- 강의 번호 시퀀스
+create sequence cp_seq; -- 쿠폰 번호 시퀀스
+create sequence sb_seq; -- 스터디 게시판 글번호 시퀀스
+create sequence sc_seq; -- 스터디 댓글 번호 시퀀스
+create sequence ib_seq; -- 정보 게시판 글번호 시퀀스
+create sequence ic_seq; -- 정보 댓글 번호 시퀀스
+
+
 -- 학원정보
 CREATE TABLE ACADEMY (
-   a_num      number(8)     NOT NULL, -- 학원번호
-   m_num      number(8)     NOT NULL, -- 회원번호
-   a_name     varchar2(30)  NOT NULL, -- 학원이름
-   a_location varchar2(300) NOT NULL, -- 위치
-   a_phone    varchar2(30)  NOT NULL, -- 전화번호
-   a_content  CLOB          NOT NULL, -- 학원소개
-   a_good     number(5)     NOT NULL, -- 좋아요
-   a_regdate  DATE          NOT NULL, -- 입력일
-   cp_num     number(8)     NULL,     -- 쿠폰 번호
-   a_logo     varchar2(150) NULL,     -- 학원로고
-   uploadfile BLOB          NULL      -- 로고파일
+	a_num      number(8)     NOT NULL, -- 학원번호
+	m_num      number(8)     NOT NULL, -- 회원번호
+	a_name     varchar2(30)  NOT NULL, -- 학원이름
+	a_location varchar2(300) NOT NULL, -- 위치
+	a_phone    varchar2(30)  NOT NULL, -- 전화번호
+	a_content  CLOB          NOT NULL, -- 학원소개
+	a_good     number(5)     NOT NULL, -- 좋아요
+	a_regdate  DATE          NOT NULL, -- 입력일
+	cp_num     number(8)     NULL      -- 쿠폰 번호
 );
 
 -- 학원정보
 ALTER TABLE ACADEMY
-   ADD
-      CONSTRAINT PK_ACADEMY -- 학원정보 기본키
-      PRIMARY KEY (
-         a_num -- 학원번호
-      );
+	ADD
+		CONSTRAINT PK_ACADEMY -- 학원정보 기본키
+		PRIMARY KEY (
+			a_num -- 학원번호
+		);
 
 -- 강사진
 CREATE TABLE TEACHER (
-   t_num      number(8)     NOT NULL, -- 강사번호
-   a_num      number(8)     NOT NULL, -- 학원번호
-   t_name     varchar2(20)  NOT NULL, -- 강사이름
-   t_content  CLOB          NOT NULL, -- 강사소개
-   t_record   CLOB          NULL,     -- 이력
-   t_preview  varchar2(50)  NULL,     -- 미리보기
-   t_good     number(5)     NOT NULL, -- 좋아요
-   t_image    varchar2(150) NULL,     -- 강사사진
-   uploadfile BLOB          NULL      -- 사진파일
+	t_num     number(8)    NOT NULL, -- 강사번호
+	a_num     number(8)    NOT NULL, -- 학원번호
+	t_name    varchar2(20) NOT NULL, -- 강사이름
+	t_content CLOB         NOT NULL, -- 강사소개
+	t_record  CLOB         NULL,     -- 이력
+	t_preview varchar2(50) NULL      -- 미리보기
 );
 
 -- 강사진
 ALTER TABLE TEACHER
-   ADD
-      CONSTRAINT PK_TEACHER -- 강사진 기본키
-      PRIMARY KEY (
-         t_num -- 강사번호
-      );
+	ADD
+		CONSTRAINT PK_TEACHER -- 강사진 기본키
+		PRIMARY KEY (
+			t_num -- 강사번호
+		);
 
 -- 강의정보
 CREATE TABLE CLASS (
-   c_num       number(8)    NOT NULL, -- 강의번호
-   t_num       number(8)    NULL,     -- 강사번호
-   a_num       number(8)    NOT NULL, -- 학원번호
-   c_category  varchar2(15) NOT NULL, -- 카테고리
-   c_name      varchar2(30  NOT NULL, -- 강의명
-   c_content   CLOB         NOT NULL, -- 강의소개
-   c_count     number(10)   NOT NULL, -- 현재인원
-   c_max_count number(10)   NOT NULL, -- 최대인원
-   c_start     DATE         NOT NULL, -- 개강날짜
-   c_end       DATE         NOT NULL, -- 종강날짜
-   c_tuition   number(8)    NOT NULL, -- 수강료
-   c_regdate   DATE         NOT NULL  -- 등록일
+	c_num       number(8)    NOT NULL, -- 강의번호
+	t_num       number(8)    NOT NULL, -- 강사번호
+	a_num       number(8)    NOT NULL, -- 학원번호
+	c_category  varchar2(15) NOT NULL, -- 카테고리
+	c_name      varchar2(30)  NOT NULL, -- 강의명
+	c_content   CLOB         NOT NULL, -- 강의소개
+	c_count     number(10)   NOT NULL, -- 현재인원
+	c_max_count number(10)   NOT NULL, -- 최대인원
+	c_start     DATE         NOT NULL, -- 개강날짜
+	c_end       DATE         NOT NULL, -- 종강날짜
+	c_tuition   number(8)    NOT NULL, -- 수강료
+	c_regdate   DATE         NOT NULL  -- 등록일
 );
 
 -- 강의정보
 ALTER TABLE CLASS
-   ADD
-      CONSTRAINT PK_CLASS -- 강의정보 기본키
-      PRIMARY KEY (
-         c_num -- 강의번호
-      );
+	ADD
+		CONSTRAINT PK_CLASS -- 강의정보 기본키
+		PRIMARY KEY (
+			c_num -- 강의번호
+		);
 
 -- 회원상세
 CREATE TABLE MEMBER_DETAIL (
-   m_num     number(8)     NOT NULL, -- 회원번호
-   m_pw      varchar2(20)  NOT NULL, -- 비밀번호
-   m_name    varchar2(60)  NOT NULL, -- 이름
-   m_phone   varchar2(30)  NOT NULL, -- 전화번호
-   m_email   varchar2(100) NOT NULL, -- 이메일
-   m_address varchar2(300) NOT NULL, -- 주소
-   m_regdate DATE          NOT NULL  -- 가입일
+	m_num     number(8)     NOT NULL, -- 회원번호
+	m_pw      varchar2(20)  NOT NULL, -- 비밀번호
+	m_name    varchar2(60)  NOT NULL, -- 이름
+	m_phone   varchar2(30)  NOT NULL, -- 전화번호
+	m_email   varchar2(100) NOT NULL, -- 이메일
+	m_address varchar2(300) NOT NULL, -- 주소
+	m_regdate DATE          NOT NULL  -- 가입일
 );
 
 -- 회원상세
 ALTER TABLE MEMBER_DETAIL
-   ADD
-      CONSTRAINT PK_MEMBER_DETAIL -- 회원상세 기본키
-      PRIMARY KEY (
-         m_num -- 회원번호
-      );
-
--- 회원상세
-ALTER TABLE MEMBER_DETAIL
-   ADD
-      CONSTRAINT UK_MEMBER_DETAIL -- 회원상세 유니크 제약
-      UNIQUE (
-      );
+	ADD
+		CONSTRAINT PK_MEMBER_DETAIL -- 회원상세 기본키
+		PRIMARY KEY (
+			m_num -- 회원번호
+		);
 
 -- 정보교류게시판
 CREATE TABLE INFO_BOARD (
-   ib_num     number(8)    NOT NULL, -- 글번호
-   ib_title   varchar2(80) NOT NULL, -- 제목
-   ib_content CLOB         NOT NULL, -- 내용
-   ib_hit     number(5)    NOT NULL, -- 조회수
-   ib_date    DATE         NOT NULL, -- 작성날짜
-   m_num      number(8)    NOT NULL  -- 회원번호
+	ib_num     number(8)    NOT NULL, -- 글번호
+	ib_title   varchar2(80) NOT NULL, -- 제목
+	ib_content CLOB         NOT NULL, -- 내용
+	ib_hit     number(5)    NOT NULL, -- 조회수
+	ib_good    number(5)    NOT NULL, -- 좋아요
+	ib_date    DATE         NOT NULL, -- 작성날짜
+	m_num      number(8)    NOT NULL  -- 회원번호
 );
 
 -- 정보교류게시판
 ALTER TABLE INFO_BOARD
-   ADD
-      CONSTRAINT PK_INFO_BOARD -- 정보교류게시판 기본키
-      PRIMARY KEY (
-         ib_num -- 글번호
-      );
+	ADD
+		CONSTRAINT PK_INFO_BOARD -- 정보교류게시판 기본키
+		PRIMARY KEY (
+			ib_num -- 글번호
+		);
 
 -- 내가 찜한 강의
 CREATE TABLE MY_CLASS (
-   my_num number(8) NOT NULL, -- 찜번호
-   c_num  number(8) NOT NULL, -- 강의번호
-   m_num  number(8) NOT NULL  -- 회원번호
+	my_num number(8) NOT NULL, -- 찜번호
+	c_num  number(8) NOT NULL, -- 강의번호
+	m_num  number(8) NOT NULL  -- 회원번호
 );
 
 -- 내가 찜한 강의
 ALTER TABLE MY_CLASS
-   ADD
-      CONSTRAINT PK_MY_CLASS -- 내가 찜한 강의 기본키
-      PRIMARY KEY (
-         my_num -- 찜번호
-      );
+	ADD
+		CONSTRAINT PK_MY_CLASS -- 내가 찜한 강의 기본키
+		PRIMARY KEY (
+			my_num -- 찜번호
+		);
 
 -- 수강신청완료
 CREATE TABLE COMPLETE (
-   my_num      number(8) NOT NULL, -- 찜번호
-   m_num       number(8) NULL,     -- 회원번호
-   c_num       number(8) NULL,     -- 강의번호
-   total_price number(8) NOT NULL  -- 최종가격
+	my_num      number(8) NOT NULL, -- 찜번호
+	total_price number(8) NOT NULL  -- 최종가격
 );
 
 -- 수강신청완료
 ALTER TABLE COMPLETE
-   ADD
-      CONSTRAINT PK_COMPLETE -- 수강신청완료 기본키
-      PRIMARY KEY (
-         my_num -- 찜번호
-      );
+	ADD
+		CONSTRAINT PK_COMPLETE -- 수강신청완료 기본키
+		PRIMARY KEY (
+			my_num -- 찜번호
+		);
 
 -- 할인쿠폰
 CREATE TABLE COUPON (
-   cp_num    number(8)    NOT NULL, -- 쿠폰 번호
-   cp_name   varchar2(20) NOT NULL, -- 쿠폰 이름
-   cp_dcrate number(3)    NOT NULL  -- 할인율
+	cp_num    number(8)    NOT NULL, -- 쿠폰 번호
+	cp_name   varchar2(20) NOT NULL, -- 쿠폰 이름
+	cp_dcrate number(3)    NOT NULL  -- 할인율
 );
 
 -- 할인쿠폰
 ALTER TABLE COUPON
-   ADD
-      CONSTRAINT PK_COUPON -- 할인쿠폰 기본키
-      PRIMARY KEY (
-         cp_num -- 쿠폰 번호
-      );
+	ADD
+		CONSTRAINT PK_COUPON -- 할인쿠폰 기본키
+		PRIMARY KEY (
+			cp_num -- 쿠폰 번호
+		);
 
 -- 스터디그룹게시판
 CREATE TABLE STUDY_BOARD (
-   sb_num     number(8)    NOT NULL, -- 스터디글번호
-   sb_title   varchar2(80) NOT NULL, -- 제목
-   sb_content CLOB         NOT NULL, -- 내용
-   sb_hit     number(5)    NOT NULL, -- 조회수
-   sb_count   number(5)    NOT NULL, -- 모집인원
-   sb_date    DATE         NOT NULL, -- 작성날짜
-   m_num      number(8)    NOT NULL  -- 회원번호
+	sb_num     number(8)    NOT NULL, -- 스터디글번호
+	sb_title   varchar2(80) NOT NULL, -- 제목
+	sb_content CLOB         NOT NULL, -- 내용
+	sb_hit     number(5)    NOT NULL, -- 조회수
+	sb_count   number(5)    NOT NULL, -- 모집인원
+	sb_date    DATE         NOT NULL, -- 작성날짜
+	m_num      number(8)    NOT NULL  -- 회원번호
 );
 
 -- 스터디그룹게시판
 ALTER TABLE STUDY_BOARD
-   ADD
-      CONSTRAINT PK_STUDY_BOARD -- 스터디그룹게시판 기본키
-      PRIMARY KEY (
-         sb_num -- 스터디글번호
-      );
+	ADD
+		CONSTRAINT PK_STUDY_BOARD -- 스터디그룹게시판 기본키
+		PRIMARY KEY (
+			sb_num -- 스터디글번호
+		);
 
 -- 정보교류 댓글
 CREATE TABLE INFO_COMMENT (
-   if_num     number(8)     NOT NULL, -- 댓글번호
-   ib_num     number(8)     NOT NULL, -- 글번호
-   ic_content varchar2(300) NOT NULL, -- 댓글내용
-   ic_regdate DATE          NOT NULL, -- 댓글날짜
-   m_num      number(8)     NOT NULL  -- 회원번호
+	if_num     number(8)     NOT NULL, -- 댓글번호
+	ib_num     number(8)     NOT NULL, -- 글번호
+	ic_content varchar2(300) NOT NULL, -- 댓글내용
+	ic_regdate DATE          NOT NULL, -- 댓글날짜
+	m_num      number(8)     NOT NULL  -- 회원번호
 );
 
 -- 정보교류 댓글
 ALTER TABLE INFO_COMMENT
-   ADD
-      CONSTRAINT PK_INFO_COMMENT -- 정보교류 댓글 기본키
-      PRIMARY KEY (
-         if_num -- 댓글번호
-      );
+	ADD
+		CONSTRAINT PK_INFO_COMMENT -- 정보교류 댓글 기본키
+		PRIMARY KEY (
+			if_num -- 댓글번호
+		);
 
 -- 스터디 댓글
 CREATE TABLE STUDY_COMMENT (
-   sc_num     number(8)     NOT NULL, -- 댓글번호
-   sb_num     number(8)     NOT NULL, -- 스터디글번호
-   sc_content varchar2(300) NOT NULL, -- 댓글내용
-   sc_regdate DATE          NOT NULL, -- 댓글날짜
-   m_num      number(8)     NOT NULL  -- 회원번호
+	sc_num     number(8)     NOT NULL, -- 댓글번호
+	sb_num     number(8)     NOT NULL, -- 스터디글번호
+	sc_content varchar2(300) NOT NULL, -- 댓글내용
+	sc_regdate DATE          NOT NULL, -- 댓글날짜
+	m_num      number(8)     NOT NULL  -- 회원번호
 );
 
 -- 스터디 댓글
 ALTER TABLE STUDY_COMMENT
-   ADD
-      CONSTRAINT PK_STUDY_COMMENT -- 스터디 댓글 기본키
-      PRIMARY KEY (
-         sc_num -- 댓글번호
-      );
+	ADD
+		CONSTRAINT PK_STUDY_COMMENT -- 스터디 댓글 기본키
+		PRIMARY KEY (
+			sc_num -- 댓글번호
+		);
 
 -- 회원
 CREATE TABLE MEMBER (
-   m_num   number(8)    NOT NULL, -- 회원번호
-   m_id    varchar2(50) NOT NULL, -- 아이디
-   m_group number(1)    NOT NULL  -- 회원구분
+	m_num   number(8)    NOT NULL, -- 회원번호
+	m_id    varchar2(50) NOT NULL, -- 아이디
+	m_gorup number(1)    NOT NULL  -- 회원구분
 );
 
 -- 회원
 ALTER TABLE MEMBER
-   ADD
-      CONSTRAINT PK_MEMBER2 -- 회원 기본키
-      PRIMARY KEY (
-         m_num -- 회원번호
-      );
+	ADD
+		CONSTRAINT PK_MEMBER2 -- 회원 기본키
+		PRIMARY KEY (
+			m_num -- 회원번호
+		);
 
 -- 회원
 ALTER TABLE MEMBER
-   ADD
-      CONSTRAINT UK_MEMBER2 -- 회원 유니크 제약
-      UNIQUE (
-         m_id -- 아이디
-      );
-
--- 학원_좋아요
-CREATE TABLE LIKED (
-   m_num number(8) NOT NULL, -- 회원번호
-   a_num number(8) NOT NULL  -- 학원번호
-);
-
--- 강사_좋아요
-CREATE TABLE T_LIKED (
-   t_num number(8) NOT NULL, -- 강사번호
-   a_num number(8) NOT NULL  -- 학원번호
-);
+	ADD
+		CONSTRAINT UK_MEMBER2 -- 회원 유니크 제약
+		UNIQUE (
+			m_id -- 아이디
+		);
 
 -- 학원정보
 ALTER TABLE ACADEMY
-   ADD
-      CONSTRAINT FK_MEMBER_TO_ACADEMY -- 회원 -> 학원정보
-      FOREIGN KEY (
-         m_num -- 회원번호
-      )
-      REFERENCES MEMBER ( -- 회원
-         m_num -- 회원번호
-      );
+	ADD
+		CONSTRAINT FK_COUPON_TO_ACADEMY -- 할인쿠폰 -> 학원정보
+		FOREIGN KEY (
+			cp_num -- 쿠폰 번호
+		)
+		REFERENCES COUPON ( -- 할인쿠폰
+			cp_num -- 쿠폰 번호
+		);
+
+-- 학원정보
+ALTER TABLE ACADEMY
+	ADD
+		CONSTRAINT FK_MEMBER_TO_ACADEMY -- 회원 -> 학원정보
+		FOREIGN KEY (
+			m_num -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 회원
+			m_num -- 회원번호
+		);
 
 -- 강사진
 ALTER TABLE TEACHER
-   ADD
-      CONSTRAINT FK_ACADEMY_TO_TEACHER -- 학원정보 -> 강사진
-      FOREIGN KEY (
-         a_num -- 학원번호
-      )
-      REFERENCES ACADEMY ( -- 학원정보
-         a_num -- 학원번호
-      );
+	ADD
+		CONSTRAINT FK_ACADEMY_TO_TEACHER -- 학원정보 -> 강사진
+		FOREIGN KEY (
+			a_num -- 학원번호
+		)
+		REFERENCES ACADEMY ( -- 학원정보
+			a_num -- 학원번호
+		);
 
 -- 강의정보
 ALTER TABLE CLASS
-   ADD
-      CONSTRAINT FK_TEACHER_TO_CLASS -- 강사진 -> 강의정보
-      FOREIGN KEY (
-         t_num -- 강사번호
-      )
-      REFERENCES TEACHER ( -- 강사진
-         t_num -- 강사번호
-      );
+	ADD
+		CONSTRAINT FK_TEACHER_TO_CLASS -- 강사진 -> 강의정보
+		FOREIGN KEY (
+			t_num -- 강사번호
+		)
+		REFERENCES TEACHER ( -- 강사진
+			t_num -- 강사번호
+		);
 
 -- 강의정보
 ALTER TABLE CLASS
-   ADD
-      CONSTRAINT FK_ACADEMY_TO_CLASS -- 학원정보 -> 강의정보
-      FOREIGN KEY (
-         a_num -- 학원번호
-      )
-      REFERENCES ACADEMY ( -- 학원정보
-         a_num -- 학원번호
-      );
+	ADD
+		CONSTRAINT FK_ACADEMY_TO_CLASS -- 학원정보 -> 강의정보
+		FOREIGN KEY (
+			a_num -- 학원번호
+		)
+		REFERENCES ACADEMY ( -- 학원정보
+			a_num -- 학원번호
+		);
 
 -- 회원상세
 ALTER TABLE MEMBER_DETAIL
-   ADD
-      CONSTRAINT FK_MEMBER_TO_MEMBER_DETAIL -- 회원 -> 회원상세
-      FOREIGN KEY (
-         m_num -- 회원번호
-      )
-      REFERENCES MEMBER ( -- 회원
-         m_num -- 회원번호
-      );
+	ADD
+		CONSTRAINT FK_MEMBER_TO_MEMBER_DETAIL -- 회원 -> 회원상세
+		FOREIGN KEY (
+			m_num -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 회원
+			m_num -- 회원번호
+		);
 
 -- 정보교류게시판
 ALTER TABLE INFO_BOARD
-   ADD
-      CONSTRAINT FK_MEMBER_TO_INFO_BOARD -- 회원 -> 정보교류게시판
-      FOREIGN KEY (
-         m_num -- 회원번호
-      )
-      REFERENCES MEMBER ( -- 회원
-         m_num -- 회원번호
-      );
+	ADD
+		CONSTRAINT FK_MEMBER_TO_INFO_BOARD -- 회원 -> 정보교류게시판
+		FOREIGN KEY (
+			m_num -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 회원
+			m_num -- 회원번호
+		);
 
 -- 내가 찜한 강의
 ALTER TABLE MY_CLASS
-   ADD
-      CONSTRAINT FK_CLASS_TO_MY_CLASS -- 강의정보 -> 내가 찜한 강의
-      FOREIGN KEY (
-         c_num -- 강의번호
-      )
-      REFERENCES CLASS ( -- 강의정보
-         c_num -- 강의번호
-      );
+	ADD
+		CONSTRAINT FK_CLASS_TO_MY_CLASS -- 강의정보 -> 내가 찜한 강의
+		FOREIGN KEY (
+			c_num -- 강의번호
+		)
+		REFERENCES CLASS ( -- 강의정보
+			c_num -- 강의번호
+		);
 
 -- 내가 찜한 강의
 ALTER TABLE MY_CLASS
-   ADD
-      CONSTRAINT FK_MEMBER_DETAIL_TO_MY_CLASS -- 회원상세 -> 내가 찜한 강의
-      FOREIGN KEY (
-         m_num -- 회원번호
-      )
-      REFERENCES MEMBER_DETAIL ( -- 회원상세
-         m_num -- 회원번호
-      );
+	ADD
+		CONSTRAINT FK_MEMBER_DETAIL_TO_MY_CLASS -- 회원상세 -> 내가 찜한 강의
+		FOREIGN KEY (
+			m_num -- 회원번호
+		)
+		REFERENCES MEMBER_DETAIL ( -- 회원상세
+			m_num -- 회원번호
+		);
 
 -- 수강신청완료
 ALTER TABLE COMPLETE
-   ADD
-      CONSTRAINT FK_MY_CLASS_TO_COMPLETE -- 내가 찜한 강의 -> 수강신청완료
-      FOREIGN KEY (
-         my_num -- 찜번호
-      )
-      REFERENCES MY_CLASS ( -- 내가 찜한 강의
-         my_num -- 찜번호
-      );
-
--- 수강신청완료
-ALTER TABLE COMPLETE
-   ADD
-      CONSTRAINT FK_MEMBER_DETAIL_TO_COMPLETE -- 회원상세 -> 수강신청완료
-      FOREIGN KEY (
-         m_num -- 회원번호
-      )
-      REFERENCES MEMBER_DETAIL ( -- 회원상세
-         m_num -- 회원번호
-      );
-
--- 수강신청완료
-ALTER TABLE COMPLETE
-   ADD
-      CONSTRAINT FK_CLASS_TO_COMPLETE -- 강의정보 -> 수강신청완료
-      FOREIGN KEY (
-         c_num -- 강의번호
-      )
-      REFERENCES CLASS ( -- 강의정보
-         c_num -- 강의번호
-      );
+	ADD
+		CONSTRAINT FK_MY_CLASS_TO_COMPLETE -- 내가 찜한 강의 -> 수강신청완료
+		FOREIGN KEY (
+			my_num -- 찜번호
+		)
+		REFERENCES MY_CLASS ( -- 내가 찜한 강의
+			my_num -- 찜번호
+		);
 
 -- 스터디그룹게시판
 ALTER TABLE STUDY_BOARD
-   ADD
-      CONSTRAINT FK_MEMBER_TO_STUDY_BOARD -- 회원 -> 스터디그룹게시판
-      FOREIGN KEY (
-         m_num -- 회원번호
-      )
-      REFERENCES MEMBER ( -- 회원
-         m_num -- 회원번호
-      );
+	ADD
+		CONSTRAINT FK_MEMBER_TO_STUDY_BOARD -- 회원 -> 스터디그룹게시판
+		FOREIGN KEY (
+			m_num -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 회원
+			m_num -- 회원번호
+		);
 
 -- 정보교류 댓글
 ALTER TABLE INFO_COMMENT
-   ADD
-      CONSTRAINT FK_INFO_BOARD_TO_INFO_COMMENT -- 정보교류게시판 -> 정보교류 댓글
-      FOREIGN KEY (
-         ib_num -- 글번호
-      )
-      REFERENCES INFO_BOARD ( -- 정보교류게시판
-         ib_num -- 글번호
-      );
+	ADD
+		CONSTRAINT FK_INFO_BOARD_TO_INFO_COMMENT -- 정보교류게시판 -> 정보교류 댓글
+		FOREIGN KEY (
+			ib_num -- 글번호
+		)
+		REFERENCES INFO_BOARD ( -- 정보교류게시판
+			ib_num -- 글번호
+		);
 
 -- 정보교류 댓글
 ALTER TABLE INFO_COMMENT
-   ADD
-      CONSTRAINT FK_MEMBER_TO_INFO_COMMENT -- 회원 -> 정보교류 댓글
-      FOREIGN KEY (
-         m_num -- 회원번호
-      )
-      REFERENCES MEMBER ( -- 회원
-         m_num -- 회원번호
-      );
+	ADD
+		CONSTRAINT FK_MEMBER_TO_INFO_COMMENT -- 회원 -> 정보교류 댓글
+		FOREIGN KEY (
+			m_num -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 회원
+			m_num -- 회원번호
+		);
+
 
 -- 스터디 댓글
 ALTER TABLE STUDY_COMMENT
-   ADD
-      CONSTRAINT FK_STUDY_BOARD_TO_STUDY_COMMENT -- 스터디그룹게시판 -> 스터디 댓글
-      FOREIGN KEY (
-         sb_num -- 스터디글번호
-      )
-      REFERENCES STUDY_BOARD ( -- 스터디그룹게시판
-         sb_num -- 스터디글번호
-      );
+	ADD
+		CONSTRAINT FK_STUDY_BOARD_COMMENT -- 스터디그룹게시판 -> 스터디 댓글
+		FOREIGN KEY (
+			sb_num -- 스터디글번호
+		)
+		REFERENCES STUDY_BOARD ( -- 스터디그룹게시판
+			sb_num -- 스터디글번호
+		);
+
 
 -- 스터디 댓글
 ALTER TABLE STUDY_COMMENT
-   ADD
-      CONSTRAINT FK_MEMBER_TO_STUDY_COMMENT -- 회원 -> 스터디 댓글
-      FOREIGN KEY (
-         m_num -- 회원번호
-      )
-      REFERENCES MEMBER ( -- 회원
-         m_num -- 회원번호
-      );
+	ADD
+		CONSTRAINT FK_MEMBER_TO_STUDY_COMMENT -- 회원 -> 스터디 댓글
+		FOREIGN KEY (
+			m_num -- 회원번호
+		)
+		REFERENCES MEMBER ( -- 회원
+			m_num -- 회원번호
+		);
 
--- 학원_좋아요
+		
+		
+-- 좋아요 기능
+CREATE TABLE LIKED(
+    m_num number(8) NOT NULL,
+    a_num number(8) NOT NULL
+);
+
 ALTER TABLE LIKED
-   ADD
-      CONSTRAINT FK_MEMBER_TO_LIKED -- 회원 -> 학원_좋아요
-      FOREIGN KEY (
-         m_num -- 회원번호
-      )
-      REFERENCES MEMBER ( -- 회원
-         m_num -- 회원번호
-      );
+ADD CONSTRAINT pk_like primary key (a_num);
 
--- 학원_좋아요
-ALTER TABLE LIKED
-   ADD
-      CONSTRAINT FK_ACADEMY_TO_LIKED -- 학원정보 -> 학원_좋아요
-      FOREIGN KEY (
-         a_num -- 학원번호
-      )
-      REFERENCES ACADEMY ( -- 학원정보
-         a_num -- 학원번호
-      );
+--이미지 추가된거 확인, COMPLETE테이블 추가된 항목 확인, 강의-컴플리트 등 관계 확인 
 
--- 강사_좋아요
-ALTER TABLE T_LIKED
-   ADD
-      CONSTRAINT FK_TEACHER_TO_T_LIKED -- 강사진 -> 강사_좋아요
-      FOREIGN KEY (
-         t_num -- 강사번호
-      )
-      REFERENCES TEACHER ( -- 강사진
-         t_num -- 강사번호
-      );
-
--- 강사_좋아요
-ALTER TABLE T_LIKED
-   ADD
-      CONSTRAINT FK_ACADEMY_TO_T_LIKED -- 학원정보 -> 강사_좋아요
-      FOREIGN KEY (
-         a_num -- 학원번호
-      )
-      REFERENCES ACADEMY ( -- 학원정보
-         a_num -- 학원번호
-      );

@@ -228,6 +228,10 @@
 					</li>
 					<li><i class="fa fa-envelope-o"></i> <strong>전화번호:</strong> ${academy.a_phone}</li>
 					<li><i class="fa fa-mobile"></i> <strong>좋아요: </strong> ${academy.a_good}</li>
+					<li><strong>할인행사 유무: </strong>
+					<c:if test="${empty academy.cp_num}">X</c:if>
+					<c:if test="${!empty academy.cp_num}">O</c:if>
+					</li>
 				</ul>
 				
 			</div>

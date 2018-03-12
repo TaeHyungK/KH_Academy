@@ -54,7 +54,7 @@
                     <c:if test="${!empty user_id}">
                     <li>
                         <c:if test="${user_group == 1}">
-                        <a class="active" href="#">내 정보 관리</a> <!-- 일반회원(1) : 정보보기/찜목록, 학원회원(2): 학원등록/강사등록 -->
+                        <a class="active" href="${pageContext.request.contextPath}/member/detail.do">내 정보 관리</a> <!-- 일반회원(1) : 정보보기/찜목록, 학원회원(2): 학원등록/강사등록 -->
                         
                         <ul class="dropdown">
                         <li>
@@ -66,7 +66,7 @@
                        	</ul>
                         </c:if>
                         <c:if test="${user_group == 2}">
-                        <a class="active" href="#">내 정보 관리</a> <!-- 일반회원(1) : 정보보기/찜목록, 학원회원(2): 학원등록/강사등록 -->
+                        <a class="active" href="${pageContext.request.contextPath}/academy/academyInfo.do">내 정보 관리</a> <!-- 일반회원(1) : 정보보기/찜목록, 학원회원(2): 학원등록/강사등록 -->
                         <ul class="dropdown">
                         <li>
                        		<a href="${pageContext.request.contextPath}/academy/academyInfo.do">학원 정보 보기</a> <!-- 학원 정보 등록, 수정 -->
@@ -136,7 +136,7 @@
 				
 				<div class="form-group">
 				<label for="c_max_count">최대 인원</label>
-					<form:input path="c_max_count" type="number" max="50" style="width:65px;" step="5" min="0"/>
+					<form:input path="c_max_count" type="number" max="50" style="width:65px;" step="10"/>
 				</div>
 					
 				<div class="form-group">
@@ -151,10 +151,10 @@
 				
 					<div class="form-group">
 				<label for="c_tuition">수강료</label>
-					<form:input path="c_tuition" type="number" step="10000" min="0"/>
+					<form:input path="c_tuition" type="number" step="100000"/>
 				</div>
 				
-				<p align="center"><input type="submit" name="submit" class="btn btn-primary" id="submit_btn" value="전송"></p>
+				<input type="submit" name="submit" class="btn btn-primary" id="submit_btn" value="전송">
 
 
 			</form:form>

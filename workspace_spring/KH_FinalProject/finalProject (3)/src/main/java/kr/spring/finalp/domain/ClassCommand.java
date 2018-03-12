@@ -28,6 +28,8 @@ public class ClassCommand {
 	private byte[] uploadfile;
 	private String a_logo;
 	
+	private String a_name;
+	
 	public int getC_num() {
 		return c_num;
 	}
@@ -146,6 +148,15 @@ public class ClassCommand {
 	public void setTotal_price(int total_price) {
 		this.total_price = total_price;
 	}
+	
+	
+	public String getA_name() {
+		return a_name;
+	}
+	public void setA_name(String a_name) {
+		this.a_name = a_name;
+	}
+	
 	@Override
 	public String toString() {
 		return "ClassCommand [c_num=" + c_num + ", t_num=" + t_num + ", a_num=" + a_num + ", c_category=" + c_category

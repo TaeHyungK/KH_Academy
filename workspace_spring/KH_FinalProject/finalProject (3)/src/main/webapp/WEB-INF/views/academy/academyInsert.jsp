@@ -113,12 +113,17 @@
 				</div>
 				<div class="form-group">
 				<label for="cp_num">학원 소개</label>
-					<form:textarea path="a_content" class="form-control" placeholder="Message" rows="7"/>
+					<form:textarea path="a_content" class="form-control" placeholder="Message" maxlength="140" rows="7"/>
 				</div>
 				
 				<div class="form-group">
 					<label for="a_phone">전화 번호</label>
 					<form:input path="a_phone" class="form-control"/>
+				</div>
+				<div class="form-group">
+					<label for="cp_num">쿠폰번호</label>
+					<input type="text" name="cp_num" class="form-control">
+					<%-- <form:input path="cp_num" class="form-control" value=""/> --%>
 				</div>
 				<div class="form-group">
 	               <label for="upload">학원 로고 이미지</label>

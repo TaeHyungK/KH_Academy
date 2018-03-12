@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 
 <head> 
@@ -133,7 +135,7 @@
 								
 								<td class="cart_description">
 									<h4><a href="">${list.c_name}</a></h4>
-									<p>학원 이름 : ${list.a_num}</p>
+									<p>학원 이름 : ${list.a_name}</p>
 								</td>
 								<td class="cart_price">
 									<p>${list.c_start} ~ ${list.c_end}</p>

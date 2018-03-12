@@ -112,12 +112,12 @@
 				<c:if test="${count>0}">
 					<table class="type11">
 						<tr>
-							<th style="width:70px; text-align:center">번호</th>
-							<th style="text-align:center">이름</th>
-							<th style="width:170px; text-align:center">내용</th>
-							<th style="text-align:center">이력</th>
-							<th style="text-align:center">미리보기</th>
-							<th></th>
+							<th style="width:70px;">번호</th>
+							<th>이름</th>
+							<th style="width:170px;">내용</th>
+							<th>이력</th>
+							<th>미리보기</th>
+							<th>수정/삭제</th>
 						</tr>
 			 
 						<c:forEach var="teacher" items="${list}">

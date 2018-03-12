@@ -56,7 +56,7 @@ public interface ClassMapper {
 	public void getClass(ClassCommand Class);
 
 	//내가찜한 강의 목록--my_class command 새로만들지?
-	@Select("select * from my_class join class using(c_num) where m_num = (select m_num from member where m_id = #{m_id})")
+	@Select("select * from (select * from my_class join class using(c_num) where m_num = (select m_num from member where m_id = #{m_id}))join academy using(a_num)")
 	public List<ClassCommand> selectGet(String m_id);
 	
 	//내가 찜한 강의 목록에서 삭제
@@ -74,7 +74,7 @@ public interface ClassMapper {
 	//==============================수강신청 완료==========================
 	
 	//수강신청 완료 목록
-	@Select("SELECT * FROM complete join class using(c_num) WHERE m_num = #{m_num}")
+	@Select("SELECT * FROM (SELECT * FROM complete join class using(c_num) WHERE m_num = #{m_num}) join academy using(a_num)")
 	public List<ClassCommand> selectComplete(Integer m_num);
 	
 	//수강신청 - 강의 인원 증가

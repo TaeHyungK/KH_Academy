@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-5 col-sm-5">
                 <div class="logo-img">
-                    <a href="${pageContext.request.contextPath}/main/main.do"><img src="${pageContext.request.contextPath}/resources/bootstrap/images/logo.png" class="img-responsive" alt=""></a>
+                    <a href="${pageContext.request.contextPath}/main/main.do"><img src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-responsive" alt=""></a>
                 </div>
             </div>
             <div class="col-md-7 col-sm-7">
