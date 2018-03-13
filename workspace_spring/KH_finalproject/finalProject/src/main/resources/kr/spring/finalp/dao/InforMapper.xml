@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 네임스페이스는 MemberMapper.xml과 맵핑되는 인터페이스명을 package를 포함해서 명시함 불일치시 오류 발생 -->
+<mapper namespace="kr.spring.finalp.dao.InforMapper">
+	<!-- xml 파일로 하는 mybatis 방법 -->
+	<!-- id는 해당 메서드 명을 써줘야 함 -->
+	<select id="list" parameterType="map" resultType="inforCommand">
+		SELECT
+		*
+		FROM (SELECT
+		a.*,
+		rownum rnum
+		FROM(SELECT
+		b.ib_num,
+        <![CDATA[
+		             REPLACE(REPLACE(b.ib_title,'<','&lt;'),'>','&gt;') ib_title,
+		             ]]>
+		b.ib_content,
+		b.ib_hit,
+		b.ib_date,
+		b.m_num,
+        r.reply_cnt,
+        m.m_id
+		
+		FROM INFO_BOARD b JOIN MEMBER m 
+        ON b.m_num= m.m_num
+        LEFT JOIN (SELECT ib_num, COUNT(*) reply_cnt
+		FROM INFO_COMMENT
+		GROUP BY ib_num)r
+		ON b.ib_num = r.ib_num
+		<where>
+			<if test="keyword != '' and keyfield=='ib_title'">
+				ib_title like '%' ||#{keyword}|| '%'
+			</if>
+			<if test="keyword != '' and keyfield=='m_id'">
+				m_id = #{keyword}
+			</if>
+			<if test="keyword != '' and keyfield=='ib_content'">
+				ib_content like '%' ||#{keyword}|| '%'
+			</if>
+		</where>
+		ORDER BY b.ib_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+
+	</select>
+	<select id="getRowCount" parameterType="map" resultType="integer">
+		SELECT 
+		  COUNT(*) 
+		FROM (SELECT * 
+		      FROM INFO_BOARD i inner join MEMBER m using(m_num))
+		<where>
+			<if test="keyword != '' and keyfield=='ib_title'">
+				ib_title like '%' ||#{keyword}|| '%'
+			</if>
+			<if test="keyword != '' and keyfield=='m_id'">
+				m_id = #{keyword}
+			</if>
+			<if test="keyword != '' and keyfield=='ib_content'">
+				ib_content like '%' ||#{keyword}|| '%'
+			</if>
+		</where>
+	</select>
+	<!-- id= 메서드 명 -->
+	<select id="listReply" parameterType="map" resultType="inforReplyCommand">
+		SELECT
+			if_num,
+			ib_num,
+			ic_content,
+			ic_regdate,
+			m_num,
+			m_id
+			
+		FROM (SELECT 
+				a.*,
+				rownum rnum
+			  FROM(SELECT
+						*
+					FROM INFO_COMMENT
+					WHERE ib_num = #{ib_num}
+					ORDER BY if_num DESC) a)
+					INNER JOIN member USING(m_num) WHERE ib_num=#{ib_num}
+				
+	</select>
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<!-- 네임스페이스는 MemberMapper.xml과 맵핑되는 인터페이스명을 package를 포함해서 명시함 불일치시 오류 발생 -->    
+<mapper namespace="kr.spring.finalp.dao.TeacherMapper">
+	<!-- xml 파일로 하는 mybatis 방법 -->
+	<!-- id는 해당 메서드 명을 써줘야 함 -->
+	<select id="listTeacher" parameterType="map" resultType="teacherCommand">
+      
+      SELECT * 
+      FROM (SELECT a.*, rownum rnum
+           FROM (SELECT *
+                 FROM teacher                   
+                 <where>
+                   t_name like '%' ||#{keyword}|| '%'
+                   <![CDATA[
+      			AND a_num = (SELECT a_num FROM academy JOIN member USING(m_num) WHERE m_id=#{m_id})) a)
+      WHERE rnum>=#{start} AND rnum <=#{end}
+      ]]>
+               </where>
+             
+      
+   
+   </select>
+
+	<select id="getRowCount" parameterType="map" resultType="integer">
+		SELECT
+			count(*)
+		FROM teacher
+		<where>
+            <if test="keyword != '' and keyfield =='t_name'">
+            t_name like '%' ||#{keyword}|| '%'
+            <![CDATA[
+			AND a_num = (SELECT a_num FROM academy JOIN member USING(m_num) WHERE m_id=#{m_id})
+			]]>
+            </if>
+        </where>
+	</select>
+	
+	<select id="getTeacher" parameterType="map" resultType="teacherCommand">
+      
+         SELECT   f.t_num t_num, f.t_name, f.t_content, f.t_record, f.t_image, f.uploadfile, f.t_good, l.t_num curNum, l.m_num c_m_num
+      	 FROM (SELECT * FROM teacher) f left outer join (select t_num, listagg(m_num) within group (order by t_num) m_num from   
+			        (select b.t_num,s.m_num from t_liked b left outer join (select * from t_liked where m_num = #{m_num})s 
+						on b.t_num=s.t_num
+						where s.m_num is null or b.t_num!=s.t_num or b.m_num=s.m_num)
+					group by t_num) l on(f.t_num = l.t_num)
+		 WHERE f.t_num=#{t_num}
+   </select>
+	
+</mapper>
+
